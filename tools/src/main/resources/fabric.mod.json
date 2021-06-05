@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "mekanism-tools",
+  "id": "mekanismtools",
   "version": "${version}",
 
   "name": "Mekanism Tools",
@@ -15,7 +15,7 @@
   },
 
   "license": "MIT",
-  "icon": "assets/mekanism-tools/Mekanism.png",
+  "icon": "assets/mekanismtools/Mekanism.png",
 
   "environment": "*",
   "entrypoints": {
@@ -23,6 +23,10 @@
       "mekanism.tools.MekanismTools"
     ]
   },
+
+  "mixins": [
+    "mekanismtools.accessors.json"
+  ],
 
   "depends": {
     "fabricloader": ">=0.11.3",

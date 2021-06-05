@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/shield_blocking",
+  "textures": {
+    "particle": "mekanism:block/block_steel"
+  }
+}
