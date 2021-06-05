@@ -7,3 +7,9 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+include 'mekanism'
+include 'mekanism-api'
+include 'defense'
+include 'generators'
+include 'tools'

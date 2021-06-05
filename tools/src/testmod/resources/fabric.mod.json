@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "mekanism-tools-testmod",
+  "name": "Mekanism Tools Test Mod",
+  "version": "1.0.0",
+  "environment": "*",
+  "license": "MIT",
+  "entrypoints": {
+    "main": [
+      "mekanism.tools.testmod.MekanismToolsTestMod"
+    ]
+  }
+}

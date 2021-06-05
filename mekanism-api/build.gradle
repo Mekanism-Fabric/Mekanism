@@ -1,0 +1,6 @@
+archivesBaseName = "mekanism-api"
+version = "1.0.0"
+
+dependencies {
+    // Test Mod Dependencies go here
+}

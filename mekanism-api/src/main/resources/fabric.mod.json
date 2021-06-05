@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "mekanism-api",
+  "name": "Mekanism API",
+  "description": "ToDo...",
+  "version": "${version}",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "mekanism.api.MekanismAPI"
+    ]
+  },
+  "license": "MIT",
+  "icon": "assets/mekanism-api/Mekanism.png",
+  "contact": {
+    "homepage": "https://wiki.aidancbrady.com/wiki/Mekanism",
+    "sources": "https://github.com/Mekanism-Fabric/Mekanism"
+  },
+  "authors": [
+    "MorningSage",
+    "TheRealAlphaDuck"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/hGMY3q8KHd"
+      },
+      "badges": [ "library" ],
+      "parent": {
+        "id": "mekanism"
+      }
+    }
+  }
+}

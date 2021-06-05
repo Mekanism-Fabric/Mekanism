@@ -15,13 +15,31 @@
   },
 
   "license": "MIT",
+  "icon": "assets/mekanism/Mekanism.png",
 
   "environment": "*",
+  "entrypoints": {
+    "main": [
+      "mekanism.Mekanism"
+    ]
+  },
+
+  "mixins": [
+    "mekanism.mixins.json"
+  ],
 
   "depends": {
     "fabricloader": ">=0.11.3",
     "fabric": "*",
     "minecraft": "1.17.x",
-    "java": ">=16"
+    "java": ">=16",
+    "mekanism-api": "1.0.0"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/hGMY3q8KHd"
+      }
+    }
   }
 }
