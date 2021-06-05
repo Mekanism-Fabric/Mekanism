@@ -16,6 +16,7 @@ class Globals {
 	static def modMenuVersion = "2.0.0-beta.5"
 	static def wthitVersion = "3.5.0"
 	static def ftlVersion = "0.4.1"
+	static def reiVersion = "6.0.247-alpha"
 }
 
 version = Globals.baseVersion
@@ -105,6 +106,9 @@ allprojects {
 
 		modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${Globals.wthitVersion}"
 		modRuntime "mcp.mobius.waila:wthit:fabric-${Globals.wthitVersion}"
+
+		modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${Globals.reiVersion}"
+		modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${Globals.reiVersion}"
 
 		// Not updated to 1.17 and not currently required yet.  Leaving here for when we
 		//modApi include("dev.technici4n:FastTransferLib:${Globals.ftlVersion}", {
