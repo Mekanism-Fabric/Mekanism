@@ -3,15 +3,23 @@ package mekanism.tools;
 import mekanism.tools.registries.ToolItems;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class MekanismTools implements ModInitializer {
     public static final String MODID = "mekanismtools";
+    public static final Logger LOGGER = LogManager.getLogger();
 
     @Override
     public void onInitialize() {
         ToolItems.init();
 
-        System.out.println("Tools Loaded");
+        log(Level.INFO, "Tools Loaded");
+    }
+
+    public static void log(Level level, String message) {
+        LOGGER.log(level, message);
     }
 
     public static Identifier id(String path) {
