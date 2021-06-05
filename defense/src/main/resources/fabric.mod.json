@@ -29,7 +29,7 @@
     "fabric": "*",
     "minecraft": "1.17.x",
     "java": ">=16",
-    "mekanism-api": "1.0.0"
+    "mekanism": "1.0.0"
   },
   "custom": {
     "modmenu": {
