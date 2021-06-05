@@ -24,8 +24,8 @@ the hydrogen-powered jetpacks, and have a cute robotic friend following you arou
 
 Both versions of Mekanism can be found on discord:
 
-* The forge version of mekanism can be found [here](https://discord.gg/nmSjMGc)
-* The fabric version of mekanism can be found [here](https://discord.gg/hGMY3q8KHd)
+* The Forge version of Mekanism can be found [here](https://discord.gg/nmSjMGc)
+* The Fabric version of Mekanism can be found [here](https://discord.gg/hGMY3q8KHd)
 
 # Translating #
 
