@@ -10,6 +10,7 @@ pluginManagement {
 
 include 'mekanism'
 include 'mekanism-api'
+include 'additions'
 include 'defense'
 include 'generators'
 include 'tools'
