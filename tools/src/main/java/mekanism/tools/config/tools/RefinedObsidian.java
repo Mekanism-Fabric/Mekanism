@@ -105,7 +105,7 @@ public class RefinedObsidian extends AbstractMaterialConfig implements ConfigDat
     @Getter
     @Path(RefinedObsidianMaterialDefaults.name + "ToolMaxUses")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + RefinedObsidianMaterialDefaults.name + " tools."
     })
@@ -163,7 +163,7 @@ public class RefinedObsidian extends AbstractMaterialConfig implements ConfigDat
     @Getter
     @Path(RefinedObsidianMaterialDefaults.name + "PaxelMaxUses")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + RefinedObsidianMaterialDefaults.name + " paxels."
     })
@@ -208,7 +208,7 @@ public class RefinedObsidian extends AbstractMaterialConfig implements ConfigDat
     @Getter
     @Path(RefinedObsidianMaterialDefaults.name + "BootDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + RefinedObsidianMaterialDefaults.name + " boots."
     })
@@ -217,7 +217,7 @@ public class RefinedObsidian extends AbstractMaterialConfig implements ConfigDat
     @Getter
     @Path(RefinedObsidianMaterialDefaults.name + "LeggingDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + RefinedObsidianMaterialDefaults.name + " leggings."
     })
@@ -226,7 +226,7 @@ public class RefinedObsidian extends AbstractMaterialConfig implements ConfigDat
     @Getter
     @Path(RefinedObsidianMaterialDefaults.name + "ChestplateDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + RefinedObsidianMaterialDefaults.name + " chestplates."
     })
@@ -235,7 +235,7 @@ public class RefinedObsidian extends AbstractMaterialConfig implements ConfigDat
     @Getter
     @Path(RefinedObsidianMaterialDefaults.name + "HelmetDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + RefinedObsidianMaterialDefaults.name + " helmets."
     })

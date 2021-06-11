@@ -105,7 +105,7 @@ public class Osmium extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(OsmiumMaterialDefaults.name + "ToolMaxUses")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + OsmiumMaterialDefaults.name + " tools."
     })
@@ -163,7 +163,7 @@ public class Osmium extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(OsmiumMaterialDefaults.name + "PaxelMaxUses")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + OsmiumMaterialDefaults.name + " paxels."
     })
@@ -208,7 +208,7 @@ public class Osmium extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(OsmiumMaterialDefaults.name + "BootDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + OsmiumMaterialDefaults.name + " boots."
     })
@@ -217,7 +217,7 @@ public class Osmium extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(OsmiumMaterialDefaults.name + "LeggingDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + OsmiumMaterialDefaults.name + " leggings."
     })
@@ -226,7 +226,7 @@ public class Osmium extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(OsmiumMaterialDefaults.name + "ChestplateDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + OsmiumMaterialDefaults.name + " chestplates."
     })
@@ -235,7 +235,7 @@ public class Osmium extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(OsmiumMaterialDefaults.name + "HelmetDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + OsmiumMaterialDefaults.name + " helmets."
     })

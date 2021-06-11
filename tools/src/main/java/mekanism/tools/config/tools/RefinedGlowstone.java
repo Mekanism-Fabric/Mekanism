@@ -105,7 +105,7 @@ public class RefinedGlowstone extends AbstractMaterialConfig implements ConfigDa
     @Getter
     @Path(RefinedGlowstoneMaterialDefaults.name + "ToolMaxUses")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + RefinedGlowstoneMaterialDefaults.name + " tools."
     })
@@ -163,7 +163,7 @@ public class RefinedGlowstone extends AbstractMaterialConfig implements ConfigDa
     @Getter
     @Path(RefinedGlowstoneMaterialDefaults.name + "PaxelMaxUses")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + RefinedGlowstoneMaterialDefaults.name + " paxels."
     })
@@ -208,7 +208,7 @@ public class RefinedGlowstone extends AbstractMaterialConfig implements ConfigDa
     @Getter
     @Path(RefinedGlowstoneMaterialDefaults.name + "BootDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + RefinedGlowstoneMaterialDefaults.name + " boots."
     })
@@ -217,7 +217,7 @@ public class RefinedGlowstone extends AbstractMaterialConfig implements ConfigDa
     @Getter
     @Path(RefinedGlowstoneMaterialDefaults.name + "LeggingDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + RefinedGlowstoneMaterialDefaults.name + " leggings."
     })
@@ -226,7 +226,7 @@ public class RefinedGlowstone extends AbstractMaterialConfig implements ConfigDa
     @Getter
     @Path(RefinedGlowstoneMaterialDefaults.name + "ChestplateDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + RefinedGlowstoneMaterialDefaults.name + " chestplates."
     })
@@ -235,7 +235,7 @@ public class RefinedGlowstone extends AbstractMaterialConfig implements ConfigDa
     @Getter
     @Path(RefinedGlowstoneMaterialDefaults.name + "HelmetDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + RefinedGlowstoneMaterialDefaults.name + " helmets."
     })

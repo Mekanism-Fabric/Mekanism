@@ -105,7 +105,7 @@ public class Steel extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(SteelMaterialDefaults.name + "ToolMaxUses")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + SteelMaterialDefaults.name + " tools."
     })
@@ -163,7 +163,7 @@ public class Steel extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(SteelMaterialDefaults.name + "PaxelMaxUses")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + SteelMaterialDefaults.name + " paxels."
     })
@@ -208,7 +208,7 @@ public class Steel extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(SteelMaterialDefaults.name + "BootDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + SteelMaterialDefaults.name + " boots."
     })
@@ -217,7 +217,7 @@ public class Steel extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(SteelMaterialDefaults.name + "LeggingDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + SteelMaterialDefaults.name + " leggings."
     })
@@ -226,7 +226,7 @@ public class Steel extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(SteelMaterialDefaults.name + "ChestplateDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + SteelMaterialDefaults.name + " chestplates."
     })
@@ -235,7 +235,7 @@ public class Steel extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(SteelMaterialDefaults.name + "HelmetDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + SteelMaterialDefaults.name + " helmets."
     })

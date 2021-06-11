@@ -105,7 +105,7 @@ public class LapisLazuli extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(LapisLazuliMaterialDefaults.name + "ToolMaxUses")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + LapisLazuliMaterialDefaults.name + " tools."
     })
@@ -163,7 +163,7 @@ public class LapisLazuli extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(LapisLazuliMaterialDefaults.name + "PaxelMaxUses")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + LapisLazuliMaterialDefaults.name + " paxels."
     })
@@ -208,7 +208,7 @@ public class LapisLazuli extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(LapisLazuliMaterialDefaults.name + "BootDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + LapisLazuliMaterialDefaults.name + " boots."
     })
@@ -217,7 +217,7 @@ public class LapisLazuli extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(LapisLazuliMaterialDefaults.name + "LeggingDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + LapisLazuliMaterialDefaults.name + " leggings."
     })
@@ -226,7 +226,7 @@ public class LapisLazuli extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(LapisLazuliMaterialDefaults.name + "ChestplateDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + LapisLazuliMaterialDefaults.name + " chestplates."
     })
@@ -235,7 +235,7 @@ public class LapisLazuli extends AbstractMaterialConfig implements ConfigData {
     @Getter
     @Path(LapisLazuliMaterialDefaults.name + "HelmetDurability")
     @ConfigEntry.Gui.Tooltip
-    @SpecIntInRange(min = 0, max = Integer.MAX_VALUE)
+    @SpecIntInRange(min = 1, max = Integer.MAX_VALUE)
     @TOMLConfigSerializer.Comment({
         "Maximum durability of " + LapisLazuliMaterialDefaults.name + " helmets."
     })
