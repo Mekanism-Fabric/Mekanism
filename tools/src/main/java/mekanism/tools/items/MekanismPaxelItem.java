@@ -18,7 +18,7 @@ import static mekanism.tools.registries.ToolItems.PAXEL_MINEABLE;
 public class MekanismPaxelItem extends MiningToolItem implements IHazCustomMaxDamage {
 
     private static final Item[] VALID_TOOLS = {
-        Items.NETHERITE_HOE,
+        Items.NETHERITE_AXE,
         Items.NETHERITE_SHOVEL,
         Items.NETHERITE_PICKAXE
     };
