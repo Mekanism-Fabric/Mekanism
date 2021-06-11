@@ -1,9 +1,7 @@
 package mekanism.tools.items;
 
-import mekanism.registration.ItemRegistry;
 import mekanism.tools.materials.BaseMekanismMaterial;
 import mekanism.tools.utils.ToolsUtils;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.*;
 import net.minecraft.text.Text;
@@ -17,6 +15,8 @@ import static mekanism.tools.registries.ToolItems.PAXEL_MINEABLE;
 
 public class MekanismPaxelItem extends MiningToolItem implements IHazCustomMaxDamage {
 
+    private static final float DEFAULT_ATTACK_DAMAGE = 4.0F;
+
     private static final Item[] VALID_TOOLS = {
         Items.NETHERITE_AXE,
         Items.NETHERITE_SHOVEL,
@@ -24,7 +24,7 @@ public class MekanismPaxelItem extends MiningToolItem implements IHazCustomMaxDa
     };
 
     public MekanismPaxelItem(ToolMaterials material, Settings settings) {
-        super(4, -2.4F, material, PAXEL_MINEABLE, settings);
+        super(DEFAULT_ATTACK_DAMAGE, -2.4F, material, PAXEL_MINEABLE, settings);
     }
 
     public MekanismPaxelItem(BaseMekanismMaterial material, Settings settings) {
@@ -36,6 +36,19 @@ public class MekanismPaxelItem extends MiningToolItem implements IHazCustomMaxDa
         super.appendTooltip(stack, world, tooltip, context);
 
         ToolsUtils.addDurability(tooltip, stack);
+    }
+
+    @Override
+    public float getAttackDamage() {
+        ToolMaterial material = this.getMaterial();
+
+        float damage = DEFAULT_ATTACK_DAMAGE;
+
+        if (material instanceof BaseMekanismMaterial) {
+            damage = ((BaseMekanismMaterial) material).getPaxelDamage();
+        }
+
+        return damage + getMaterial().getAttackDamage();
     }
 
     @Override
