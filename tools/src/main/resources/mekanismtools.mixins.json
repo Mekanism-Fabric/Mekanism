@@ -4,9 +4,11 @@
   "package": "mekanism.tools.mixins",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "ItemMixin"
+    "ItemMixin",
+    "PiglinBrainMixin"
   ],
   "client": [
+    "ArmorFeatureRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
