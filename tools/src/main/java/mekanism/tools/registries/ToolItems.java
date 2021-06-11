@@ -31,7 +31,7 @@ public final class ToolItems {
     public static final MekanismAxeItem BRONZE_AXE = registerAxe(MekanismTools.config().config.bronzeMaterialStats);
     public static final MekanismShovelItem BRONZE_SHOVEL = registerShovel(MekanismTools.config().config.bronzeMaterialStats);
     public static final MekanismHoeItem BRONZE_HOE = registerHoe(MekanismTools.config().config.bronzeMaterialStats);
-    //public static final MekanismSwordItem BRONZE_SWORD = registerSword(MekanismTools.config().config.bronzeMaterialStats);
+    public static final MekanismSwordItem BRONZE_SWORD = registerSword(MekanismTools.config().config.bronzeMaterialStats);
     public static final MekanismPaxelItem BRONZE_PAXEL = registerPaxel(MekanismTools.config().config.bronzeMaterialStats);
     //public static final MekanismArmorItem BRONZE_HELMET = registerArmor(MekanismTools.config().config.bronzeMaterialStats, EquipmentSlot.HEAD);
     //public static final MekanismArmorItem BRONZE_CHESTPLATE = registerArmor(MekanismTools.config().config.bronzeMaterialStats, EquipmentSlot.CHEST);
@@ -43,7 +43,7 @@ public final class ToolItems {
     public static final MekanismAxeItem LAPIS_LAZULI_AXE = registerAxe(MekanismTools.config().config.lapisLazuliMaterialStats);
     public static final MekanismShovelItem LAPIS_LAZULI_SHOVEL = registerShovel(MekanismTools.config().config.lapisLazuliMaterialStats);
     public static final MekanismHoeItem LAPIS_LAZULI_HOE = registerHoe(MekanismTools.config().config.lapisLazuliMaterialStats);
-    //public static final MekanismSwordItem LAPIS_LAZULI_SWORD = registerSword(MekanismToolsConfig.tools.lapisLazuli);
+    public static final MekanismSwordItem LAPIS_LAZULI_SWORD = registerSword(MekanismTools.config().config.lapisLazuliMaterialStats);
     public static final MekanismPaxelItem LAPIS_LAZULI_PAXEL = registerPaxel(MekanismTools.config().config.lapisLazuliMaterialStats);
     //public static final MekanismArmorItem LAPIS_LAZULI_HELMET = registerArmor(MekanismToolsConfig.tools.lapisLazuli, EquipmentSlotType.HEAD);
     //public static final MekanismArmorItem LAPIS_LAZULI_CHESTPLATE = registerArmor(MekanismToolsConfig.tools.lapisLazuli, EquipmentSlotType.CHEST);
@@ -55,7 +55,7 @@ public final class ToolItems {
     public static final MekanismAxeItem OSMIUM_AXE = registerAxe(MekanismTools.config().config.osmiumMaterialStats);
     public static final MekanismShovelItem OSMIUM_SHOVEL = registerShovel(MekanismTools.config().config.osmiumMaterialStats);
     public static final MekanismHoeItem OSMIUM_HOE = registerHoe(MekanismTools.config().config.osmiumMaterialStats);
-    //public static final MekanismSwordItem OSMIUM_SWORD = registerSword(MekanismToolsConfig.tools.osmium);
+    public static final MekanismSwordItem OSMIUM_SWORD = registerSword(MekanismTools.config().config.osmiumMaterialStats);
     public static final MekanismPaxelItem OSMIUM_PAXEL = registerPaxel(MekanismTools.config().config.osmiumMaterialStats);
     //public static final MekanismArmorItem OSMIUM_HELMET = registerArmor(MekanismToolsConfig.tools.osmium, EquipmentSlotType.HEAD);
     //public static final MekanismArmorItem OSMIUM_CHESTPLATE = registerArmor(MekanismToolsConfig.tools.osmium, EquipmentSlotType.CHEST);
@@ -67,7 +67,7 @@ public final class ToolItems {
     public static final MekanismAxeItem REFINED_GLOWSTONE_AXE = registerAxe(MekanismTools.config().config.refinedGlowstoneMaterialStats);
     public static final MekanismShovelItem REFINED_GLOWSTONE_SHOVEL = registerShovel(MekanismTools.config().config.refinedGlowstoneMaterialStats);
     public static final MekanismHoeItem REFINED_GLOWSTONE_HOE = registerHoe(MekanismTools.config().config.refinedGlowstoneMaterialStats);
-    //public static final MekanismSwordItem REFINED_GLOWSTONE_SWORD = registerSword(MekanismToolsConfig.tools.refinedGlowstone);
+    public static final MekanismSwordItem REFINED_GLOWSTONE_SWORD = registerSword(MekanismTools.config().config.refinedGlowstoneMaterialStats);
     public static final MekanismPaxelItem REFINED_GLOWSTONE_PAXEL = registerPaxel(MekanismTools.config().config.refinedGlowstoneMaterialStats);
     //public static final MekanismArmorItem REFINED_GLOWSTONE_HELMET = registerArmor(MekanismToolsConfig.tools.refinedGlowstone, EquipmentSlotType.HEAD, true);
     //public static final MekanismArmorItem REFINED_GLOWSTONE_CHESTPLATE = registerArmor(MekanismToolsConfig.tools.refinedGlowstone, EquipmentSlotType.CHEST, true);
@@ -79,7 +79,7 @@ public final class ToolItems {
     public static final MekanismAxeItem REFINED_OBSIDIAN_AXE = registerAxe(MekanismTools.config().config.refinedObsidianMaterialStats);
     public static final MekanismShovelItem REFINED_OBSIDIAN_SHOVEL = registerShovel(MekanismTools.config().config.refinedObsidianMaterialStats);
     public static final MekanismHoeItem REFINED_OBSIDIAN_HOE = registerHoe(MekanismTools.config().config.refinedObsidianMaterialStats);
-    //public static final MekanismSwordItem REFINED_OBSIDIAN_SWORD = registerSword(MekanismToolsConfig.tools.refinedObsidian);
+    public static final MekanismSwordItem REFINED_OBSIDIAN_SWORD = registerSword(MekanismTools.config().config.refinedObsidianMaterialStats);
     public static final MekanismPaxelItem REFINED_OBSIDIAN_PAXEL = registerPaxel(MekanismTools.config().config.refinedObsidianMaterialStats);
     //public static final MekanismArmorItem REFINED_OBSIDIAN_HELMET = registerArmor(MekanismToolsConfig.tools.refinedObsidian, EquipmentSlotType.HEAD);
     //public static final MekanismArmorItem REFINED_OBSIDIAN_CHESTPLATE = registerArmor(MekanismToolsConfig.tools.refinedObsidian, EquipmentSlotType.CHEST);
@@ -91,7 +91,7 @@ public final class ToolItems {
     public static final MekanismAxeItem STEEL_AXE = registerAxe(MekanismTools.config().config.steelMaterialStats);
     public static final MekanismShovelItem STEEL_SHOVEL = registerShovel(MekanismTools.config().config.steelMaterialStats);
     public static final MekanismHoeItem STEEL_HOE = registerHoe(MekanismTools.config().config.steelMaterialStats);
-    //public static final MekanismSwordItem STEEL_SWORD = registerSword(MekanismToolsConfig.tools.steel);
+    public static final MekanismSwordItem STEEL_SWORD = registerSword(MekanismTools.config().config.steelMaterialStats);
     public static final MekanismPaxelItem STEEL_PAXEL = registerPaxel(MekanismTools.config().config.steelMaterialStats);
     //public static final MekanismArmorItem STEEL_HELMET = registerArmor(MekanismToolsConfig.tools.steel, EquipmentSlotType.HEAD);
     //public static final MekanismArmorItem STEEL_CHESTPLATE = registerArmor(MekanismToolsConfig.tools.steel, EquipmentSlotType.CHEST);
@@ -129,6 +129,10 @@ public final class ToolItems {
 
     private static MekanismHoeItem registerHoe(BaseMekanismMaterial material) {
         return register(material.getRegistryPrefix() + "_hoe", () -> new MekanismHoeItem(material, getItemProperties(material)));
+    }
+
+    private static MekanismSwordItem registerSword(BaseMekanismMaterial material) {
+        return register(material.getRegistryPrefix() + "_sword", () -> new MekanismSwordItem(material, getItemProperties(material)));
     }
 
     private static <T extends Item> T register(String name, Supplier<? extends T> supplier) {
