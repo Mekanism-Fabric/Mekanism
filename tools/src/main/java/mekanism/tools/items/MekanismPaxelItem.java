@@ -14,7 +14,7 @@ import java.util.List;
 
 import static mekanism.tools.registries.ToolItems.PAXEL_MINEABLE;
 
-public class MekanismPaxelItem extends MiningToolItem {
+public class MekanismPaxelItem extends MiningToolItem implements IHazCustomMaxDamage {
 
     private static Item.Settings getItemProperties(ToolMaterial material) {
         FabricItemSettings properties = ItemRegistry.getMekBaseProperties();
@@ -28,8 +28,13 @@ public class MekanismPaxelItem extends MiningToolItem {
         return properties;
     }
 
-    public MekanismPaxelItem(ToolMaterial material) {
+    public MekanismPaxelItem(ToolMaterials material) {
         super(4, -2.4F, material, PAXEL_MINEABLE, getItemProperties(material));
+    }
+
+
+    public MekanismPaxelItem(BaseMekanismMaterial material) {
+        super(material.getPaxelDamage(), material.getPaxelAtkSpeed(), material, PAXEL_MINEABLE, getItemProperties(material));
     }
 
     @Override
@@ -37,5 +42,16 @@ public class MekanismPaxelItem extends MiningToolItem {
         super.appendTooltip(stack, world, tooltip, context);
 
         ToolsUtils.addDurability(tooltip, stack);
+    }
+
+    @Override
+    public int getCustomMaxDamage(int defaultDamage) {
+        ToolMaterial material = this.getMaterial();
+
+        if (material instanceof BaseMekanismMaterial) {
+            return ((BaseMekanismMaterial) material).getPaxelMaxUses();
+        } else {
+            return defaultDamage;
+        }
     }
 }

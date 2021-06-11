@@ -11,6 +11,7 @@ import net.minecraft.item.ToolMaterials;
 import net.minecraft.tag.Tag;
 
 import java.util.Locale;
+import java.util.function.Supplier;
 
 public final class ToolItems {
     public static final ItemRegistry ITEMS = new ItemRegistry(MekanismTools.MODID);
@@ -101,15 +102,15 @@ public final class ToolItems {
     }
 
     private static MekanismPaxelItem registerPaxel(ToolMaterials material) {
-        return registerPaxel(material.name().toLowerCase(Locale.ROOT), material);
+        return registerPaxel(material.name().toLowerCase(Locale.ROOT), () -> new MekanismPaxelItem(material));
     }
 
     private static MekanismPaxelItem registerPaxel(BaseMekanismMaterial material) {
-        return registerPaxel(material.getRegistryPrefix(), material);
+        return registerPaxel(material.getRegistryPrefix(), () -> new MekanismPaxelItem(material));
     }
 
-    private static MekanismPaxelItem registerPaxel(String name, ToolMaterial material) {
-        return ITEMS.register(name.toLowerCase(Locale.ROOT) + "_paxel", () -> new MekanismPaxelItem(material));
+    private static MekanismPaxelItem registerPaxel(String name, Supplier<? extends MekanismPaxelItem> supplier) {
+        return ITEMS.register(name.toLowerCase(Locale.ROOT) + "_paxel", supplier);
     }
 
 }
