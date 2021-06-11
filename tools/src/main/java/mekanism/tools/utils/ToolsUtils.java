@@ -17,7 +17,7 @@ public final class ToolsUtils {
      */
     public static void addDurability(@NotNull List<Text> tooltip, @NotNull ItemStack stack) {
         if (MekanismToolsClient.clientConfig().config.displayDurabilityTooltips) {
-            tooltip.add(new TranslatableText("tooltip.mekanismtools.hp", stack.getMaxDamage() - stack.getDamage()));
+            tooltip.add(ToolsLang.HP.translate(stack.getMaxDamage() - stack.getDamage()));
         }
     }
 
