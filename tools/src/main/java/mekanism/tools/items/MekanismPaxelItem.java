@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.*;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,7 +33,6 @@ public class MekanismPaxelItem extends MiningToolItem implements IHazCustomMaxDa
         super(4, -2.4F, material, PAXEL_MINEABLE, getItemProperties(material));
     }
 
-
     public MekanismPaxelItem(BaseMekanismMaterial material) {
         super(material.getPaxelDamage(), material.getPaxelAtkSpeed(), material, PAXEL_MINEABLE, getItemProperties(material));
     }
@@ -53,5 +53,31 @@ public class MekanismPaxelItem extends MiningToolItem implements IHazCustomMaxDa
         } else {
             return defaultDamage;
         }
+    }
+
+    @Override
+    public boolean isDamageable() {
+        ToolMaterial material = this.getMaterial();
+
+        if (material instanceof BaseMekanismMaterial) {
+            return ((BaseMekanismMaterial) material).getPaxelMaxUses() > 0;
+        } else {
+            return super.isDamageable();
+        }
+    }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        ActionResult result = Items.NETHERITE_AXE.useOnBlock(context);
+
+        if (result == ActionResult.PASS) {
+            result = Items.NETHERITE_SHOVEL.useOnBlock(context);
+        }
+
+        if (result == ActionResult.PASS) {
+            result = Items.NETHERITE_PICKAXE.useOnBlock(context);
+        }
+
+        return  result;
     }
 }
