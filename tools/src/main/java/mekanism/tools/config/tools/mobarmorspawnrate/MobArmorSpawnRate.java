@@ -26,6 +26,7 @@ public class MobArmorSpawnRate implements ConfigData {
     @TOMLConfigSerializer.Comment(
         "Spawn chances for pieces of Lapis Lazuli gear. Note: These values are after the general mobArmorSpawnRate has been checked, and after an even split between armor types has been done."
     )
+    @Path("lapis_lazuli")
     @ConfigEntry.Category("lapis_lazuli")
     @ConfigEntry.Gui.TransitiveObject
     public LapisLazuli lapisLazuli = new LapisLazuli();
@@ -40,6 +41,7 @@ public class MobArmorSpawnRate implements ConfigData {
     @TOMLConfigSerializer.Comment(
         "Spawn chances for pieces of Refined Glowstone gear. Note: These values are after the general mobArmorSpawnRate has been checked, and after an even split between armor types has been done."
     )
+    @Path("refined_glowstone")
     @ConfigEntry.Category("refined_glowstone")
     @ConfigEntry.Gui.TransitiveObject
     public RefinedGlowstone refinedGlowstone = new RefinedGlowstone();
@@ -47,6 +49,7 @@ public class MobArmorSpawnRate implements ConfigData {
     @TOMLConfigSerializer.Comment(
         "Spawn chances for pieces of Refined Obsidian gear. Note: These values are after the general mobArmorSpawnRate has been checked, and after an even split between armor types has been done."
     )
+    @Path("refined_obsidian")
     @ConfigEntry.Category("refined_obsidian")
     @ConfigEntry.Gui.TransitiveObject
     public RefinedObsidian refinedObsidian = new RefinedObsidian();
