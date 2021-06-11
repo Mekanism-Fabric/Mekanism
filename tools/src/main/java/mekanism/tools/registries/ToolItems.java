@@ -4,8 +4,11 @@ import mekanism.registration.ItemRegistry;
 import mekanism.tools.MekanismTools;
 import mekanism.tools.accessors.BlockTagsAccessor;
 import mekanism.tools.items.MekanismPaxelItem;
+import mekanism.tools.items.MekanismPickaxeItem;
 import mekanism.tools.materials.BaseMekanismMaterial;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.tag.Tag;
@@ -25,7 +28,7 @@ public final class ToolItems {
     public static final MekanismPaxelItem GOLD_PAXEL      = registerPaxel(ToolMaterials.GOLD);
     public static final MekanismPaxelItem NETHERITE_PAXEL = registerPaxel(ToolMaterials.NETHERITE);
 
-    //public static final MekanismPickaxeItem BRONZE_PICKAXE = registerPickaxe(MekanismTools.config().config.bronzeMaterialStats);
+    public static final MekanismPickaxeItem BRONZE_PICKAXE = registerPickaxe(MekanismTools.config().config.bronzeMaterialStats);
     //public static final MekanismAxeItem BRONZE_AXE = registerAxe(MekanismTools.config().config.bronzeMaterialStats);
     //public static final MekanismShovelItem BRONZE_SHOVEL = registerShovel(MekanismTools.config().config.bronzeMaterialStats);
     //public static final MekanismHoeItem BRONZE_HOE = registerHoe(MekanismTools.config().config.bronzeMaterialStats);
@@ -37,7 +40,7 @@ public final class ToolItems {
     //public static final MekanismArmorItem BRONZE_BOOTS = registerArmor(MekanismTools.config().config.bronzeMaterialStats, EquipmentSlot.FEET);
     //public static final MekanismShieldItem BRONZE_SHIELD = registerShield(MekanismTools.config().config.bronzeMaterialStats);
 
-    //public static final MekanismPickaxeItem LAPIS_LAZULI_PICKAXE = registerPickaxe(MekanismToolsConfig.tools.lapisLazuli);
+    public static final MekanismPickaxeItem LAPIS_LAZULI_PICKAXE = registerPickaxe(MekanismTools.config().config.lapisLazuliMaterialStats);
     //public static final MekanismAxeItem LAPIS_LAZULI_AXE = registerAxe(MekanismToolsConfig.tools.lapisLazuli);
     //public static final MekanismShovelItem LAPIS_LAZULI_SHOVEL = registerShovel(MekanismToolsConfig.tools.lapisLazuli);
     //public static final MekanismHoeItem LAPIS_LAZULI_HOE = registerHoe(MekanismToolsConfig.tools.lapisLazuli);
@@ -49,7 +52,7 @@ public final class ToolItems {
     //public static final MekanismArmorItem LAPIS_LAZULI_BOOTS = registerArmor(MekanismToolsConfig.tools.lapisLazuli, EquipmentSlotType.FEET);
     //public static final MekanismShieldItem LAPIS_LAZULI_SHIELD = registerShield(MekanismToolsConfig.tools.lapisLazuli);
 
-    //public static final MekanismPickaxeItem OSMIUM_PICKAXE = registerPickaxe(MekanismToolsConfig.tools.osmium);
+    public static final MekanismPickaxeItem OSMIUM_PICKAXE = registerPickaxe(MekanismTools.config().config.osmiumMaterialStats);
     //public static final MekanismAxeItem OSMIUM_AXE = registerAxe(MekanismToolsConfig.tools.osmium);
     //public static final MekanismShovelItem OSMIUM_SHOVEL = registerShovel(MekanismToolsConfig.tools.osmium);
     //public static final MekanismHoeItem OSMIUM_HOE = registerHoe(MekanismToolsConfig.tools.osmium);
@@ -61,7 +64,7 @@ public final class ToolItems {
     //public static final MekanismArmorItem OSMIUM_BOOTS = registerArmor(MekanismToolsConfig.tools.osmium, EquipmentSlotType.FEET);
     //public static final MekanismShieldItem OSMIUM_SHIELD = registerShield(MekanismToolsConfig.tools.osmium);
 
-    //public static final MekanismPickaxeItem REFINED_GLOWSTONE_PICKAXE = registerPickaxe(MekanismToolsConfig.tools.refinedGlowstone);
+    public static final MekanismPickaxeItem REFINED_GLOWSTONE_PICKAXE = registerPickaxe(MekanismTools.config().config.refinedGlowstoneMaterialStats);
     //public static final MekanismAxeItem REFINED_GLOWSTONE_AXE = registerAxe(MekanismToolsConfig.tools.refinedGlowstone);
     //public static final MekanismShovelItem REFINED_GLOWSTONE_SHOVEL = registerShovel(MekanismToolsConfig.tools.refinedGlowstone);
     //public static final MekanismHoeItem REFINED_GLOWSTONE_HOE = registerHoe(MekanismToolsConfig.tools.refinedGlowstone);
@@ -73,7 +76,7 @@ public final class ToolItems {
     //public static final MekanismArmorItem REFINED_GLOWSTONE_BOOTS = registerArmor(MekanismToolsConfig.tools.refinedGlowstone, EquipmentSlotType.FEET, true);
     //public static final MekanismShieldItem REFINED_GLOWSTONE_SHIELD = registerShield(MekanismToolsConfig.tools.refinedGlowstone);
 
-    //public static final MekanismPickaxeItem REFINED_OBSIDIAN_PICKAXE = registerPickaxe(MekanismToolsConfig.tools.refinedObsidian);
+    public static final MekanismPickaxeItem REFINED_OBSIDIAN_PICKAXE = registerPickaxe(MekanismTools.config().config.refinedObsidianMaterialStats);
     //public static final MekanismAxeItem REFINED_OBSIDIAN_AXE = registerAxe(MekanismToolsConfig.tools.refinedObsidian);
     //public static final MekanismShovelItem REFINED_OBSIDIAN_SHOVEL = registerShovel(MekanismToolsConfig.tools.refinedObsidian);
     //public static final MekanismHoeItem REFINED_OBSIDIAN_HOE = registerHoe(MekanismToolsConfig.tools.refinedObsidian);
@@ -85,7 +88,7 @@ public final class ToolItems {
     //public static final MekanismArmorItem REFINED_OBSIDIAN_BOOTS = registerArmor(MekanismToolsConfig.tools.refinedObsidian, EquipmentSlotType.FEET);
     //public static final MekanismShieldItem REFINED_OBSIDIAN_SHIELD = registerShield(MekanismToolsConfig.tools.refinedObsidian);
 
-    //public static final MekanismPickaxeItem STEEL_PICKAXE = registerPickaxe(MekanismToolsConfig.tools.steel);
+    public static final MekanismPickaxeItem STEEL_PICKAXE = registerPickaxe(MekanismTools.config().config.steelMaterialStats);
     //public static final MekanismAxeItem STEEL_AXE = registerAxe(MekanismToolsConfig.tools.steel);
     //public static final MekanismShovelItem STEEL_SHOVEL = registerShovel(MekanismToolsConfig.tools.steel);
     //public static final MekanismHoeItem STEEL_HOE = registerHoe(MekanismToolsConfig.tools.steel);
@@ -102,15 +105,34 @@ public final class ToolItems {
     }
 
     private static MekanismPaxelItem registerPaxel(ToolMaterials material) {
-        return registerPaxel(material.name(), () -> new MekanismPaxelItem(material));
+        return registerPaxel(material.name(), () -> new MekanismPaxelItem(material, getItemProperties(material)));
     }
 
     private static MekanismPaxelItem registerPaxel(BaseMekanismMaterial material) {
-        return registerPaxel(material.getRegistryPrefix(), () -> new MekanismPaxelItem(material));
+        return registerPaxel(material.getRegistryPrefix(), () -> new MekanismPaxelItem(material, getItemProperties(material)));
     }
 
     private static MekanismPaxelItem registerPaxel(String name, Supplier<? extends MekanismPaxelItem> supplier) {
-        return ITEMS.register(name.toLowerCase(Locale.ROOT) + "_paxel", supplier);
+        return register(name + "_paxel", supplier);
     }
 
+    private static MekanismPickaxeItem registerPickaxe(BaseMekanismMaterial material) {
+        return register(material.getRegistryPrefix() + "_pickaxe", () -> new MekanismPickaxeItem(material, getItemProperties(material)));
+    }
+
+    private static <T extends Item> T register(String name, Supplier<? extends T> supplier) {
+        return ITEMS.register(name.toLowerCase(Locale.ROOT), supplier);
+    }
+
+    private static Item.Settings getItemProperties(ToolMaterial material) {
+        FabricItemSettings properties = ItemRegistry.getMekBaseProperties();
+
+        if (material == ToolMaterials.NETHERITE) {
+            properties = properties.fireproof();
+        } else if (material instanceof BaseMekanismMaterial && !((BaseMekanismMaterial)material).burnsInFire()) {
+            properties = properties.fireproof();
+        }
+
+        return properties;
+    }
 }

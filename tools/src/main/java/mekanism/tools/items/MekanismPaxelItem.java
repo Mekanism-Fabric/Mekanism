@@ -23,24 +23,12 @@ public class MekanismPaxelItem extends MiningToolItem implements IHazCustomMaxDa
         Items.NETHERITE_PICKAXE
     };
 
-    private static Item.Settings getItemProperties(ToolMaterial material) {
-        FabricItemSettings properties = ItemRegistry.getMekBaseProperties();
-
-        if (material == ToolMaterials.NETHERITE) {
-            properties = properties.fireproof();
-        } else if (material instanceof BaseMekanismMaterial && !((BaseMekanismMaterial)material).burnsInFire()) {
-            properties = properties.fireproof();
-        }
-
-        return properties;
+    public MekanismPaxelItem(ToolMaterials material, Settings settings) {
+        super(4, -2.4F, material, PAXEL_MINEABLE, settings);
     }
 
-    public MekanismPaxelItem(ToolMaterials material) {
-        super(4, -2.4F, material, PAXEL_MINEABLE, getItemProperties(material));
-    }
-
-    public MekanismPaxelItem(BaseMekanismMaterial material) {
-        super(material.getPaxelDamage(), material.getPaxelAtkSpeed(), material, PAXEL_MINEABLE, getItemProperties(material));
+    public MekanismPaxelItem(BaseMekanismMaterial material, Settings settings) {
+        super(material.getPaxelDamage(), material.getPaxelAtkSpeed(), material, PAXEL_MINEABLE, settings);
     }
 
     @Override
