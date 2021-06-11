@@ -102,7 +102,7 @@ public final class ToolItems {
     }
 
     private static MekanismPaxelItem registerPaxel(ToolMaterials material) {
-        return registerPaxel(material.name().toLowerCase(Locale.ROOT), () -> new MekanismPaxelItem(material));
+        return registerPaxel(material.name(), () -> new MekanismPaxelItem(material));
     }
 
     private static MekanismPaxelItem registerPaxel(BaseMekanismMaterial material) {
