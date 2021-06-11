@@ -1,6 +1,4 @@
 
-[![Build Status](https://travis-ci.com/mekanism/Mekanism.svg?branch=1.16.x)](https://travis-ci.com/mekanism/Mekanism)
-
 ![Mekanism Logo](logo.png)
 
 # Mekanism for Minecraft 1.17 #
@@ -18,13 +16,16 @@ tier, elite, the second-most complex tier, and ultimate, the most complex tier. 
 tiers by placing the component in a crafting grid and surrounding it with the necessary resources 
 for the next upgrade.
 
-By the time you've been using Mekanism for a while, you'll have a near-instructible suit of Obsidian 
-Armor, be obtaining four ingots for each ore you mine, have the ability to fly wherever you want with 
+By the time you've been using Mekanism for a while, you'll have a near-indestructible suit of Obsidian 
+Armor, be obtaining five ingots for each ore you mine, have the ability to fly wherever you want with 
 the hydrogen-powered jetpacks, and have a cute robotic friend following you around while you mine. :)
 
 # Discord #
 
-Mekanism has a [discord](https://discord.gg/nmSjMGc) where you can come chat with other Mekanism users and the developers. Join us!
+Both versions of Mekanism can be found on discord:
+
+* The Forge version of Mekanism can be found [here](https://discord.gg/nmSjMGc)
+* The Fabric version of Mekanism can be found [here](https://discord.gg/hGMY3q8KHd)
 
 # Translating #
 
