@@ -1,0 +1,9 @@
+{
+  "assemblicator.mekanism.craft_available": "ไอเทมที่สามารถสร้างได้",
+  "assemblicator.mekanism.craft_single": "สร้างเพียงไอเทมเดียว",
+  "auto.mekanism.eject": "นำออกอัตโนมัติ",
+  "auto.mekanism.pull": "นำเข้าอัตโนมัติ",
+  "auto.mekanism.sort": "จัดเรียงอัตโนมัติ",
+  "key.mekanism.description": "Show description",
+  "key.mekanism.details": "Show details"
+}

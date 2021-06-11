@@ -1,0 +1,20 @@
+{
+  "assemblicator.mekanism.auto_mode_toggle": "Auto-modus: %s",
+  "assemblicator.mekanism.craft_available": "Utform Tilgjenglege Gjenstandar",
+  "assemblicator.mekanism.craft_single": "Utform Enkelt Gjenstand",
+  "assemblicator.mekanism.fill_empty": "Fyll/Tøm Rutenett",
+  "auto.mekanism.eject": "Auto-utløys",
+  "auto.mekanism.pull": "Auto-trekk",
+  "auto.mekanism.sort": "Auto-sortér",
+  "block.mekanism.advanced_bin": "Avansert binge",
+  "block.mekanism.advanced_combining_factory": "Avansert kombineringfabrikk",
+  "block.mekanism.advanced_compressing_factory": "Avansert kompresjonfabrikk",
+  "block.mekanism.advanced_crushing_factory": "Avansert knusefabrikk",
+  "block.mekanism.advanced_energy_cube": "Avansert energikube",
+  "container.mekanism.advanced_combining_factory": "Avansert kombineringfabrikk",
+  "container.mekanism.advanced_compressing_factory": "Avansert kompresjonfabrikk",
+  "container.mekanism.advanced_crushing_factory": "Avansert knusefabrikk",
+  "container.mekanism.advanced_energy_cube": "Avansert energikube",
+  "key.mekanism.description": "Show description",
+  "key.mekanism.details": "Show details"
+}

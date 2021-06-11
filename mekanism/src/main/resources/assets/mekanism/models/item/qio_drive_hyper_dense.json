@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:item/generated",
+    "textures": { 
+        "layer0": "mekanism:item/qio_drive_hyper_dense"
+    }
+}
