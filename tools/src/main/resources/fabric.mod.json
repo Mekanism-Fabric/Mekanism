@@ -21,11 +21,15 @@
   "entrypoints": {
     "main": [
       "mekanism.tools.MekanismTools"
+    ],
+    "client": [
+      "mekanism.tools.MekanismToolsClient"
     ]
   },
 
   "mixins": [
-    "mekanismtools.accessors.json"
+    "mekanismtools.accessors.json",
+    "mekanismtools.mixins.json"
   ],
 
   "depends": {

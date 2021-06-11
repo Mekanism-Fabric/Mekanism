@@ -97,6 +97,9 @@ allprojects {
 		modApi "net.fabricmc:fabric-loader:${Globals.loaderVersion}"
 		modImplementation "net.fabricmc.fabric-api:fabric-api:${Globals.fabricVersion}"
 
+		compileOnly 'org.projectlombok:lombok:1.18.20'
+		annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
 		modApi("me.shedaniel.cloth:cloth-config-fabric:${Globals.clothConfigVersion}") {
 			exclude(module: "fabric-api")
 		}
@@ -109,6 +112,8 @@ allprojects {
 
 		modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${Globals.reiVersion}"
 		modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${Globals.reiVersion}"
+
+		implementation 'com.electronwill.night-config:toml:3.6.0'
 
 		// Not updated to 1.17 and not currently required yet.  Leaving here for when we
 		//modApi include("dev.technici4n:FastTransferLib:${Globals.ftlVersion}", {
