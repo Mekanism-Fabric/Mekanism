@@ -254,7 +254,7 @@ public final class TOMLConfigSerializer<T extends ConfigData> implements ConfigS
         if (configClass.isAnnotationPresent(Comment.class)) {
             final String[] lines = configClass.getAnnotation(Comment.class).value();
             final String comment = Arrays.stream(lines).
-                map(line -> "# " + line).
+                map(line -> "#" + line).
                 collect(Collectors.joining(System.lineSeparator()));
             string = comment + System.lineSeparator() + System.lineSeparator() + string;
         }
@@ -293,11 +293,7 @@ public final class TOMLConfigSerializer<T extends ConfigData> implements ConfigS
                 }
 
                 /* Check modifiers. */
-                final int fieldModifiers = field.getModifiers();
-
-                if (Modifier.isTransient(fieldModifiers)) {
-                    continue;
-                }
+                if (Modifier.isTransient(field.getModifiers())) continue;
 
                 if (!field.isAccessible()) {
                     field.setAccessible(true);
@@ -538,12 +534,15 @@ public final class TOMLConfigSerializer<T extends ConfigData> implements ConfigS
     }
 
     @SuppressWarnings("unchecked")
-    private List<String> getPath(Field field)
-        throws IllegalAccessException, InvocationTargetException {
-        //Convert lowerCamel to lower_underscore for TOML.
-        return ((List<String>) getPath.invoke(null, field)).stream().
-            map(element -> CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, element)).
-            collect(Collectors.toList());
+    private List<String> getPath(Field field) throws IllegalAccessException, InvocationTargetException {
+        // For Mekanism, we want lowerCamel...
+        // ToDo: Do we want to have any type of conversion for these by default?
+        return (List<String>) getPath.invoke(null, field);
+
+        ////Convert lowerCamel to lower_underscore for TOML.
+        //return ((List<String>) getPath.invoke(null, field)).stream().
+        //    map(element -> CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, element)).
+        //    collect(Collectors.toList());
     }
 
     private Object checkField(Field field, Object value, Object defaultValue)
