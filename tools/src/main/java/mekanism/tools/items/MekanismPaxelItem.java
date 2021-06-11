@@ -17,6 +17,12 @@ import static mekanism.tools.registries.ToolItems.PAXEL_MINEABLE;
 
 public class MekanismPaxelItem extends MiningToolItem implements IHazCustomMaxDamage {
 
+    private static final Item[] VALID_TOOLS = {
+        Items.NETHERITE_HOE,
+        Items.NETHERITE_SHOVEL,
+        Items.NETHERITE_PICKAXE
+    };
+
     private static Item.Settings getItemProperties(ToolMaterial material) {
         FabricItemSettings properties = ItemRegistry.getMekBaseProperties();
 
@@ -68,16 +74,15 @@ public class MekanismPaxelItem extends MiningToolItem implements IHazCustomMaxDa
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-        ActionResult result = Items.NETHERITE_AXE.useOnBlock(context);
+        ActionResult result = ActionResult.PASS;
 
-        if (result == ActionResult.PASS) {
-            result = Items.NETHERITE_SHOVEL.useOnBlock(context);
+        for (Item validTool : VALID_TOOLS) {
+            result = validTool.useOnBlock(context);
+            if (result != ActionResult.PASS) break;
         }
 
-        if (result == ActionResult.PASS) {
-            result = Items.NETHERITE_PICKAXE.useOnBlock(context);
-        }
+        if (result != ActionResult.PASS) return result;
 
-        return  result;
+        return super.useOnBlock(context);
     }
 }
