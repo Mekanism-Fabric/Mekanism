@@ -406,10 +406,7 @@ public final class TOMLConfigSerializer<T extends ConfigData> implements ConfigS
                 }
 
                 if (!commentLines.isEmpty()) {
-                    final String comment = commentLines.stream().
-                        map(line -> " " + line).
-                        collect(Collectors.joining(System.lineSeparator()));
-                    destination.setComment(path, comment);
+                    destination.setComment(path, String.join(System.lineSeparator(), commentLines));
                 }
             }
 
