@@ -40,7 +40,7 @@ public final class ToolItems {
     public static final MekanismArmorItem BRONZE_CHESTPLATE = registerArmor(MekanismTools.config().config.bronzeMaterialStats, EquipmentSlot.CHEST);
     public static final MekanismArmorItem BRONZE_LEGGINGS = registerArmor(MekanismTools.config().config.bronzeMaterialStats, EquipmentSlot.LEGS);
     public static final MekanismArmorItem BRONZE_BOOTS = registerArmor(MekanismTools.config().config.bronzeMaterialStats, EquipmentSlot.FEET);
-    //public static final MekanismShieldItem BRONZE_SHIELD = registerShield(MekanismTools.config().config.bronzeMaterialStats);
+    public static final MekanismShieldItem BRONZE_SHIELD = registerShield(MekanismTools.config().config.bronzeMaterialStats);
 
     public static final MekanismPickaxeItem LAPIS_LAZULI_PICKAXE = registerPickaxe(MekanismTools.config().config.lapisLazuliMaterialStats);
     public static final MekanismAxeItem LAPIS_LAZULI_AXE = registerAxe(MekanismTools.config().config.lapisLazuliMaterialStats);
@@ -52,7 +52,7 @@ public final class ToolItems {
     public static final MekanismArmorItem LAPIS_LAZULI_CHESTPLATE = registerArmor(MekanismTools.config().config.lapisLazuliMaterialStats, EquipmentSlot.CHEST);
     public static final MekanismArmorItem LAPIS_LAZULI_LEGGINGS = registerArmor(MekanismTools.config().config.lapisLazuliMaterialStats, EquipmentSlot.LEGS);
     public static final MekanismArmorItem LAPIS_LAZULI_BOOTS = registerArmor(MekanismTools.config().config.lapisLazuliMaterialStats, EquipmentSlot.FEET);
-    //public static final MekanismShieldItem LAPIS_LAZULI_SHIELD = registerShield(MekanismToolsConfig.tools.lapisLazuli);
+    public static final MekanismShieldItem LAPIS_LAZULI_SHIELD = registerShield(MekanismTools.config().config.lapisLazuliMaterialStats);
 
     public static final MekanismPickaxeItem OSMIUM_PICKAXE = registerPickaxe(MekanismTools.config().config.osmiumMaterialStats);
     public static final MekanismAxeItem OSMIUM_AXE = registerAxe(MekanismTools.config().config.osmiumMaterialStats);
@@ -64,7 +64,7 @@ public final class ToolItems {
     public static final MekanismArmorItem OSMIUM_CHESTPLATE = registerArmor(MekanismTools.config().config.osmiumMaterialStats, EquipmentSlot.CHEST);
     public static final MekanismArmorItem OSMIUM_LEGGINGS = registerArmor(MekanismTools.config().config.osmiumMaterialStats, EquipmentSlot.LEGS);
     public static final MekanismArmorItem OSMIUM_BOOTS = registerArmor(MekanismTools.config().config.osmiumMaterialStats, EquipmentSlot.FEET);
-    //public static final MekanismShieldItem OSMIUM_SHIELD = registerShield(MekanismToolsConfig.tools.osmium);
+    public static final MekanismShieldItem OSMIUM_SHIELD = registerShield(MekanismTools.config().config.osmiumMaterialStats);
 
     public static final MekanismPickaxeItem REFINED_GLOWSTONE_PICKAXE = registerPickaxe(MekanismTools.config().config.refinedGlowstoneMaterialStats);
     public static final MekanismAxeItem REFINED_GLOWSTONE_AXE = registerAxe(MekanismTools.config().config.refinedGlowstoneMaterialStats);
@@ -76,7 +76,7 @@ public final class ToolItems {
     public static final MekanismArmorItem REFINED_GLOWSTONE_CHESTPLATE = registerArmor(MekanismTools.config().config.refinedGlowstoneMaterialStats, EquipmentSlot.CHEST, true);
     public static final MekanismArmorItem REFINED_GLOWSTONE_LEGGINGS = registerArmor(MekanismTools.config().config.refinedGlowstoneMaterialStats, EquipmentSlot.LEGS, true);
     public static final MekanismArmorItem REFINED_GLOWSTONE_BOOTS = registerArmor(MekanismTools.config().config.refinedGlowstoneMaterialStats, EquipmentSlot.FEET, true);
-    //public static final MekanismShieldItem REFINED_GLOWSTONE_SHIELD = registerShield(MekanismToolsConfig.tools.refinedGlowstone);
+    public static final MekanismShieldItem REFINED_GLOWSTONE_SHIELD = registerShield(MekanismTools.config().config.refinedGlowstoneMaterialStats);
 
     public static final MekanismPickaxeItem REFINED_OBSIDIAN_PICKAXE = registerPickaxe(MekanismTools.config().config.refinedObsidianMaterialStats);
     public static final MekanismAxeItem REFINED_OBSIDIAN_AXE = registerAxe(MekanismTools.config().config.refinedObsidianMaterialStats);
@@ -88,7 +88,7 @@ public final class ToolItems {
     public static final MekanismArmorItem REFINED_OBSIDIAN_CHESTPLATE = registerArmor(MekanismTools.config().config.refinedObsidianMaterialStats, EquipmentSlot.CHEST);
     public static final MekanismArmorItem REFINED_OBSIDIAN_LEGGINGS = registerArmor(MekanismTools.config().config.refinedObsidianMaterialStats, EquipmentSlot.LEGS);
     public static final MekanismArmorItem REFINED_OBSIDIAN_BOOTS = registerArmor(MekanismTools.config().config.refinedObsidianMaterialStats, EquipmentSlot.FEET);
-    //public static final MekanismShieldItem REFINED_OBSIDIAN_SHIELD = registerShield(MekanismToolsConfig.tools.refinedObsidian);
+    public static final MekanismShieldItem REFINED_OBSIDIAN_SHIELD = registerShield(MekanismTools.config().config.refinedObsidianMaterialStats);
 
     public static final MekanismPickaxeItem STEEL_PICKAXE = registerPickaxe(MekanismTools.config().config.steelMaterialStats);
     public static final MekanismAxeItem STEEL_AXE = registerAxe(MekanismTools.config().config.steelMaterialStats);
@@ -100,7 +100,7 @@ public final class ToolItems {
     public static final MekanismArmorItem STEEL_CHESTPLATE = registerArmor(MekanismTools.config().config.steelMaterialStats, EquipmentSlot.CHEST);
     public static final MekanismArmorItem STEEL_LEGGINGS = registerArmor(MekanismTools.config().config.steelMaterialStats, EquipmentSlot.LEGS);
     public static final MekanismArmorItem STEEL_BOOTS = registerArmor(MekanismTools.config().config.steelMaterialStats, EquipmentSlot.FEET);
-    //public static final MekanismShieldItem STEEL_SHIELD = registerShield(MekanismToolsConfig.tools.steel);
+    public static final MekanismShieldItem STEEL_SHIELD = registerShield(MekanismTools.config().config.steelMaterialStats);
 
     public static void init() {
 
@@ -152,6 +152,9 @@ public final class ToolItems {
         return register(material.getRegistryPrefix() + suffix, () -> new MekanismArmorItem(material, slot, getItemProperties(material), makesPiglinsNeutral));
     }
 
+    private static MekanismShieldItem registerShield(BaseMekanismMaterial material) {
+        return register(material.getRegistryPrefix() + "_shield", () -> new MekanismShieldItem(material, getItemProperties(material)));
+    }
 
     private static <T extends Item> T register(String name, Supplier<? extends T> supplier) {
         return ITEMS.register(name.toLowerCase(Locale.ROOT), supplier);
