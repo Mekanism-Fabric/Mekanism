@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(ShieldDecorationRecipe.class)
-public class ShieldDecorationRecipeMixin {
+public abstract class ShieldDecorationRecipeMixin {
 
     @Redirect(
         at = @At(

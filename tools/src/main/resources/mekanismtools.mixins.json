@@ -4,12 +4,15 @@
   "package": "mekanism.tools.mixins",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "EntityTypeMixin",
     "LivingEntityMixin",
     "MobEntityMixin",
+    "MobSpawnerLogicMixin",
     "PiglinBrainMixin",
     "PlayerEntityMixin",
     "RemoveOffHandItemTaskMixin",
-    "ShieldDecorationRecipeMixin"
+    "ShieldDecorationRecipeMixin",
+    "SpawnHelperMixin"
   ],
   "client": [
     "ArmorFeatureRendererMixin"

@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(RemoveOffHandItemTask.class)
-public class RemoveOffHandItemTaskMixin {
+public abstract class RemoveOffHandItemTaskMixin {
 
     @Redirect(
         at = @At(

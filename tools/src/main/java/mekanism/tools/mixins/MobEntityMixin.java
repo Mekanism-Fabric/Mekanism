@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(MobEntity.class)
-public class MobEntityMixin {
+public abstract class MobEntityMixin {
 
     @Redirect(
         at = @At(
