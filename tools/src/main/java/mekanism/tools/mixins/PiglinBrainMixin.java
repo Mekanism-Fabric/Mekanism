@@ -24,9 +24,8 @@ public abstract class PiglinBrainMixin {
         for (ItemStack itemstack : entity.getArmorItems()) {
             Item item = itemstack.getItem();
 
-            if (item instanceof IHazPiglinInfluence) {
-                callbackInfo.setReturnValue(((IHazPiglinInfluence) item).isPiglinCalming());
-                return;
+            if (item instanceof IHazPiglinInfluence && ((IHazPiglinInfluence) item).isPiglinCalming()) {
+                callbackInfo.setReturnValue(true);
             }
         }
     }
