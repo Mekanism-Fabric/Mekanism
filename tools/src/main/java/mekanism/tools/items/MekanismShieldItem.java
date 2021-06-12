@@ -15,12 +15,12 @@ import java.util.List;
 
 import static mekanism.tools.registries.ToolItems.REFINED_GLOWSTONE_LIGHT_LEVEL;
 
-public class MekanismShieldItem extends ShieldItem implements IHazCustomMaxDamage, IHazGlowEffect {
+public class MekanismShieldItem extends ShieldItem implements IHazGlowEffect {
 
     private final BaseMekanismMaterial material;
 
     public MekanismShieldItem(BaseMekanismMaterial material, Item.Settings settings) {
-        super(settings);
+        super(settings.maxDamage(material.getShieldDurability()));
 
         this.material = material;
     }
@@ -30,11 +30,6 @@ public class MekanismShieldItem extends ShieldItem implements IHazCustomMaxDamag
         super.appendTooltip(stack, world, tooltip, context);
 
         ToolsUtils.addDurability(tooltip, stack);
-    }
-
-    @Override
-    public int getCustomMaxDamage(int defaultDamage) {
-        return material.getShieldDurability();
     }
 
     @Override

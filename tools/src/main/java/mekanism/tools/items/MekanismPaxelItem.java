@@ -13,7 +13,7 @@ import java.util.List;
 
 import static mekanism.tools.registries.ToolItems.PAXEL_MINEABLE;
 
-public class MekanismPaxelItem extends MiningToolItem implements IHazCustomMaxDamage {
+public class MekanismPaxelItem extends MiningToolItem {
 
     private static final float DEFAULT_ATTACK_DAMAGE = 4.0F;
 
@@ -28,7 +28,7 @@ public class MekanismPaxelItem extends MiningToolItem implements IHazCustomMaxDa
     }
 
     public MekanismPaxelItem(BaseMekanismMaterial material, Settings settings) {
-        super(material.getPaxelDamage(), material.getPaxelAtkSpeed(), material, PAXEL_MINEABLE, settings);
+        super(material.getPaxelDamage(), material.getPaxelAtkSpeed(), material, PAXEL_MINEABLE, settings.maxDamage(material.getPaxelMaxUses()));
     }
 
     @Override
@@ -49,17 +49,6 @@ public class MekanismPaxelItem extends MiningToolItem implements IHazCustomMaxDa
         }
 
         return damage + getMaterial().getAttackDamage();
-    }
-
-    @Override
-    public int getCustomMaxDamage(int defaultDamage) {
-        ToolMaterial material = this.getMaterial();
-
-        if (material instanceof BaseMekanismMaterial) {
-            return ((BaseMekanismMaterial) material).getPaxelMaxUses();
-        } else {
-            return defaultDamage;
-        }
     }
 
     @Override

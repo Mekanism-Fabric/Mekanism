@@ -15,13 +15,13 @@ import java.util.List;
 
 import static mekanism.tools.registries.ToolItems.REFINED_GLOWSTONE_LIGHT_LEVEL;
 
-public class MekanismArmorItem extends ArmorItem implements IHazPiglinInfluence, IHazCustomMaxDamage, IHazGlowEffect {
+public class MekanismArmorItem extends ArmorItem implements IHazPiglinInfluence, IHazGlowEffect {
 
     private final BaseMekanismMaterial material;
     private final boolean makesPiglinsNeutral;
 
     public MekanismArmorItem(BaseMekanismMaterial material, EquipmentSlot slot, Settings settings, boolean makesPiglinsNeutral) {
-        super(material, slot, settings);
+        super(material, slot, settings.maxDamage(material.getDurability(slot)));
 
         this.material = material;
         this.makesPiglinsNeutral = makesPiglinsNeutral;
@@ -37,11 +37,6 @@ public class MekanismArmorItem extends ArmorItem implements IHazPiglinInfluence,
     @Override
     public boolean isPiglinCalming() {
         return this.makesPiglinsNeutral;
-    }
-
-    @Override
-    public int getCustomMaxDamage(int defaultDamage) {
-        return material.getDurability(slot);
     }
 
     @Override
