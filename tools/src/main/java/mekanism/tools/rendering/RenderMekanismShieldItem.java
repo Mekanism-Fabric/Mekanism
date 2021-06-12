@@ -1,10 +1,12 @@
 package mekanism.tools.rendering;
 
 import com.mojang.datafixers.util.Pair;
-import mekanism.Mekanism;
 import mekanism.tools.accessors.BuiltinModelItemRendererAccessor;
 import mekanism.tools.accessors.ItemRendererAccessor;
+import mekanism.tools.items.MekanismShieldItem;
 import mekanism.tools.registries.ToolItems;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.entity.BannerBlockEntity;
 import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.client.MinecraftClient;
@@ -21,44 +23,56 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.util.DyeColor;
-import net.minecraft.util.registry.Registry;
 
-import java.util.List;
+import java.util.*;
 
+@Environment(EnvType.CLIENT)
 public final class RenderMekanismShieldItem {
 
     private static final MinecraftClient client = MinecraftClient.getInstance();
+    private static final Map<MekanismShieldItem, ShieldTextures> shieldTexturesMap = new HashMap<>();
 
-    public static void render(ItemStack stack, ModelTransformation.Mode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-        Item item = stack.getItem();
-        ShieldTextures textures;
-        if (item == ToolItems.BRONZE_SHIELD) {
-            textures = ShieldTextures.BRONZE;
-        } else if (item == ToolItems.LAPIS_LAZULI_SHIELD) {
-            textures = ShieldTextures.LAPIS_LAZULI;
-        } else if (item == ToolItems.OSMIUM_SHIELD) {
-            textures = ShieldTextures.OSMIUM;
-        } else if (item == ToolItems.REFINED_GLOWSTONE_SHIELD) {
-            textures = ShieldTextures.REFINED_GLOWSTONE;
-        } else if (item == ToolItems.REFINED_OBSIDIAN_SHIELD) {
-            textures = ShieldTextures.REFINED_OBSIDIAN;
-        } else if (item == ToolItems.STEEL_SHIELD) {
-            textures = ShieldTextures.STEEL;
-        } else {
-            Mekanism.LOGGER.warn("Unknown item for mekanism shield renderer: {}", Registry.ITEM.getId(item));
-            return;
+    public static Set<MekanismShieldItem> initShieldTextureMap() {
+        if (shieldTexturesMap.isEmpty()) {
+            shieldTexturesMap.put(ToolItems.BRONZE_SHIELD, ShieldTextures.BRONZE);
+            shieldTexturesMap.put(ToolItems.LAPIS_LAZULI_SHIELD, ShieldTextures.LAPIS_LAZULI);
+            shieldTexturesMap.put(ToolItems.OSMIUM_SHIELD, ShieldTextures.OSMIUM);
+            shieldTexturesMap.put(ToolItems.REFINED_GLOWSTONE_SHIELD, ShieldTextures.REFINED_GLOWSTONE);
+            shieldTexturesMap.put(ToolItems.REFINED_OBSIDIAN_SHIELD, ShieldTextures.REFINED_OBSIDIAN);
+            shieldTexturesMap.put(ToolItems.STEEL_SHIELD, ShieldTextures.STEEL);
         }
-        SpriteIdentifier material = textures.getBase();
+
+        return shieldTexturesMap.keySet();
+    }
+
+    private static Optional<ShieldTextures> getShieldTexture(MekanismShieldItem shieldItem) {
+        if (shieldTexturesMap.isEmpty() || !shieldTexturesMap.containsKey(shieldItem)) return Optional.empty();
+
+        return Optional.of(shieldTexturesMap.get(shieldItem));
+    }
+
+
+    public static void render(ItemStack stack, ModelTransformation.Mode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int defaultLight, int overlay) {
+        Item item = stack.getItem();
+        if (!(item instanceof MekanismShieldItem)) return;
+
+        MekanismShieldItem shieldItem = (MekanismShieldItem) item;
+        ShieldTextures shieldTexture = getShieldTexture(shieldItem).orElse(null);
+        if (shieldTexture == null) return;
+
+        SpriteIdentifier spriteIdentifier = shieldTexture.getBase();
         ShieldEntityModel shieldModel = getShieldModel();
+        defaultLight = shieldItem.getCustomLightLevel(stack, defaultLight);
+
         matrices.push();
-        matrices.scale(1, -1, -1);
-        VertexConsumer buffer = material.getSprite().getTextureSpecificVertexConsumer(ItemRenderer.getDirectItemGlintConsumer(vertexConsumers, shieldModel.getLayer(material.getAtlasId()), true, stack.hasGlint()));
+        matrices.scale(1.0F, -1.0F, -1.0F);
+        VertexConsumer vertexConsumer = spriteIdentifier.getSprite().getTextureSpecificVertexConsumer(ItemRenderer.getDirectItemGlintConsumer(vertexConsumers, shieldModel.getLayer(spriteIdentifier.getAtlasId()), true, stack.hasGlint()));
+        shieldModel.getHandle().render(matrices, vertexConsumer, defaultLight, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
         if (stack.getSubTag("BlockEntityTag") != null) {
-            shieldModel.getHandle().render(matrices, buffer, light, overlay, 1, 1, 1, 1);
             List<Pair<BannerPattern, DyeColor>> list = BannerBlockEntity.getPatternsFromNbt(ShieldItem.getColor(stack), BannerBlockEntity.getPatternListTag(stack));
-            BannerBlockEntityRenderer.renderCanvas(matrices, vertexConsumers, light, overlay, shieldModel.getPlate(), material, false, list);
+            BannerBlockEntityRenderer.renderCanvas(matrices, vertexConsumers, defaultLight, overlay, shieldModel.getPlate(), spriteIdentifier, false, list, stack.hasGlint());
         } else {
-            shieldModel.render(matrices, buffer, light, overlay, 1, 1, 1, 1);
+            shieldModel.getPlate().render(matrices, vertexConsumer, defaultLight, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
         }
         matrices.pop();
     }

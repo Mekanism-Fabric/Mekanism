@@ -1,9 +1,8 @@
 package mekanism.tools.items;
 
 import mekanism.tools.materials.BaseMekanismMaterial;
-import mekanism.tools.rendering.RenderMekanismShieldItem;
+import mekanism.tools.registries.ToolItems;
 import mekanism.tools.utils.ToolsUtils;
-import net.fabricmc.fabric.impl.client.rendering.BuiltinItemRendererRegistryImpl;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,14 +13,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class MekanismShieldItem extends ShieldItem implements IHazCustomMaxDamage {
+import static mekanism.tools.registries.ToolItems.REFINED_GLOWSTONE_LIGHT_LEVEL;
+
+public class MekanismShieldItem extends ShieldItem implements IHazCustomMaxDamage, IHazGlowEffect {
 
     private final BaseMekanismMaterial material;
 
     public MekanismShieldItem(BaseMekanismMaterial material, Item.Settings settings) {
         super(settings);
-
-        BuiltinItemRendererRegistryImpl.INSTANCE.register(this, RenderMekanismShieldItem::render);
 
         this.material = material;
     }
@@ -36,5 +35,14 @@ public class MekanismShieldItem extends ShieldItem implements IHazCustomMaxDamag
     @Override
     public int getCustomMaxDamage(int defaultDamage) {
         return material.getShieldDurability();
+    }
+
+    @Override
+    public int getCustomLightLevel(ItemStack itemStack, int defaultLightLevel) {
+        if (itemStack.getItem() == ToolItems.REFINED_GLOWSTONE_SHIELD) {
+            return REFINED_GLOWSTONE_LIGHT_LEVEL;
+        }
+
+        return defaultLightLevel;
     }
 }
