@@ -3,6 +3,7 @@ package mekanism.tools;
 import me.shedaniel.autoconfig.AutoConfig;
 import mekanism.config.TOMLConfigSerializer;
 import mekanism.tools.config.ToolsClientConfig;
+import mekanism.tools.config.toolsclient.ToolsClient;
 import mekanism.tools.items.MekanismShieldItem;
 import mekanism.tools.rendering.RenderMekanismShieldItem;
 import mekanism.tools.rendering.ShieldTextures;
@@ -36,12 +37,12 @@ public class MekanismToolsClient implements ClientModInitializer {
         }
     }
 
-    public static ToolsClientConfig clientConfig() {
+    public static ToolsClient clientConfig() {
         if (serializer == null) {
             reloadClientConfig();
         }
 
-        return serializer.getConfig();
+        return serializer.getConfig().config;
     }
 
     public static void reloadClientConfig() {

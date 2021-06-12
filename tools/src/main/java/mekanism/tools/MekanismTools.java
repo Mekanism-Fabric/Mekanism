@@ -3,6 +3,7 @@ package mekanism.tools;
 import me.shedaniel.autoconfig.AutoConfig;
 import mekanism.config.TOMLConfigSerializer;
 import mekanism.tools.config.ToolsConfig;
+import mekanism.tools.config.tools.Tools;
 import mekanism.tools.config.tools.mobarmorspawnrate.ISpawnChance;
 import mekanism.tools.events.EntitySpawnedEvent;
 import mekanism.tools.registries.ToolEvents;
@@ -42,12 +43,12 @@ public class MekanismTools implements ModInitializer {
         log(Level.INFO, "Tools Loaded");
     }
 
-    public static ToolsConfig config() {
+    public static Tools config() {
         if (serializer == null) {
             reloadConfig();
         }
 
-        return serializer.getConfig();
+        return serializer.getConfig().config;
     }
 
     public static void reloadConfig() {

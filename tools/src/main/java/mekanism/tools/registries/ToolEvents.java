@@ -30,28 +30,28 @@ public final class ToolEvents {
             //Don't bother calculating random numbers unless the instanceof checks pass
             Random random = world.getRandom();
             double chance = random.nextDouble();
-            if (chance < MekanismTools.config().config.mobArmorSpawnRate.general) {
+            if (chance < MekanismTools.config().mobArmorSpawnRate.general) {
                 //We can only spawn refined glowstone armor on piglins
                 int armorType = entity instanceof PiglinEntity ? 0 : random.nextInt(6);
 
                 if (armorType == 0) {
                     setEntityArmorWithChance(random, entity, ToolItems.REFINED_GLOWSTONE_SWORD, ToolItems.REFINED_GLOWSTONE_HELMET, ToolItems.REFINED_GLOWSTONE_CHESTPLATE,
-                        ToolItems.REFINED_GLOWSTONE_LEGGINGS, ToolItems.REFINED_GLOWSTONE_BOOTS, MekanismTools.config().config.mobArmorSpawnRate.refinedGlowstone);
+                        ToolItems.REFINED_GLOWSTONE_LEGGINGS, ToolItems.REFINED_GLOWSTONE_BOOTS, MekanismTools.config().mobArmorSpawnRate.refinedGlowstone);
                 } else if (armorType == 1) {
                     setEntityArmorWithChance(random, entity, ToolItems.LAPIS_LAZULI_SWORD, ToolItems.LAPIS_LAZULI_HELMET, ToolItems.LAPIS_LAZULI_CHESTPLATE,
-                        ToolItems.LAPIS_LAZULI_LEGGINGS, ToolItems.LAPIS_LAZULI_BOOTS, MekanismTools.config().config.mobArmorSpawnRate.lapisLazuli);
+                        ToolItems.LAPIS_LAZULI_LEGGINGS, ToolItems.LAPIS_LAZULI_BOOTS, MekanismTools.config().mobArmorSpawnRate.lapisLazuli);
                 } else if (armorType == 2) {
                     setEntityArmorWithChance(random, entity, ToolItems.REFINED_OBSIDIAN_SWORD, ToolItems.REFINED_OBSIDIAN_HELMET, ToolItems.REFINED_OBSIDIAN_CHESTPLATE,
-                        ToolItems.REFINED_OBSIDIAN_LEGGINGS, ToolItems.REFINED_OBSIDIAN_BOOTS, MekanismTools.config().config.mobArmorSpawnRate.refinedObsidian);
+                        ToolItems.REFINED_OBSIDIAN_LEGGINGS, ToolItems.REFINED_OBSIDIAN_BOOTS, MekanismTools.config().mobArmorSpawnRate.refinedObsidian);
                 } else if (armorType == 3) {
                     setEntityArmorWithChance(random, entity, ToolItems.STEEL_SWORD, ToolItems.STEEL_HELMET, ToolItems.STEEL_CHESTPLATE, ToolItems.STEEL_LEGGINGS,
-                        ToolItems.STEEL_BOOTS, MekanismTools.config().config.mobArmorSpawnRate.steel);
+                        ToolItems.STEEL_BOOTS, MekanismTools.config().mobArmorSpawnRate.steel);
                 } else if (armorType == 4) {
                     setEntityArmorWithChance(random, entity, ToolItems.BRONZE_SWORD, ToolItems.BRONZE_HELMET, ToolItems.BRONZE_CHESTPLATE, ToolItems.BRONZE_LEGGINGS,
-                        ToolItems.BRONZE_BOOTS, MekanismTools.config().config.mobArmorSpawnRate.bronze);
+                        ToolItems.BRONZE_BOOTS, MekanismTools.config().mobArmorSpawnRate.bronze);
                 } else {//armorType == 5
                     setEntityArmorWithChance(random, entity, ToolItems.OSMIUM_SWORD, ToolItems.OSMIUM_HELMET, ToolItems.OSMIUM_CHESTPLATE, ToolItems.OSMIUM_LEGGINGS,
-                        ToolItems.OSMIUM_BOOTS, MekanismTools.config().config.mobArmorSpawnRate.osmium);
+                        ToolItems.OSMIUM_BOOTS, MekanismTools.config().mobArmorSpawnRate.osmium);
                 }
             }
         }
