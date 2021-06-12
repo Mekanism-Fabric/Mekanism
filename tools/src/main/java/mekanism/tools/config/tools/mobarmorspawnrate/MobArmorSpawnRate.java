@@ -4,7 +4,7 @@ import com.electronwill.nightconfig.core.conversion.Path;
 import com.electronwill.nightconfig.core.conversion.SpecDoubleInRange;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import mekanism.config.TOMLConfigSerializer;
+import mekanism.config.helpers.TOMLConfigSerializer;
 
 public class MobArmorSpawnRate implements ConfigData {
 

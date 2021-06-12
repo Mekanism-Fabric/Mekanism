@@ -3,7 +3,7 @@ package mekanism.tools.config.toolsclient;
 import com.electronwill.nightconfig.core.conversion.Path;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import mekanism.config.TOMLConfigSerializer;
+import mekanism.config.helpers.TOMLConfigSerializer;
 
 @Config(name = "tools-client")
 public class ToolsClient {

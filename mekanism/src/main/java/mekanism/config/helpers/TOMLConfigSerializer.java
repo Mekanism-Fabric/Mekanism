@@ -5,15 +5,12 @@
 
  */
 
-package mekanism.config;
+package mekanism.config.helpers;
 
 import com.electronwill.nightconfig.core.*;
 import com.electronwill.nightconfig.core.conversion.*;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
-import com.electronwill.nightconfig.core.io.CharacterOutput;
 import com.electronwill.nightconfig.core.io.ParsingException;
-import com.electronwill.nightconfig.toml.TomlWriter;
-import com.google.common.base.CaseFormat;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.ConfigManager;

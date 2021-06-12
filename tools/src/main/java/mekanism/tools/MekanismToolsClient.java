@@ -1,7 +1,7 @@
 package mekanism.tools;
 
 import me.shedaniel.autoconfig.AutoConfig;
-import mekanism.config.TOMLConfigSerializer;
+import mekanism.config.helpers.TOMLConfigSerializer;
 import mekanism.tools.config.ToolsClientConfig;
 import mekanism.tools.config.toolsclient.ToolsClient;
 import mekanism.tools.items.MekanismShieldItem;

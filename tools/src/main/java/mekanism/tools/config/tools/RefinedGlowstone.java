@@ -6,7 +6,7 @@ import com.electronwill.nightconfig.core.conversion.SpecIntInRange;
 import lombok.Getter;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import mekanism.config.TOMLConfigSerializer;
+import mekanism.config.helpers.TOMLConfigSerializer;
 import mekanism.tools.materials.RefinedGlowstoneMaterialDefaults;
 import net.minecraft.entity.EquipmentSlot;
 
