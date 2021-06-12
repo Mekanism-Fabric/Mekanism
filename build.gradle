@@ -16,7 +16,7 @@ class Globals {
 	static def modMenuVersion = "2.0.0-beta.5"
 	static def wthitVersion = "3.5.0"
 	static def ftlVersion = "0.4.1"
-	static def reiVersion = "6.0.247-alpha"
+	static def reiVersion = "6.0.249-alpha"
 }
 
 version = Globals.baseVersion
@@ -111,7 +111,7 @@ allprojects {
 		modRuntime "mcp.mobius.waila:wthit:fabric-${Globals.wthitVersion}"
 
 		modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${Globals.reiVersion}"
-		modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${Globals.reiVersion}"
+		//modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${Globals.reiVersion}"
 
 		implementation 'com.electronwill.night-config:toml:3.6.0'
 
