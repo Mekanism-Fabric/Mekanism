@@ -4,28 +4,13 @@ import me.shedaniel.autoconfig.AutoConfig;
 import mekanism.config.TOMLConfigSerializer;
 import mekanism.tools.config.ToolsConfig;
 import mekanism.tools.config.tools.Tools;
-import mekanism.tools.config.tools.mobarmorspawnrate.ISpawnChance;
-import mekanism.tools.events.EntitySpawnedEvent;
 import mekanism.tools.registries.ToolEvents;
 import mekanism.tools.registries.ToolItems;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.PiglinEntity;
-import net.minecraft.entity.mob.SkeletonEntity;
-import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.MobSpawnerLogic;
-import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.Random;
 
 public class MekanismTools implements ModInitializer {
     public static final String MODID = "mekanismtools";
