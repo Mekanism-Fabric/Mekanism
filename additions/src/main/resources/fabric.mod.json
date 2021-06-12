@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "mekanism-additions",
+  "id": "mekanismadditions",
   "version": "${version}",
 
-  "name": "Mekanism Additions",
+  "name": "Mekanism: Additions",
   "description": "ToDo...",
   "authors": [
     "TheRealAlphaDuck",
@@ -15,7 +15,7 @@
   },
 
   "license": "MIT",
-  "icon": "assets/mekanism-additions/Mekanism.png",
+  "icon": "assets/mekanismadditions/Mekanism.png",
 
   "environment": "*",
   "entrypoints": {
