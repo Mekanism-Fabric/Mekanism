@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class BabyStrayEntity extends StrayEntity implements IBabyEntity {
 
-    private static final TrackedData<Boolean> IS_CHILD = DataTracker.registerData(BabySkeletonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> IS_CHILD = DataTracker.registerData(BabyStrayEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public static boolean spawnRestrictions(EntityType<BabyStrayEntity> type, ServerWorld world, SpawnReason reason, BlockPos pos, Random random) {
         return canMobSpawn(type, world, reason, pos, random) && (reason == SpawnReason.SPAWNER || world.isSkyVisible(pos));
