@@ -7,6 +7,7 @@ public final class AdditionsEntityModelLayers {
 
     public static final EntityModelLayer BABY_CREEPER = registerMain("baby_creeper", "main");
     public static final EntityModelLayer BABY_CREEPER_ARMOR = registerMain("baby_creeper", "armor");
+    public static final EntityModelLayer BABY_ENDERMAN = registerMain("baby_enderman", "main");
 
     private static EntityModelLayer registerMain(String name, String layer) {
         return new EntityModelLayer(MekanismAdditions.id(name), layer);

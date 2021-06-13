@@ -1,10 +1,8 @@
 package mekanism.additions.rendering;
 
 import mekanism.additions.entities.BabyCreeperEntity;
-import mekanism.additions.models.BabyCreeperChargeFeatureRenderer;
 import mekanism.additions.models.BabyCreeperEntityModel;
 import mekanism.additions.registries.AdditionsEntityModelLayers;
-import net.minecraft.client.render.entity.CreeperEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;

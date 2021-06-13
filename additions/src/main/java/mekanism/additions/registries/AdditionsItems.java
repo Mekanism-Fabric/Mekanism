@@ -11,6 +11,7 @@ public final class AdditionsItems {
     public static final ItemRegistry ITEMS = new ItemRegistry(MekanismAdditions.MODID);
 
     public static final SpawnEggItem BABY_CREEPER_SPAWN_EGG = registerSpawnEgg(AdditionsEntityTypes.BABY_CREEPER, 0x31E02F, 0x1E1E1E);
+    public static final SpawnEggItem BABY_ENDERMAN_SPAWN_EGG = registerSpawnEgg(AdditionsEntityTypes.BABY_ENDERMAN, 0x242424, 0x1E1E1E);
 
     public static void init() {
 
