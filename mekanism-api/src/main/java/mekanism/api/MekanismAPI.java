@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 public class MekanismAPI implements ModInitializer {
     public static final Logger LOGGER = LogManager.getLogger();
+    public static final String MEKANISM_MODID = "mekanism";;
 
     @Override
     public void onInitialize() {
