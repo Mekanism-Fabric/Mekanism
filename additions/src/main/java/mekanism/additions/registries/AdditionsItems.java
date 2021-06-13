@@ -14,6 +14,7 @@ public final class AdditionsItems {
     public static final SpawnEggItem BABY_ENDERMAN_SPAWN_EGG = registerSpawnEgg(AdditionsEntityTypes.BABY_ENDERMAN, 0x242424, 0x1E1E1E);
     public static final SpawnEggItem BABY_SKELETON_SPAWN_EGG = registerSpawnEgg(AdditionsEntityTypes.BABY_SKELETON, 0xFFFFFF, 0x800080);
     public static final SpawnEggItem BABY_STRAY_SPAWN_EGG = registerSpawnEgg(AdditionsEntityTypes.BABY_STRAY, 0x7B9394, 0xF2FAFA);
+    public static final SpawnEggItem BABY_WITHER_SKELETON_SPAWN_EGG = registerSpawnEgg(AdditionsEntityTypes.BABY_WITHER_SKELETON, 0x303030, 0x525454);
 
     public static void init() {
 
