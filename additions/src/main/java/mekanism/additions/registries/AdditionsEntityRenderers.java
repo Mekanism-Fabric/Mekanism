@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityModelLayerRegistr
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.minecraft.client.model.Dilation;
 import net.minecraft.client.render.entity.SkeletonEntityRenderer;
+import net.minecraft.client.render.entity.StrayEntityRenderer;
 
 @SuppressWarnings("UnstableApiUsage")
 public final class AdditionsEntityRenderers {
@@ -16,6 +17,7 @@ public final class AdditionsEntityRenderers {
         EntityRendererRegistry.INSTANCE.register(AdditionsEntityTypes.BABY_CREEPER, BabyCreeperEntityRenderer::new);
         EntityRendererRegistry.INSTANCE.register(AdditionsEntityTypes.BABY_ENDERMAN, BabyEndermanEntityRenderer::new);
         EntityRendererRegistry.INSTANCE.register(AdditionsEntityTypes.BABY_SKELETON, SkeletonEntityRenderer::new);
+        EntityRendererRegistry.INSTANCE.register(AdditionsEntityTypes.BABY_STRAY, StrayEntityRenderer::new);
 
         EntityModelLayerRegistry.registerModelLayer(AdditionsEntityModelLayers.BABY_CREEPER, () ->
             BabyCreeperEntityModel.getTexturedModelData(Dilation.NONE)
