@@ -1,6 +1,7 @@
-package mekanism.additions.models;
+package mekanism.additions.rendering;
 
 import mekanism.additions.entities.BabyCreeperEntity;
+import mekanism.additions.models.BabyCreeperEntityModel;
 import mekanism.additions.registries.AdditionsEntityModelLayers;
 import net.minecraft.client.render.entity.feature.EnergySwirlOverlayFeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
