@@ -21,8 +21,16 @@
   "entrypoints": {
     "main": [
       "mekanism.additions.MekanismAdditions"
+    ],
+    "client": [
+      "mekanism.additions.MekanismAdditionsClient"
     ]
   },
+
+  "mixins": [
+    "mekanismadditions.mixins.json",
+    "mekanismadditions.accessors.json"
+  ],
 
   "depends": {
     "fabricloader": ">=0.11.3",

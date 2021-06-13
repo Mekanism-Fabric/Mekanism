@@ -3,6 +3,8 @@ package mekanism.additions;
 import me.shedaniel.autoconfig.AutoConfig;
 import mekanism.additions.config.AdditionsConfig;
 import mekanism.additions.config.additions.Additions;
+import mekanism.additions.registries.AdditionsEntityTypes;
+import mekanism.additions.registries.AdditionsItems;
 import mekanism.config.helpers.TOMLConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
@@ -18,6 +20,11 @@ public class MekanismAdditions implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        reloadConfig();
+
+        AdditionsEntityTypes.init();
+        AdditionsItems.init();
+
         log(Level.INFO, "Additions Loaded");
     }
 

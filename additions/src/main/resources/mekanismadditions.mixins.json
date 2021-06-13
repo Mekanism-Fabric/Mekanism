@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "mekanism.additions.mixins",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "CreeperEntityMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
