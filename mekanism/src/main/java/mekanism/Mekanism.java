@@ -1,5 +1,10 @@
 package mekanism;
 
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
+import mekanism.config.MekanismConfig;
+import mekanism.config.helpers.TOMLConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.Level;
@@ -12,8 +17,12 @@ public class Mekanism implements ModInitializer {
     public static final String MODID = "mekanism";
     public static final Logger LOGGER = LogManager.getLogger();
 
+    private static TOMLConfigSerializer<MekanismConfig> serializer;
+
     @Override
     public void onInitialize() {
+        AutoConfig.register(MekanismConfig.class, PartitioningSerializer.wrap(TOMLConfigSerializer::new));
+
         log(Level.INFO, "Base Loaded");
     }
 
