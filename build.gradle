@@ -7,11 +7,11 @@ plugins {
 
 class Globals {
 	static def baseVersion = "1.0.0"
-	static def mcVersion = "1.17-rc1"
-	static def yarnVersion = "+build.1"
-	static def loaderVersion = "0.11.3"
+	static def mcVersion = "1.17.1"
+	static def yarnVersion = "+build.29"
+	static def loaderVersion = "0.11.6"
 	static def maven_group = "mekanism"
-	static def fabricVersion = "0.34.8+1.17"
+	static def fabricVersion = "0.37.1+1.17"
 	static def clothConfigVersion = "5.0.34"
 	static def modMenuVersion = "2.0.0-beta.5"
 	static def wthitVersion = "3.5.0"
