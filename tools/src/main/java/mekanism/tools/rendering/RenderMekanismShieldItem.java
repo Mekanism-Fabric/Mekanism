@@ -68,7 +68,7 @@ public final class RenderMekanismShieldItem {
         matrices.scale(1.0F, -1.0F, -1.0F);
         VertexConsumer vertexConsumer = spriteIdentifier.getSprite().getTextureSpecificVertexConsumer(ItemRenderer.getDirectItemGlintConsumer(vertexConsumers, shieldModel.getLayer(spriteIdentifier.getAtlasId()), true, stack.hasGlint()));
         shieldModel.getHandle().render(matrices, vertexConsumer, lightLevel, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
-        if (stack.getSubTag("BlockEntityTag") != null) {
+        if (stack.getSubNbt("BlockEntityTag") != null) {
             List<Pair<BannerPattern, DyeColor>> list = BannerBlockEntity.getPatternsFromNbt(ShieldItem.getColor(stack), BannerBlockEntity.getPatternListTag(stack));
             BannerBlockEntityRenderer.renderCanvas(matrices, vertexConsumers, lightLevel, overlay, shieldModel.getPlate(), spriteIdentifier, false, list, stack.hasGlint());
         } else {
