@@ -122,7 +122,7 @@ allprojects {
 	}
 
 	configurations { dev }
-	loom { shareCaches = true }
+	//loom { shareCaches = true }
 
 	repositories {
 		mavenLocal()
