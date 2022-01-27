@@ -107,15 +107,18 @@ allprojects {
 			transitive(false)
 		}
 
-		//modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${Globals.wthitVersion}"
-		//modRuntime "mcp.mobius.waila:wthit:fabric-${Globals.wthitVersion}"
+		modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${Globals.wthitVersion}"
+		modRuntime "mcp.mobius.waila:wthit:fabric-${Globals.wthitVersion}"
 
-		//modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${Globals.reiVersion}"
-		//modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${Globals.reiVersion}"
+		modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${Globals.reiVersion}"
+		modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${Globals.reiVersion}"
 
-		implementation 'com.electronwill.night-config:toml:3.6.0'
+		implementation 'com.electronwill.night-config:toml:3.6.4'
 
-		//modApi "teamreborn:energy:${Globals.techRebornEnergyVersion}"
+		//https://github.com/TechReborn/Energy/issues/18
+		include modApi("teamreborn:energy:2.1.0") {
+			exclude(group: "net.fabricmc.fabric-api")
+		}
 	}
 
 	configurations { dev }
@@ -126,6 +129,8 @@ allprojects {
 		maven { url "https://maven.shedaniel.me" }
 		maven { url "https://maven.terraformersmc.com/releases" }
 		maven { url "https://bai.jfrog.io/artifactory/maven" }
+		maven { url "https://maven.bai.lol" }
+		mavenCentral()
 	}
 
 	jar {
