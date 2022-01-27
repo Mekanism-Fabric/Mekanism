@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.8-SNAPSHOT' apply false
+	id 'fabric-loom' version '0.10-SNAPSHOT' apply false
 	id 'maven-publish'
 	id "java-library"
 	id 'idea'
@@ -7,16 +7,16 @@ plugins {
 
 class Globals {
 	static def baseVersion = "1.0.0"
-	static def mcVersion = "1.17.1"
-	static def yarnVersion = "+build.29"
-	static def loaderVersion = "0.11.6"
+	static def mcVersion = "1.18.1"
+	static def yarnVersion = "+build.22"
+	static def loaderVersion = "0.12.12"
 	static def maven_group = "mekanism"
-	static def fabricVersion = "0.37.1+1.17"
-	static def clothConfigVersion = "5.0.34"
-	static def modMenuVersion = "2.0.0-beta.5"
-	static def wthitVersion = "3.5.0"
-	static def ftlVersion = "0.4.1"
-	static def reiVersion = "6.0.249-alpha"
+	static def fabricVersion = "0.46.1+1.18"
+	static def clothConfigVersion = "6.1.48"
+	static def modMenuVersion = "3.0.1"
+	static def wthitVersion = "4.4.1"
+	static def techRebornEnergyVersion = "2.1.0"
+	static def reiVersion = "7.1.390"
 }
 
 version = Globals.baseVersion
@@ -61,10 +61,10 @@ allprojects {
 		it.options.encoding = "UTF-8"
 
 		// Minecraft 1.17 (21w19a) upwards uses Java 16.
-		it.options.release = 16
+		it.options.release = 17
 	}
 
-	sourceCompatibility = targetCompatibility = JavaVersion.VERSION_16
+	sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
 	group = Globals.maven_group
 
 	sourceSets {
@@ -107,18 +107,15 @@ allprojects {
 			transitive(false)
 		}
 
-		modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${Globals.wthitVersion}"
-		modRuntime "mcp.mobius.waila:wthit:fabric-${Globals.wthitVersion}"
+		//modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${Globals.wthitVersion}"
+		//modRuntime "mcp.mobius.waila:wthit:fabric-${Globals.wthitVersion}"
 
-		modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${Globals.reiVersion}"
+		//modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${Globals.reiVersion}"
 		//modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${Globals.reiVersion}"
 
 		implementation 'com.electronwill.night-config:toml:3.6.0'
 
-		// Not updated to 1.17 and not currently required yet.  Leaving here for when we
-		//modApi include("dev.technici4n:FastTransferLib:${Globals.ftlVersion}", {
-		//	exclude group: "teamreborn"
-		//})
+		//modApi "teamreborn:energy:${Globals.techRebornEnergyVersion}"
 	}
 
 	configurations { dev }
@@ -129,14 +126,6 @@ allprojects {
 		maven { url "https://maven.shedaniel.me" }
 		maven { url "https://maven.terraformersmc.com/releases" }
 		maven { url "https://bai.jfrog.io/artifactory/maven" }
-		maven {
-			name = "Technici4n"
-			url = "https://raw.githubusercontent.com/Technici4n/Technici4n-maven/master/"
-			content {
-				includeGroup "dev.technici4n"
-				includeGroup "net.fabricmc.fabric-api" // until ItemApiLookup PR #1352 is merged.
-			}
-		}
 	}
 
 	jar {

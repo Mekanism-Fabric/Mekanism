@@ -24,7 +24,7 @@ public class CreativeTabMekanism extends ItemGroup {
     }
 
     @Override
-    public Text getTranslationKey() {
+    public Text getDisplayName() {
         return GROUP_NAME;
     }
 }
