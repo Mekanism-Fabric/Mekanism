@@ -21,7 +21,7 @@ public final class VoxelShapeUtils {
      * Prints out an easy to copy paste string representing the cuboid of a shape
      */
     public static void print(double x1, double y1, double z1, double x2, double y2, double z2) {
-        Mekanism.LOGGER.info("box({}, {}, {}, {}, {}, {}),", Math.min(x1, x2), Math.min(y1, y2), Math.min(z1, z2),
+        Mekanism.logger.info("box({}, {}, {}, {}, {}, {}),", Math.min(x1, x2), Math.min(y1, y2), Math.min(z1, z2),
               Math.max(x1, x2), Math.max(y1, y2), Math.max(z1, z2));
     }
 
@@ -29,7 +29,7 @@ public final class VoxelShapeUtils {
      * Prints out a set of strings that make copy pasting easier, for simplifying a voxel shape
      */
     public static void printSimplified(String name, VoxelShape shape) {
-        Mekanism.LOGGER.info("Simplified: {}", name);
+        Mekanism.logger.info("Simplified: {}", name);
         shape.simplify().getBoundingBoxes().forEach(box -> print(box.minX * 16, box.minY * 16, box.minZ * 16, box.maxX * 16, box.maxY * 16, box.maxZ * 16));
     }
 

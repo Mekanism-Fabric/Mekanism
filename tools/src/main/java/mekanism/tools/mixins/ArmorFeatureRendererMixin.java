@@ -1,7 +1,7 @@
 package mekanism.tools.mixins;
 
 import mekanism.tools.items.IHazGlowEffect;
-import mekanism.tools.materials.BaseMekanismMaterial;
+import mekanism.tools.material.BaseMekanismMaterial;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;

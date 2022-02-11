@@ -1,8 +1,10 @@
 package mekanism.util;
 
 import mekanism.api.text.EnumColor;
+import mekanism.resource.OreType;
+import mekanism.resource.PrimaryResource;
+import mekanism.resource.ResourceType;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.resource.ResourceType;
 import net.minecraft.util.math.Direction;
 
 public class EnumUtils {
@@ -131,12 +133,12 @@ public class EnumUtils {
     /**
      * Cached value of {@link OreType#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final OreType[] ORE_TYPES = OreType.values();
+    public static final OreType[] ORE_TYPES = OreType.values();
 
     /**
      * Cached value of {@link PrimaryResource#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final PrimaryResource[] PRIMARY_RESOURCES = PrimaryResource.values();
+    public static final PrimaryResource[] PRIMARY_RESOURCES = PrimaryResource.values();
 
     /**
      * Cached value of {@link ResourceType#values()}. DO NOT MODIFY THIS LIST.

@@ -1,6 +1,6 @@
 package mekanism.tools.items;
 
-import mekanism.tools.materials.BaseMekanismMaterial;
+import mekanism.tools.material.BaseMekanismMaterial;
 import mekanism.tools.utils.ToolsUtils;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;

@@ -1,20 +1,37 @@
 package mekanism.tools.config;
 
-import com.electronwill.nightconfig.core.conversion.Path;
-import me.shedaniel.autoconfig.ConfigData;
-import me.shedaniel.autoconfig.annotation.Config;
-import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import mekanism.config.helpers.TOMLConfigSerializer;
-import mekanism.tools.config.toolsclient.ToolsClient;
+import mekanism.config.BaseMekanismConfig;
+import mekanism.config.value.CachedBooleanValue;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.fml.config.ModConfig.Type;
 
-@Config(name = "tools-client")
-@Path("Mekanism")
-public class ToolsClientConfig implements ConfigData {
+public class ToolsClientConfig extends BaseMekanismConfig {
 
-    @Path("tools-client")
-    @ConfigEntry.Category("tools-client")
-    @ConfigEntry.Gui.TransitiveObject
-    @TOMLConfigSerializer.Comment("Mekanism Tools Client Config. This config only exists on the client")
-    public ToolsClient config = new ToolsClient();
+    private final ForgeConfigSpec configSpec;
 
+    public final CachedBooleanValue displayDurabilityTooltips;
+
+    public ToolsClientConfig() {
+        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        builder.comment("Mekanism Tools Client Config. This config only exists on the client").push("tools-client");
+        this.displayDurabilityTooltips = CachedBooleanValue.wrap(this, builder.comment("Enable durability tooltips for Mekanism Tools gear.")
+              .define("displayDurabilityTooltips", true));
+        builder.pop();
+        configSpec = builder.build();
+    }
+
+    @Override
+    public String getFileName() {
+        return "tools-client";
+    }
+
+    @Override
+    public ForgeConfigSpec getConfigSpec() {
+        return configSpec;
+    }
+
+    @Override
+    public Type getConfigType() {
+        return Type.CLIENT;
+    }
 }
