@@ -1,12 +1,13 @@
 package mekanism.resource;
 
-import blue.endless.jankson.annotation.Nullable;
 import com.mojang.serialization.Codec;
+import net.minecraft.util.StringIdentifiable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
-import net.minecraft.util.StringIdentifiable;
-import org.jetbrains.annotations.NotNull;
 
 public enum OreType implements StringIdentifiable {
     COPPER(PrimaryResource.COPPER, 16, 8, 0, 0, 60),

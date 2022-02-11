@@ -1,14 +1,13 @@
 package mekanism.config.value;
 
-import java.util.function.Predicate;
-
-import blue.endless.jankson.annotation.Nullable;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.math.FloatingLongSupplier;
 import mekanism.config.IMekanismConfig;
-import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.Builder;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Predicate;
 
 /**
  * A cached value implementation for representing {@link FloatingLong}s as Strings. We use strings so that we can validate the data as well as allow us to represent

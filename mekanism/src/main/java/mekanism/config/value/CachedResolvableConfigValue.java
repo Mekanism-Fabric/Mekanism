@@ -1,9 +1,9 @@
 package mekanism.config.value;
 
-import blue.endless.jankson.annotation.Nullable;
 import mekanism.config.IMekanismConfig;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @param <TYPE> The type this {@link CachedResolvableConfigValue} resolves to

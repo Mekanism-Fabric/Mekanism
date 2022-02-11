@@ -100,9 +100,6 @@ allprojects {
 		compileOnly 'org.projectlombok:lombok:1.18.20'
 		annotationProcessor 'org.projectlombok:lombok:1.18.20'
 
-		modApi("me.shedaniel.cloth:cloth-config-fabric:${Globals.clothConfigVersion}") {
-			exclude(module: "fabric-api")
-		}
 		modRuntime("com.terraformersmc:modmenu:${Globals.modMenuVersion}") {
 			transitive(false)
 		}
@@ -115,8 +112,6 @@ allprojects {
 
 		implementation 'com.electronwill.night-config:toml:3.6.4'
 		implementation 'com.electronwill.night-config:core:3.6.4'
-		compileOnly 'com.electronwill.night-config:toml:3.6.4'
-		compileOnly 'com.electronwill.night-config:core:3.6.4'
 
 
 		//https://github.com/TechReborn/Energy/issues/18
