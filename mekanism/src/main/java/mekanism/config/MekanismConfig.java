@@ -17,10 +17,10 @@ public class MekanismConfig {
 //        MekanismConfigHelper.registerConfig(client.getConfigType(), client.getConfigSpec());
 //        MekanismConfigHelper.registerConfig(general.getConfigType(), general.getConfigSpec());
 //        MekanismConfigHelper.registerConfig(gear.getConfigType(), gear.getConfigSpec());
-        MekanismConfigHelper.registerConfig(storage.getConfigType(), storage.getConfigSpec());
+        MekanismConfigHelper.registerConfig(storage.getConfigType(), storage.getConfigSpec(), storage.getFileName());
 //        MekanismConfigHelper.registerConfig(tiers.getConfigType(), tiers.getConfigSpec());
-        MekanismConfigHelper.registerConfig(usage.getConfigType(), usage.getConfigSpec());
-        MekanismConfigHelper.registerConfig(world.getConfigType(), world.getConfigSpec());
+        MekanismConfigHelper.registerConfig(usage.getConfigType(), usage.getConfigSpec(), usage.getFileName());
+        MekanismConfigHelper.registerConfig(world.getConfigType(), world.getConfigSpec(), world.getFileName());
 
     }
 }

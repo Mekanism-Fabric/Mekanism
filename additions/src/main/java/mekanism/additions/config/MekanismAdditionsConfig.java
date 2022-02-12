@@ -12,8 +12,8 @@ public class MekanismAdditionsConfig {
     public static final AdditionsClientConfig client = new AdditionsClientConfig();
 
     public static void registerConfigs() {
-        MekanismConfigHelper.registerConfig(client.getConfigType(), client.getConfigSpec());
-        MekanismConfigHelper.registerConfig(common.getConfigType(), common.getConfigSpec());
-        MekanismConfigHelper.registerConfig(additions.getConfigType(), additions.getConfigSpec());
+        MekanismConfigHelper.registerConfig(client.getConfigType(), client.getConfigSpec(), client.getFileName());
+        MekanismConfigHelper.registerConfig(common.getConfigType(), common.getConfigSpec(), common.getFileName());
+        MekanismConfigHelper.registerConfig(additions.getConfigType(), additions.getConfigSpec(), additions.getFileName());
     }
 }

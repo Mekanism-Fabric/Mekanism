@@ -11,7 +11,7 @@ public class MekanismToolsConfig {
     public static final ToolsClientConfig toolsClient = new ToolsClientConfig();
 
     public static void registerConfigs() {
-        MekanismConfigHelper.registerConfig(tools.getConfigType(), tools.getConfigSpec());
-        MekanismConfigHelper.registerConfig(toolsClient.getConfigType(), toolsClient.getConfigSpec());
+        MekanismConfigHelper.registerConfig(tools.getConfigType(), tools.getConfigSpec(), tools.getFileName());
+        MekanismConfigHelper.registerConfig(toolsClient.getConfigType(), toolsClient.getConfigSpec(), toolsClient.getFileName());
     }
 }

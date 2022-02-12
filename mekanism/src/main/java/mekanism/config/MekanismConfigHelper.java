@@ -19,7 +19,7 @@ public class MekanismConfigHelper {
         CONFIG_DIR = FabricLoader.getInstance().getConfigDir();
     }
 
-    public static void registerConfig(ModConfig.Type type, IConfigSpec<?> spec) {
-        ModLoadingContext.registerConfig(Mekanism.MODID, type, spec);
+    public static void registerConfig(ModConfig.Type type, IConfigSpec<?> spec, String name) {
+        ModLoadingContext.registerConfig(Mekanism.MODID, type, spec, name);
     }
 }

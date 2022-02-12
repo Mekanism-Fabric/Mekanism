@@ -1,5 +1,6 @@
 package mekanism.additions;
 
+import mekanism.additions.config.MekanismAdditionsConfig;
 import mekanism.additions.registries.AdditionsEntityTypes;
 import mekanism.additions.registries.AdditionsItems;
 import net.fabricmc.api.ModInitializer;
@@ -15,6 +16,7 @@ public class MekanismAdditions implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        MekanismAdditionsConfig.registerConfigs();
         AdditionsEntityTypes.init();
         AdditionsItems.init();
 
