@@ -4,8 +4,12 @@ import mekanism.api.text.EnumColor;
 import mekanism.resource.OreType;
 import mekanism.resource.PrimaryResource;
 import mekanism.resource.ResourceType;
+import mekanism.tier.*;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.math.Direction;
+import mekanism.util.UnitDisplayUtils.FloatingLongMeasurementUnit;
+import mekanism.util.UnitDisplayUtils.MeasurementUnit;
+
 
 public class EnumUtils {
 
@@ -43,12 +47,12 @@ public class EnumUtils {
     /**
      * Cached value of {@link MeasurementUnit#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final MeasurementUnit[] MEASUREMENT_UNITS = MeasurementUnit.values();
+    public static final MeasurementUnit[] MEASUREMENT_UNITS = MeasurementUnit.values();
 
     /**
      * Cached value of {@link FloatingLongMeasurementUnit#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final FloatingLongMeasurementUnit[] FLOATING_LONG_MEASUREMENT_UNITS = FloatingLongMeasurementUnit.values();
+    public static final FloatingLongMeasurementUnit[] FLOATING_LONG_MEASUREMENT_UNITS = FloatingLongMeasurementUnit.values();
 
     /**
      * Cached value of {@link TransmissionType#values()}. DO NOT MODIFY THIS LIST.
@@ -58,57 +62,57 @@ public class EnumUtils {
     /**
      * Cached value of {@link CableTier#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final CableTier[] CABLE_TIERS = CableTier.values();
+    public static final CableTier[] CABLE_TIERS = CableTier.values();
 
     /**
      * Cached value of {@link TransporterTier#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final TransporterTier[] TRANSPORTER_TIERS = TransporterTier.values();
+    public static final TransporterTier[] TRANSPORTER_TIERS = TransporterTier.values();
 
     /**
      * Cached value of {@link ConductorTier#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final ConductorTier[] CONDUCTOR_TIERS = ConductorTier.values();
+    public static final ConductorTier[] CONDUCTOR_TIERS = ConductorTier.values();
 
     /**
      * Cached value of {@link TubeTier#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final TubeTier[] TUBE_TIERS = TubeTier.values();
+    public static final TubeTier[] TUBE_TIERS = TubeTier.values();
 
     /**
      * Cached value of {@link PipeTier#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final PipeTier[] PIPE_TIERS = PipeTier.values();
+    public static final PipeTier[] PIPE_TIERS = PipeTier.values();
 
     /**
      * Cached value of {@link ChemicalTankTier#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final ChemicalTankTier[] CHEMICAL_TANK_TIERS = ChemicalTankTier.values();
+    public static final ChemicalTankTier[] CHEMICAL_TANK_TIERS = ChemicalTankTier.values();
 
     /**
      * Cached value of {@link FluidTankTier#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final FluidTankTier[] FLUID_TANK_TIERS = FluidTankTier.values();
+    public static final FluidTankTier[] FLUID_TANK_TIERS = FluidTankTier.values();
 
     /**
      * Cached value of {@link BinTier#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final BinTier[] BIN_TIERS = BinTier.values();
+    public static final BinTier[] BIN_TIERS = BinTier.values();
 
     /**
      * Cached value of {@link EnergyCubeTier#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final EnergyCubeTier[] ENERGY_CUBE_TIERS = EnergyCubeTier.values();
+    public static final EnergyCubeTier[] ENERGY_CUBE_TIERS = EnergyCubeTier.values();
 
     /**
      * Cached value of {@link InductionCellTier#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final InductionCellTier[] INDUCTION_CELL_TIERS = InductionCellTier.values();
+    public static final InductionCellTier[] INDUCTION_CELL_TIERS = InductionCellTier.values();
 
     /**
      * Cached value of {@link InductionProviderTier#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final InductionProviderTier[] INDUCTION_PROVIDER_TIERS = InductionProviderTier.values();
+    public static final InductionProviderTier[] INDUCTION_PROVIDER_TIERS = InductionProviderTier.values();
 
     /**
      * Cached value of {@link FactoryTier#values()}. DO NOT MODIFY THIS LIST.

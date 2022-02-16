@@ -1,6 +1,6 @@
 package mekanism.tools.utils;
 
-import mekanism.tools.MekanismToolsClient;
+import mekanism.tools.ToolsLang;
 import mekanism.tools.config.MekanismToolsConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;

@@ -20,6 +20,6 @@ public class MekanismConfigHelper {
     }
 
     public static void registerConfig(ModConfig.Type type, IConfigSpec<?> spec, String name) {
-        ModLoadingContext.registerConfig(Mekanism.MODID, type, spec, name);
+        ModLoadingContext.registerConfig(Mekanism.MODID, type, spec,  Mekanism.MODID + "-" + name + ".toml");
     }
 }

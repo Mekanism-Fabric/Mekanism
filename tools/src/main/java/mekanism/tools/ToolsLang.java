@@ -1,4 +1,4 @@
-package mekanism.tools.utils;
+package mekanism.tools;
 
 import mekanism.tools.MekanismTools;
 import net.minecraft.text.TranslatableText;
