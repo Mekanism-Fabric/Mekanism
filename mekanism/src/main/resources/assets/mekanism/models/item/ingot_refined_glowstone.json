@@ -2,5 +2,8 @@
     "parent": "minecraft:item/generated",
     "textures": { 
         "layer0": "mekanism:item/ingot_refined_glowstone"
-    }
+    },
+    "values": [
+        "minecraft:piglin_loved"
+    ]
 }

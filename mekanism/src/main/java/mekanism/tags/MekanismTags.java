@@ -314,8 +314,6 @@ public class MekanismTags {
         private TileEntityTypes() {
         }
 
-
-
         public static final Tag<BlockEntityType<?>> CARDBOARD_BLACKLIST = tag("cardboard_blacklist");
         public static final Tag<BlockEntityType<?>> RELOCATION_NOT_SUPPORTED = forgeTag("relocation_not_supported");
         public static final Tag<BlockEntityType<?>> IMMOVABLE = forgeTag("immovable");
@@ -328,7 +326,6 @@ public class MekanismTags {
         private static Tag<BlockEntityType<?>> tag(String name) {
             return TagFactoryExtension.BLOCK_ENTITY_TYPE.create(Mekanism.id(name));
         }
-
 
     }
 

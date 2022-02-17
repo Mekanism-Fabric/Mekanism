@@ -1,6 +1,7 @@
 package mekanism;
 
 import mekanism.config.MekanismConfig;
+import mekanism.registries.MekanismItems;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.Level;
@@ -16,6 +17,7 @@ public class Mekanism implements ModInitializer {
     @Override
     public void onInitialize() {
         MekanismConfig.registerConfigs();
+        MekanismItems.init();
 
         log(Level.INFO, "Base Loaded");
     }
