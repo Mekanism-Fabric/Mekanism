@@ -5,6 +5,7 @@ import com.google.common.collect.Table;
 import mekanism.Mekanism;
 import mekanism.api.text.EnumColor;
 import mekanism.api.tier.AlloyTier;
+import mekanism.api.tier.BaseTier;
 import mekanism.item.ItemAlloy;
 import mekanism.item.ItemRefinedGlowstoneIngot;
 import mekanism.registration.ItemRegistry;
@@ -107,10 +108,10 @@ public class MekanismItems {
 //    public static final ItemRegistryObject<ItemTierInstaller> ELITE_TIER_INSTALLER = registerInstaller(BaseTier.ADVANCED, BaseTier.ELITE);
 //    public static final ItemRegistryObject<ItemTierInstaller> ULTIMATE_TIER_INSTALLER = registerInstaller(BaseTier.ELITE, BaseTier.ULTIMATE);
 //
-//    public static final ItemRegistryObject<Item> BASIC_CONTROL_CIRCUIT = registerCircuit(BaseTier.BASIC);
-//    public static final ItemRegistryObject<Item> ADVANCED_CONTROL_CIRCUIT = registerCircuit(BaseTier.ADVANCED);
-//    public static final ItemRegistryObject<Item> ELITE_CONTROL_CIRCUIT = registerCircuit(BaseTier.ELITE);
-//    public static final ItemRegistryObject<Item> ULTIMATE_CONTROL_CIRCUIT = registerCircuit(BaseTier.ULTIMATE);
+    public static final Item BASIC_CONTROL_CIRCUIT = registerCircuit(BaseTier.BASIC);
+    public static final Item ADVANCED_CONTROL_CIRCUIT = registerCircuit(BaseTier.ADVANCED);
+    public static final Item ELITE_CONTROL_CIRCUIT = registerCircuit(BaseTier.ELITE);
+    public static final Item ULTIMATE_CONTROL_CIRCUIT = registerCircuit(BaseTier.ULTIMATE);
 
     //Alloy names are alloy_type for purposes of tab complete
     public static final ItemAlloy INFUSED_ALLOY = registerAlloy(AlloyTier.INFUSED, Rarity.UNCOMMON);
@@ -192,12 +193,12 @@ public class MekanismItems {
     private static Item registerUnburnableResource(ResourceType type, IResource resource) {
         return ITEMS.registerUnburnable(type.getRegistryPrefix() + "_" + resource.getRegistrySuffix());
     }
-//
-//    private static Item registerCircuit(BaseTier tier) {
-//        //Ensure the name is lower case as with concatenating with values from enums it may not be
-//        return ITEMS.register(tier.getLowerName() + "_control_circuit", tier.getTextColor());
-//    }
-//
+
+    private static Item registerCircuit(BaseTier tier) {
+        //Ensure the name is lower case as with concatenating with values from enums it may not be
+        return ITEMS.register(tier.getLowerName() + "_control_circuit", tier.getTextColor());
+    }
+
 //    private static ItemTierInstaller registerInstaller(@Nullable BaseTier fromTier, @NotNull BaseTier toTier) {
 //        //Ensure the name is lower case as with concatenating with values from enums it may not be
 //        return ITEMS.register(toTier.getLowerName() + "_tier_installer", properties -> new ItemTierInstaller(fromTier, toTier, properties));

@@ -117,7 +117,7 @@ public class EnumUtils {
     /**
      * Cached value of {@link FactoryTier#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final FactoryTier[] FACTORY_TIERS = FactoryTier.values();
+    public static final FactoryTier[] FACTORY_TIERS = FactoryTier.values();
 
     /**
      * Cached value of {@link FactoryType#values()}. DO NOT MODIFY THIS LIST.
