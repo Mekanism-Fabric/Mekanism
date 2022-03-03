@@ -3,6 +3,7 @@ package mekanism.registration;
 import mekanism.Mekanism;
 import mekanism.api.text.EnumColor;
 import mekanism.api.text.TextComponentUtil;
+import mekanism.item.ItemModule;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -61,6 +62,12 @@ public class ItemRegistry {
     public <ITEM extends Item> ITEM registerUnburnable(String name, Function<Item.Settings, ITEM> sup) {
         return register(name, () -> sup.apply(getMekBaseProperties().fireproof()));
     }
+
+//    public ItemModule registerModule(ModuleRegistryObject<?> moduleDataSupplier) {
+//        //Note: We use the internal helper just in case we end up needing to know it is an ItemModule instead of just an Item somewhere
+//        return register("module_" + moduleDataSupplier.getInternalRegistryName(),
+//                () -> ModuleHelper.INSTANCE.createModuleItem(moduleDataSupplier, getMekBaseProperties()));
+//    }
 
     public List<Item> getAllItems() {
         return allItems;

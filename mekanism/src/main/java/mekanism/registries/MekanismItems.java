@@ -7,6 +7,7 @@ import mekanism.api.text.EnumColor;
 import mekanism.api.tier.AlloyTier;
 import mekanism.api.tier.BaseTier;
 import mekanism.item.ItemAlloy;
+import mekanism.item.ItemModule;
 import mekanism.item.ItemRefinedGlowstoneIngot;
 import mekanism.registration.ItemRegistry;
 import mekanism.resource.IResource;
@@ -68,33 +69,33 @@ public class MekanismItems {
 //    public static final ItemRegistryObject<ItemMekaSuitArmor> MEKASUIT_BOOTS = ITEMS.registerUnburnable("mekasuit_boots", props -> new ItemMekaSuitArmor(EquipmentSlotType.FEET, props));
 //
     public static final Item MODULE_BASE = ITEMS.register("module_base");
-//
-//    public static final ItemRegistryObject<ItemModule> MODULE_ENERGY = ITEMS.registerModule(MekanismModules.ENERGY_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_LASER_DISSIPATION = ITEMS.registerModule(MekanismModules.LASER_DISSIPATION_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_RADIATION_SHIELDING = ITEMS.registerModule(MekanismModules.RADIATION_SHIELDING_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_EXCAVATION_ESCALATION = ITEMS.registerModule(MekanismModules.EXCAVATION_ESCALATION_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_ATTACK_AMPLIFICATION = ITEMS.registerModule(MekanismModules.ATTACK_AMPLIFICATION_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_FARMING = ITEMS.registerModule(MekanismModules.FARMING_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_SHEARING = ITEMS.registerModule(MekanismModules.SHEARING_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_SILK_TOUCH = ITEMS.registerModule(MekanismModules.SILK_TOUCH_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_VEIN_MINING = ITEMS.registerModule(MekanismModules.VEIN_MINING_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_TELEPORTATION = ITEMS.registerModule(MekanismModules.TELEPORTATION_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_ELECTROLYTIC_BREATHING = ITEMS.registerModule(MekanismModules.ELECTROLYTIC_BREATHING_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_INHALATION_PURIFICATION = ITEMS.registerModule(MekanismModules.INHALATION_PURIFICATION_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_VISION_ENHANCEMENT = ITEMS.registerModule(MekanismModules.VISION_ENHANCEMENT_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_SOLAR_RECHARGING = ITEMS.registerModule(MekanismModules.SOLAR_RECHARGING_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_NUTRITIONAL_INJECTION = ITEMS.registerModule(MekanismModules.NUTRITIONAL_INJECTION_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_DOSIMETER = ITEMS.registerModule(MekanismModules.DOSIMETER_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_GEIGER = ITEMS.registerModule(MekanismModules.GEIGER_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_JETPACK = ITEMS.registerModule(MekanismModules.JETPACK_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_CHARGE_DISTRIBUTION = ITEMS.registerModule(MekanismModules.CHARGE_DISTRIBUTION_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_GRAVITATIONAL_MODULATING = ITEMS.registerModule(MekanismModules.GRAVITATIONAL_MODULATING_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_ELYTRA = ITEMS.registerModule(MekanismModules.ELYTRA_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_LOCOMOTIVE_BOOSTING = ITEMS.registerModule(MekanismModules.LOCOMOTIVE_BOOSTING_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_HYDRAULIC_PROPULSION = ITEMS.registerModule(MekanismModules.HYDRAULIC_PROPULSION_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_MAGNETIC_ATTRACTION = ITEMS.registerModule(MekanismModules.MAGNETIC_ATTRACTION_UNIT);
-//    public static final ItemRegistryObject<ItemModule> MODULE_FROST_WALKER = ITEMS.registerModule(MekanismModules.FROST_WALKER_UNIT);
-//
+
+//    public static final ItemModule MODULE_ENERGY = ITEMS.registerModule(MekanismModules.ENERGY_UNIT);
+//    public static final ItemModule MODULE_LASER_DISSIPATION = ITEMS.registerModule(MekanismModules.LASER_DISSIPATION_UNIT);
+//    public static final ItemModule MODULE_RADIATION_SHIELDING = ITEMS.registerModule(MekanismModules.RADIATION_SHIELDING_UNIT);
+//    public static final ItemModule MODULE_EXCAVATION_ESCALATION = ITEMS.registerModule(MekanismModules.EXCAVATION_ESCALATION_UNIT);
+//    public static final ItemModule MODULE_ATTACK_AMPLIFICATION = ITEMS.registerModule(MekanismModules.ATTACK_AMPLIFICATION_UNIT);
+//    public static final ItemModule MODULE_FARMING = ITEMS.registerModule(MekanismModules.FARMING_UNIT);
+//    public static final ItemModule MODULE_SHEARING = ITEMS.registerModule(MekanismModules.SHEARING_UNIT);
+//    public static final ItemModule MODULE_SILK_TOUCH = ITEMS.registerModule(MekanismModules.SILK_TOUCH_UNIT);
+//    public static final ItemModule MODULE_VEIN_MINING = ITEMS.registerModule(MekanismModules.VEIN_MINING_UNIT);
+//    public static final ItemModule MODULE_TELEPORTATION = ITEMS.registerModule(MekanismModules.TELEPORTATION_UNIT);
+//    public static final ItemModule MODULE_ELECTROLYTIC_BREATHING = ITEMS.registerModule(MekanismModules.ELECTROLYTIC_BREATHING_UNIT);
+//    public static final ItemModule MODULE_INHALATION_PURIFICATION = ITEMS.registerModule(MekanismModules.INHALATION_PURIFICATION_UNIT);
+//    public static final ItemModule MODULE_VISION_ENHANCEMENT = ITEMS.registerModule(MekanismModules.VISION_ENHANCEMENT_UNIT);
+//    public static final ItemModule MODULE_SOLAR_RECHARGING = ITEMS.registerModule(MekanismModules.SOLAR_RECHARGING_UNIT);
+//    public static final ItemModule MODULE_NUTRITIONAL_INJECTION = ITEMS.registerModule(MekanismModules.NUTRITIONAL_INJECTION_UNIT);
+//    public static final ItemModule MODULE_DOSIMETER = ITEMS.registerModule(MekanismModules.DOSIMETER_UNIT);
+//    public static final ItemModule MODULE_GEIGER = ITEMS.registerModule(MekanismModules.GEIGER_UNIT);
+//    public static final ItemModule MODULE_JETPACK = ITEMS.registerModule(MekanismModules.JETPACK_UNIT);
+//    public static final ItemModule MODULE_CHARGE_DISTRIBUTION = ITEMS.registerModule(MekanismModules.CHARGE_DISTRIBUTION_UNIT);
+//    public static final ItemModule MODULE_GRAVITATIONAL_MODULATING = ITEMS.registerModule(MekanismModules.GRAVITATIONAL_MODULATING_UNIT);
+//    public static final ItemModule MODULE_ELYTRA = ITEMS.registerModule(MekanismModules.ELYTRA_UNIT);
+//    public static final ItemModule MODULE_LOCOMOTIVE_BOOSTING = ITEMS.registerModule(MekanismModules.LOCOMOTIVE_BOOSTING_UNIT);
+//    public static final ItemModule MODULE_HYDRAULIC_PROPULSION = ITEMS.registerModule(MekanismModules.HYDRAULIC_PROPULSION_UNIT);
+//    public static final ItemModule MODULE_MAGNETIC_ATTRACTION = ITEMS.registerModule(MekanismModules.MAGNETIC_ATTRACTION_UNIT);
+//    public static final ItemModule MODULE_FROST_WALKER = ITEMS.registerModule(MekanismModules.FROST_WALKER_UNIT);
+
 //    public static final ItemRegistryObject<ItemUpgrade> SPEED_UPGRADE = registerUpgrade(Upgrade.SPEED);
 //    public static final ItemRegistryObject<ItemUpgrade> ENERGY_UPGRADE = registerUpgrade(Upgrade.ENERGY);
 //    public static final ItemRegistryObject<ItemUpgrade> FILTER_UPGRADE = registerUpgrade(Upgrade.FILTER);
