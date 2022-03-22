@@ -1,5 +1,6 @@
 package mekanism;
 
+import mekanism.registries.MekanismItems;
 import net.fabricmc.fabric.impl.item.group.ItemGroupExtensions;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -20,11 +21,11 @@ public class CreativeTabMekanism extends ItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return ItemStack.EMPTY;
+        return MekanismItems.ATOMIC_ALLOY.getDefaultStack();
     }
 
     @Override
-    public Text getTranslationKey() {
+    public Text getDisplayName() {
         return GROUP_NAME;
     }
 }

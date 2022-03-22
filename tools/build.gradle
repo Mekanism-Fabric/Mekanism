@@ -6,5 +6,6 @@ dependencies {
 }
 
 moduleDependencies(project, [
-    'mekanism'
+        'mekanism',
+        'mekanism-api'
 ])

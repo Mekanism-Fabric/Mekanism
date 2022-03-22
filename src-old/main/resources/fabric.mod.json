@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "mekanism",
+  "version": "${version}",
+
+  "name": "Mekanism",
+  "description": "Mekanism isn’t simply another add-on. Mekanism is an experience that will forever change the way you play Minecraft.",
+  "authors": [
+    "TheRealAlphaDuck",
+    "MorningSage"
+  ],
+  "contact": {
+    "homepage": "https://wiki.aidancbrady.com/wiki/Mekanism",
+    "sources": "https://github.com/Mekanism-Fabric/Mekanism"
+  },
+
+  "license": "MIT",
+
+  "environment": "*",
+
+  "depends": {
+    "fabricloader": ">=0.12.12",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  }
+}

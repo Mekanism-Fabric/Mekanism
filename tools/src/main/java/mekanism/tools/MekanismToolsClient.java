@@ -1,9 +1,5 @@
 package mekanism.tools;
 
-import me.shedaniel.autoconfig.AutoConfig;
-import mekanism.config.helpers.TOMLConfigSerializer;
-import mekanism.tools.config.ToolsClientConfig;
-import mekanism.tools.config.toolsclient.ToolsClient;
 import mekanism.tools.items.MekanismShieldItem;
 import mekanism.tools.rendering.RenderMekanismShieldItem;
 import mekanism.tools.rendering.ShieldTextures;
@@ -14,11 +10,9 @@ import net.fabricmc.fabric.impl.client.rendering.BuiltinItemRendererRegistryImpl
 import net.minecraft.client.texture.SpriteAtlasTexture;
 
 public class MekanismToolsClient implements ClientModInitializer {
-    private static TOMLConfigSerializer<ToolsClientConfig> serializer;
 
     @Override
     public void onInitializeClient() {
-        reloadClientConfig();
         registerShieldHandlers();
     }
 
@@ -34,25 +28,6 @@ public class MekanismToolsClient implements ClientModInitializer {
             FabricModelPredicateProviderRegistry.register(shieldItem, MekanismTools.id("blocking"), (stack, world, entity, seed) ->
                 entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F
             );
-        }
-    }
-
-    public static ToolsClient clientConfig() {
-        if (serializer == null) {
-            reloadClientConfig();
-        }
-
-        return serializer.getConfig().config;
-    }
-
-    public static void reloadClientConfig() {
-        if (serializer == null) {
-            AutoConfig.register(ToolsClientConfig.class, (definition, configClass) -> {
-                serializer = new TOMLConfigSerializer<>(definition, configClass);
-                return serializer;
-            });
-        } else {
-            serializer.reloadFromDisk();
         }
     }
 }
