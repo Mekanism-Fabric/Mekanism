@@ -104,8 +104,7 @@ allprojects {
 			transitive(false)
 		}
 
-		modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${Globals.wthitVersion}"
-		modRuntime "mcp.mobius.waila:wthit:fabric-${Globals.wthitVersion}"
+		modRuntimeOnly "mcp.mobius.waila:wthit:fabric-${Globals.wthitVersion}"
 
 		modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${Globals.reiVersion}"
 		modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${Globals.reiVersion}"

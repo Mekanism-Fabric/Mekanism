@@ -25,6 +25,7 @@ public enum ChemicalTankTier implements ITier, StringIdentifiable {
         baseOutput = o;
         baseTier = tier;
     }
+    
 
     @Override
     public BaseTier getBaseTier() {

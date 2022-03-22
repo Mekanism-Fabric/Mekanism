@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "mekanism",
-  "version": "${version}",
+  "version": "1.0.0",
 
   "name": "Mekanism",
   "description": "Mekanism isn’t simply another add-on. Mekanism is an experience that will forever change the way you play Minecraft.",
@@ -40,6 +40,10 @@
       "links": {
         "modmenu.discord": "https://discord.gg/hGMY3q8KHd"
       }
+    },
+    "waila:plugins": {
+      "id": "mekanism:wthit",
+      "initializer": "mekanism.integration.wthit.WthitIntegration"
     }
   }
 }

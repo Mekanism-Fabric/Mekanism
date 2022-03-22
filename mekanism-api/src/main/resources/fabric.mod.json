@@ -3,7 +3,7 @@
   "id": "mekanism-api",
   "name": "Mekanism API",
   "description": "ToDo...",
-  "version": "${version}",
+  "version": "1.0.0",
   "environment": "*",
   "entrypoints": {
     "main": [
