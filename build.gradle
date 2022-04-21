@@ -100,7 +100,7 @@ allprojects {
 		compileOnly 'org.projectlombok:lombok:1.18.20'
 		annotationProcessor 'org.projectlombok:lombok:1.18.20'
 
-		modRuntime("com.terraformersmc:modmenu:${Globals.modMenuVersion}") {
+		modRuntimeOnly("com.terraformersmc:modmenu:${Globals.modMenuVersion}") {
 			transitive(false)
 		}
 
@@ -108,7 +108,7 @@ allprojects {
 		modRuntimeOnly "mcp.mobius.waila:wthit:fabric-${Globals.wthitVersion}"
 
 		modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${Globals.reiVersion}"
-		modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${Globals.reiVersion}"
+		modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${Globals.reiVersion}"
 
 		implementation 'com.electronwill.night-config:toml:3.6.4'
 		implementation 'com.electronwill.night-config:core:3.6.4'
@@ -123,7 +123,7 @@ allprojects {
 	}
 
 	configurations { dev }
-	loom { shareCaches = true }
+	loom { shareRemapCaches = true }
 
 	repositories {
 		mavenLocal()
