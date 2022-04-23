@@ -1,4 +1,4 @@
-package mekanism.registration;
+package mekanism.additions.registries;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.EntityType;

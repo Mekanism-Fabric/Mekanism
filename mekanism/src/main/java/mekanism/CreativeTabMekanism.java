@@ -21,7 +21,7 @@ public class CreativeTabMekanism extends ItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return MekanismItems.ATOMIC_ALLOY.getDefaultStack();
+        return MekanismItems.ATOMIC_ALLOY.getItemStack();
     }
 
     @Override
