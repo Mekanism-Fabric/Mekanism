@@ -6,7 +6,7 @@ import mekanism.api.IConfigCardAccess;
 import mekanism.api.IConfigurable;
 import mekanism.api.energy.IStrictEnergyHandler;
 import net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup;
-import net.minecraft.util.math.Direction;
+import net.minecraft.core.Direction;
 import org.jetbrains.annotations.NotNull;
 
 public class Capabilities {
