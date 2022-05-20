@@ -28,6 +28,7 @@
   },
 
   "mixins": [
+    "mekanismtools.mixins.json",
     "mekanismtools.accessors.json"
   ],
 

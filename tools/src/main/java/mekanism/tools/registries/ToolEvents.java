@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+
 import java.util.Random;
 
 public final class ToolEvents {
@@ -36,22 +37,22 @@ public final class ToolEvents {
 
                 if (armorType == 0) {
                     setEntityArmorWithChance(random, entity, ToolItems.REFINED_GLOWSTONE_SWORD, ToolItems.REFINED_GLOWSTONE_HELMET, ToolItems.REFINED_GLOWSTONE_CHESTPLATE,
-                        ToolItems.REFINED_GLOWSTONE_LEGGINGS, ToolItems.REFINED_GLOWSTONE_BOOTS, MekanismToolsConfig.tools.refinedGlowstoneSpawnRate);
+                            ToolItems.REFINED_GLOWSTONE_LEGGINGS, ToolItems.REFINED_GLOWSTONE_BOOTS, MekanismToolsConfig.tools.refinedGlowstoneSpawnRate);
                 } else if (armorType == 1) {
                     setEntityArmorWithChance(random, entity, ToolItems.LAPIS_LAZULI_SWORD, ToolItems.LAPIS_LAZULI_HELMET, ToolItems.LAPIS_LAZULI_CHESTPLATE,
-                        ToolItems.LAPIS_LAZULI_LEGGINGS, ToolItems.LAPIS_LAZULI_BOOTS, MekanismToolsConfig.tools.lapisLazuliSpawnRate);
+                            ToolItems.LAPIS_LAZULI_LEGGINGS, ToolItems.LAPIS_LAZULI_BOOTS, MekanismToolsConfig.tools.lapisLazuliSpawnRate);
                 } else if (armorType == 2) {
                     setEntityArmorWithChance(random, entity, ToolItems.REFINED_OBSIDIAN_SWORD, ToolItems.REFINED_OBSIDIAN_HELMET, ToolItems.REFINED_OBSIDIAN_CHESTPLATE,
-                        ToolItems.REFINED_OBSIDIAN_LEGGINGS, ToolItems.REFINED_OBSIDIAN_BOOTS, MekanismToolsConfig.tools.refinedObsidianSpawnRate);
+                            ToolItems.REFINED_OBSIDIAN_LEGGINGS, ToolItems.REFINED_OBSIDIAN_BOOTS, MekanismToolsConfig.tools.refinedObsidianSpawnRate);
                 } else if (armorType == 3) {
                     setEntityArmorWithChance(random, entity, ToolItems.STEEL_SWORD, ToolItems.STEEL_HELMET, ToolItems.STEEL_CHESTPLATE, ToolItems.STEEL_LEGGINGS,
-                        ToolItems.STEEL_BOOTS, MekanismToolsConfig.tools.steelSpawnRate);
+                            ToolItems.STEEL_BOOTS, MekanismToolsConfig.tools.steelSpawnRate);
                 } else if (armorType == 4) {
                     setEntityArmorWithChance(random, entity, ToolItems.BRONZE_SWORD, ToolItems.BRONZE_HELMET, ToolItems.BRONZE_CHESTPLATE, ToolItems.BRONZE_LEGGINGS,
-                        ToolItems.BRONZE_BOOTS, MekanismToolsConfig.tools.bronzeSpawnRate);
+                            ToolItems.BRONZE_BOOTS, MekanismToolsConfig.tools.bronzeSpawnRate);
                 } else {//armorType == 5
                     setEntityArmorWithChance(random, entity, ToolItems.OSMIUM_SWORD, ToolItems.OSMIUM_HELMET, ToolItems.OSMIUM_CHESTPLATE, ToolItems.OSMIUM_LEGGINGS,
-                        ToolItems.OSMIUM_BOOTS, MekanismToolsConfig.tools.osmiumSpawnRate);
+                            ToolItems.OSMIUM_BOOTS, MekanismToolsConfig.tools.osmiumSpawnRate);
                 }
             }
         }

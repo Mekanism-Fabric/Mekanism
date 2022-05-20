@@ -15,9 +15,9 @@ public abstract class RemoveOffHandItemTaskMixin {
     @Redirect(
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"
+            target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"
         ),
-        method = "shouldRun"
+        method = "checkExtraStartConditions"
     )
     protected boolean shouldRun(ItemStack itemStack, Item item) {
         if (itemStack.getItem() instanceof MekanismShieldItem && item == Items.SHIELD) {

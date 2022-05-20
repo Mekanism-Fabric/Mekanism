@@ -17,9 +17,9 @@ public abstract class MobEntityMixin {
     @Redirect(
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"
+            target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"
         ),
-        method = "disablePlayerShield"
+        method = "maybeDisableShield"
     )
     private boolean disablePlayerShieldIsOf(ItemStack playerStack, Item item) {
         if (playerStack.getItem() instanceof MekanismShieldItem && item == Items.SHIELD) return true;
@@ -30,9 +30,9 @@ public abstract class MobEntityMixin {
     @Redirect(
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/entity/player/ItemCooldownManager;set(Lnet/minecraft/item/Item;I)V"
+            target = "Lnet/minecraft/world/item/ItemCooldowns;addCooldown(Lnet/minecraft/world/item/Item;I)V"
         ),
-        method = "disablePlayerShield"
+        method = "maybeDisableShield"
     )
     private void disablePlayerShield(ItemCooldowns itemCooldownManager, Item item, int duration, Player player, ItemStack mobStack, ItemStack playerStack) {
         if (playerStack.getItem() instanceof MekanismShieldItem && item == Items.SHIELD) {

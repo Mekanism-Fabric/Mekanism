@@ -25,12 +25,12 @@ import java.util.Map;
 @Mixin(HumanoidArmorLayer.class)
 public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extends HumanoidModel<T>, A extends HumanoidModel<T>> {
 
-    @Shadow @Final private static Map<String, ResourceLocation> ARMOR_TEXTURE_CACHE;
+    @Shadow @Final private static Map<String, ResourceLocation> ARMOR_LOCATION_CACHE;
 
     @ModifyArg(
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/client/render/entity/feature/ArmorFeatureRenderer;renderArmor(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/EquipmentSlot;ILnet/minecraft/client/render/entity/model/BipedEntityModel;)V"
+            target = "Lnet/minecraft/client/renderer/entity/layers/HumanoidArmorLayer;renderArmorPiece(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;ILnet/minecraft/client/model/HumanoidModel;)V"
         ),
         method = "render"
     )
@@ -46,7 +46,7 @@ public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extend
 
     @Inject(
         at = @At("HEAD"),
-        method = "getArmorTexture",
+        method = "getArmorLocation",
         cancellable = true
     )
     private void getArmorTexture(ArmorItem item, boolean legs, @Nullable String overlay, CallbackInfoReturnable<ResourceLocation> callbackInfo) {
@@ -63,7 +63,7 @@ public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extend
                 texture = String.format(texture, parts[0], s);
             }
 
-            callbackInfo.setReturnValue(ARMOR_TEXTURE_CACHE.computeIfAbsent(texture, ResourceLocation::new));
+            callbackInfo.setReturnValue(ARMOR_LOCATION_CACHE.computeIfAbsent(texture, ResourceLocation::new));
         }
     }
 

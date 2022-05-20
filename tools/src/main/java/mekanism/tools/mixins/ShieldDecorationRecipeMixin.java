@@ -15,9 +15,9 @@ public abstract class ShieldDecorationRecipeMixin {
     @Redirect(
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"
+            target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"
         ),
-        method = { "matches", "craft" }
+        method = { "matches", "assemble" }
     )
     private boolean stackIsOf(ItemStack stack, Item item) {
         if (stack.getItem() instanceof MekanismShieldItem && item == Items.SHIELD) {

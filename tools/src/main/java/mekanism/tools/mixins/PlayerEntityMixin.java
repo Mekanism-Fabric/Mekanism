@@ -23,7 +23,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Redirect(
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"
+            target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"
         ),
         method = "hurtCurrentlyUsedShield"
     )
@@ -38,7 +38,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Redirect(
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/entity/player/ItemCooldownManager;set(Lnet/minecraft/item/Item;I)V"
+            target = "Lnet/minecraft/world/item/ItemCooldowns;addCooldown(Lnet/minecraft/world/item/Item;I)V"
         ),
         method = "disableShield"
     )

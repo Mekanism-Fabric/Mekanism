@@ -15,7 +15,7 @@ public abstract class PiglinBrainMixin {
 
     @Inject(
         at = @At("RETURN"),
-        method = "wearsGoldArmor",
+        method = "isWearingGold",
         cancellable = true
     )
     private static void wearsGoldArmor(LivingEntity entity, CallbackInfoReturnable<Boolean> callbackInfo) {
