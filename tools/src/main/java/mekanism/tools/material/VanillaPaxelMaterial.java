@@ -1,14 +1,14 @@
 package mekanism.tools.material;
 
-import net.minecraft.item.ToolMaterial;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
+import net.minecraft.world.item.Tier;
 
 public abstract class VanillaPaxelMaterial implements IPaxelMaterial {
 
     @NotNull
-    public abstract ToolMaterial getVanillaTier();
+    public abstract Tier getVanillaTier();
 
     @NotNull
     public String getRegistryPrefix() {
@@ -17,21 +17,21 @@ public abstract class VanillaPaxelMaterial implements IPaxelMaterial {
 
     @Override
     public int getPaxelHarvestLevel() {
-        return getVanillaTier().getMiningLevel();
+        return getVanillaTier().getLevel();
     }
 
     @Override
     public int getPaxelMaxUses() {
-        return 2 * getVanillaTier().getDurability();
+        return 2 * getVanillaTier().getUses();
     }
 
     @Override
     public float getPaxelEfficiency() {
-        return getVanillaTier().getMiningSpeedMultiplier();
+        return getVanillaTier().getSpeed();
     }
 
     @Override
     public int getPaxelEnchantability() {
-        return getVanillaTier().getEnchantability();
+        return getVanillaTier().getEnchantmentValue();
     }
 }

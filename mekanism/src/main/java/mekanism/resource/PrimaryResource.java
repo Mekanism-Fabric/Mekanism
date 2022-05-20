@@ -2,9 +2,9 @@ package mekanism.resource;
 
 import java.util.function.Supplier;
 import mekanism.tags.MekanismTags;
-import net.minecraft.item.Item;
-import net.minecraft.tag.ItemTags;
-import net.minecraft.tag.Tag;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.Tag;
+import net.minecraft.world.item.Item;
 
 public enum PrimaryResource implements IResource {
     IRON("iron", 0xFFAF8E77, ItemTags.DIAMOND_ORES),

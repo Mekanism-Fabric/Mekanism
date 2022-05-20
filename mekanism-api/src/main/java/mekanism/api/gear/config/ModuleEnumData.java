@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import mekanism.api.math.MathUtils;
 import mekanism.api.text.IHasTextComponent;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.CompoundTag;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -90,14 +90,14 @@ public final class ModuleEnumData<TYPE extends Enum<TYPE> & IHasTextComponent> i
     }
 
     @Override
-    public void read(String name, NbtCompound tag) {
+    public void read(String name, CompoundTag tag) {
         Objects.requireNonNull(tag, "Tag cannot be null.");
         Objects.requireNonNull(name, "Name cannot be null.");
         value = MathUtils.getByIndexMod(enumConstants, tag.getInt(name));
     }
 
     @Override
-    public void write(String name, NbtCompound tag) {
+    public void write(String name, CompoundTag tag) {
         Objects.requireNonNull(tag, "Tag cannot be null.");
         Objects.requireNonNull(name, "Name cannot be null.");
         tag.putInt(name, value.ordinal());

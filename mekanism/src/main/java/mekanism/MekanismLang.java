@@ -1,8 +1,8 @@
 package mekanism;
 
 import mekanism.api.text.ILangEntry;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.util.Util;
+import net.minecraft.Util;
+import net.minecraft.world.entity.EquipmentSlot;
 
 public enum MekanismLang implements ILangEntry {
     //Vanilla lang strings we use, for purposes of not having to have them copy-pasted all over the place
@@ -790,7 +790,7 @@ public enum MekanismLang implements ILangEntry {
     private final String key;
 
     MekanismLang(String type, String path) {
-        this(Util.createTranslationKey(type, Mekanism.id(path)));
+        this(Util.makeDescriptionId(type, Mekanism.id(path)));
     }
 
     MekanismLang(String key) {

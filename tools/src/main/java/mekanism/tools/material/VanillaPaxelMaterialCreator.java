@@ -3,8 +3,8 @@ package mekanism.tools.material;
 import mekanism.config.IMekanismConfig;
 import mekanism.config.value.CachedFloatValue;
 import mekanism.config.value.CachedIntValue;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.util.annotation.FieldsAreNonnullByDefault;
+import net.minecraft.FieldsAreNonnullByDefault;
+import net.minecraft.world.item.Tier;
 import net.minecraftforge.common.ForgeConfigSpec;
 import org.jetbrains.annotations.NotNull;
 
@@ -43,7 +43,7 @@ public class VanillaPaxelMaterialCreator implements IPaxelMaterial {
                       } else {
                           actualValue = (float) val;
                       }
-                      float baseDamage = getVanillaTier().getAttackDamage();
+                      float baseDamage = getVanillaTier().getAttackDamageBonus();
                       return actualValue >= -baseDamage && actualValue <= Float.MAX_VALUE - baseDamage;
                   }
                   return false;
@@ -60,7 +60,7 @@ public class VanillaPaxelMaterialCreator implements IPaxelMaterial {
     }
 
     @NotNull
-    public ToolMaterial getVanillaTier() {
+    public Tier getVanillaTier() {
         return fallback.getVanillaTier();
     }
 

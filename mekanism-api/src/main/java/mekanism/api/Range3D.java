@@ -1,18 +1,18 @@
 package mekanism.api;
 
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.World;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.Level;
 
 //TODO - 1.18: Move this out of the API
 public class Range3D {
 
-    public final RegistryKey<World> dimension;
+    public final ResourceKey<Level> dimension;
     public final int xMin;
     public final int zMin;
     public final int xMax;
     public final int zMax;
 
-    public Range3D(int minX, int minZ, int maxX, int maxZ, RegistryKey<World> dimension) {
+    public Range3D(int minX, int minZ, int maxX, int maxZ, ResourceKey<Level> dimension) {
         xMin = minX;
         zMin = minZ;
         xMax = maxX;
@@ -28,7 +28,7 @@ public class Range3D {
 
     @Override
     public String toString() {
-        return "[Range3D: " + xMin + ", " + zMin + ", " + xMax + ", " + zMax + ", dim=" + dimension.getValue() + "]";
+        return "[Range3D: " + xMin + ", " + zMin + ", " + xMax + ", " + zMax + ", dim=" + dimension.location() + "]";
     }
 
     @Override

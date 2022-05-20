@@ -1,17 +1,17 @@
 package mekanism.api;
 
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.phys.BlockHitResult;
 
 /**
  * Coord4D - an integer-based way to keep track of and perform operations on blocks in a Minecraft-based environment. This also takes in account the dimension the
@@ -24,7 +24,7 @@ public class Coord4D {//TODO - V11: Continue working on replacing uses of this w
     private final int x;
     private final int y;
     private final int z;
-    public final RegistryKey<World> dimension;
+    public final ResourceKey<Level> dimension;
     private final int hashCode;
 
     /**
@@ -33,7 +33,7 @@ public class Coord4D {//TODO - V11: Continue working on replacing uses of this w
      * @param entity Entity to create the Coord4D from
      */
     public Coord4D(Entity entity) {
-        this(entity.getBlockPos(), entity.getWorld());
+        this(entity.blockPosition(), entity.getLevel());
     }
 
     /**
@@ -44,10 +44,10 @@ public class Coord4D {//TODO - V11: Continue working on replacing uses of this w
      * @param z         Z coordinate
      * @param dimension Dimension ID
      */
-    public Coord4D(double x, double y, double z, RegistryKey<World> dimension) {
-        this.x = MathHelper.floor(x);
-        this.y = MathHelper.floor(y);
-        this.z = MathHelper.floor(z);
+    public Coord4D(double x, double y, double z, ResourceKey<Level> dimension) {
+        this.x = Mth.floor(x);
+        this.y = Mth.floor(y);
+        this.z = Mth.floor(z);
         this.dimension = dimension;
         this.hashCode = initHashCode();
     }
@@ -58,8 +58,8 @@ public class Coord4D {//TODO - V11: Continue working on replacing uses of this w
      * @param pos   Position (x, y, z)
      * @param world World
      */
-    public Coord4D(BlockPos pos, World world) {//TODO - 1.18: Switch this to taking Vector3i as position
-        this(pos, world.getRegistryKey());
+    public Coord4D(BlockPos pos, Level world) {//TODO - 1.18: Switch this to taking Vector3i as position
+        this(pos, world.dimension());
     }
 
     /**
@@ -68,12 +68,12 @@ public class Coord4D {//TODO - V11: Continue working on replacing uses of this w
      * @param pos       Position (x, y, z)
      * @param dimension Dimension ID
      */
-    public Coord4D(BlockPos pos, RegistryKey<World> dimension) {//TODO - 1.18: Switch this to taking Vector3i as position
+    public Coord4D(BlockPos pos, ResourceKey<Level> dimension) {//TODO - 1.18: Switch this to taking Vector3i as position
         this(pos.getX(), pos.getY(), pos.getZ(), dimension);
     }
 
     @Deprecated
-    public Coord4D(BlockHitResult mop, World world) {//TODO - 1.18: Remove this
+    public Coord4D(BlockHitResult mop, Level world) {//TODO - 1.18: Remove this
         this(mop.getBlockPos(), world);
     }
 
@@ -85,7 +85,7 @@ public class Coord4D {//TODO - V11: Continue working on replacing uses of this w
      * @return the Coord4D object from the BlockEntity
      */
     public static Coord4D get(BlockEntity tile) {//TODO - 1.18: Move this to a constructor or move the other helper constructors to a get method
-        return new Coord4D(tile.getPos(), tile.getWorld());
+        return new Coord4D(tile.getBlockPos(), tile.getLevel());
     }
 
     /**
@@ -95,9 +95,9 @@ public class Coord4D {//TODO - V11: Continue working on replacing uses of this w
      *
      * @return the Coord4D from the tag compound
      */
-    public static Coord4D read(NbtCompound tag) {
+    public static Coord4D read(CompoundTag tag) {
         return new Coord4D(tag.getInt(NBTConstants.X), tag.getInt(NBTConstants.Y), tag.getInt(NBTConstants.Z),
-              RegistryKey.of(Registry.WORLD_KEY, new Identifier(tag.getString(NBTConstants.DIMENSION))));
+              ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(tag.getString(NBTConstants.DIMENSION))));
     }
 
     /**
@@ -107,8 +107,8 @@ public class Coord4D {//TODO - V11: Continue working on replacing uses of this w
      *
      * @return the Coord4D from the data input
      */
-    public static Coord4D read(PacketByteBuf dataStream) {
-        return new Coord4D(dataStream.readBlockPos(), RegistryKey.of(Registry.WORLD_KEY, dataStream.readIdentifier()));
+    public static Coord4D read(FriendlyByteBuf dataStream) {
+        return new Coord4D(dataStream.readBlockPos(), ResourceKey.create(Registry.DIMENSION_REGISTRY, dataStream.readResourceLocation()));
     }
 
     /**
@@ -143,11 +143,11 @@ public class Coord4D {//TODO - V11: Continue working on replacing uses of this w
      *
      * @return the tag compound with this Coord4D's data
      */
-    public NbtCompound write(NbtCompound nbtTags) {
+    public CompoundTag write(CompoundTag nbtTags) {
         nbtTags.putInt(NBTConstants.X, x);
         nbtTags.putInt(NBTConstants.Y, y);
         nbtTags.putInt(NBTConstants.Z, z);
-        nbtTags.putString(NBTConstants.DIMENSION, dimension.getValue().toString());
+        nbtTags.putString(NBTConstants.DIMENSION, dimension.location().toString());
         return nbtTags;
     }
 
@@ -156,10 +156,10 @@ public class Coord4D {//TODO - V11: Continue working on replacing uses of this w
      *
      * @param dataStream - the PacketByteBuf to add the data to
      */
-    public void write(PacketByteBuf dataStream) {
+    public void write(FriendlyByteBuf dataStream) {
         //Note: We write the position as a block pos over the network so that it can be packed more efficiently
         dataStream.writeBlockPos(getPos());
-        dataStream.writeIdentifier(dimension.getValue());
+        dataStream.writeResourceLocation(dimension.location());
     }
 
     /**
@@ -198,7 +198,7 @@ public class Coord4D {//TODO - V11: Continue working on replacing uses of this w
         if (side == null || amount == 0) {
             return this;
         }
-        return new Coord4D(x + (side.getOffsetX() * amount), y + (side.getOffsetY() * amount), z + (side.getOffsetZ() * amount), dimension);
+        return new Coord4D(x + (side.getStepX() * amount), y + (side.getStepY() * amount), z + (side.getStepZ() * amount), dimension);
     }
 
     /**
@@ -209,7 +209,7 @@ public class Coord4D {//TODO - V11: Continue working on replacing uses of this w
      * @return the distance to the defined Coord4D
      */
     public double distanceTo(Coord4D obj) {
-        return MathHelper.sqrt(distanceToSquared(obj));
+        return Mth.sqrt(distanceToSquared(obj));
     }
 
     /**
@@ -228,7 +228,7 @@ public class Coord4D {//TODO - V11: Continue working on replacing uses of this w
 
     @Override
     public String toString() {
-        return "[Coord4D: " + x + ", " + y + ", " + z + ", dim=" + dimension.getValue() + "]";
+        return "[Coord4D: " + x + ", " + y + ", " + z + ", dim=" + dimension.location() + "]";
     }
 
     @Override

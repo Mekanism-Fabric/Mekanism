@@ -1,7 +1,7 @@
 package mekanism.tools;
 
 import mekanism.tools.MekanismTools;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public enum ToolsLang {
     HP("tooltip", "hp");
@@ -12,7 +12,7 @@ public enum ToolsLang {
         translationKey = String.format("%s.%s.%s", type, MekanismTools.MODID, path);
     }
 
-    public TranslatableText translate(Object... args) {
-        return new TranslatableText(translationKey, args);
+    public TranslatableComponent translate(Object... args) {
+        return new TranslatableComponent(translationKey, args);
     }
 }

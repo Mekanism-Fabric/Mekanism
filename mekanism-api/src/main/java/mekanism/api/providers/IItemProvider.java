@@ -1,12 +1,12 @@
 package mekanism.api.providers;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.NotNull;
 
-public interface IItemProvider extends IBaseProvider, ItemConvertible {
+public interface IItemProvider extends IBaseProvider, ItemLike {
 
     /**
      * Gets the item this provider represents.
@@ -39,12 +39,12 @@ public interface IItemProvider extends IBaseProvider, ItemConvertible {
     }
 
     @Override
-    default Identifier getRegistryName() {
-        return new Identifier(getItem().getName().asString());
+    default ResourceLocation getRegistryName() {
+        return new ResourceLocation(getItem().getDescription().getContents());
     }
 
     @Override
     default String getTranslationKey() {
-        return getItem().getTranslationKey();
+        return getItem().getDescriptionId();
     }
 }

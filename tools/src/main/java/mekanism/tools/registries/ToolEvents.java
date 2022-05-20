@@ -4,18 +4,17 @@ import mekanism.tools.MekanismTools;
 import mekanism.tools.config.MekanismToolsConfig;
 import mekanism.tools.config.ToolsConfig;
 import mekanism.tools.events.EntitySpawnedEvent;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.PiglinEntity;
-import net.minecraft.entity.mob.SkeletonEntity;
-import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.MobSpawnerLogic;
-import net.minecraft.world.World;
-
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.piglin.Piglin;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BaseSpawner;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
 import java.util.Random;
 
 public final class ToolEvents {
@@ -26,14 +25,14 @@ public final class ToolEvents {
 
     }
 
-    private static void onEntitySpawned(MobEntity entity, World world, float x, float y, float z, MobSpawnerLogic spawnerLogic, SpawnReason spawnReason) {
-        if (entity instanceof ZombieEntity || entity instanceof SkeletonEntity || entity instanceof PiglinEntity) {
+    private static void onEntitySpawned(Mob entity, Level world, float x, float y, float z, BaseSpawner spawnerLogic, MobSpawnType spawnReason) {
+        if (entity instanceof Zombie || entity instanceof Skeleton || entity instanceof Piglin) {
             //Don't bother calculating random numbers unless the instanceof checks pass
             Random random = world.getRandom();
             double chance = random.nextDouble();
             if (Double.compare(chance, MekanismToolsConfig.tools.armorSpawnRate.getAsDouble()) < 0) {
                 //We can only spawn refined glowstone armor on piglins
-                int armorType = entity instanceof PiglinEntity ? 0 : random.nextInt(6);
+                int armorType = entity instanceof Piglin ? 0 : random.nextInt(6);
 
                 if (armorType == 0) {
                     setEntityArmorWithChance(random, entity, ToolItems.REFINED_GLOWSTONE_SWORD, ToolItems.REFINED_GLOWSTONE_HELMET, ToolItems.REFINED_GLOWSTONE_CHESTPLATE,
@@ -59,13 +58,13 @@ public final class ToolEvents {
     }
 
     private static void setStackIfEmpty(LivingEntity entity, EquipmentSlot slot, ItemStack item) {
-        if (entity.getEquippedStack(slot).isEmpty()) {
-            entity.equipStack(slot, item);
+        if (entity.getItemBySlot(slot).isEmpty()) {
+            entity.setItemSlot(slot, item);
         }
     }
 
-    private static void setEntityArmorWithChance(Random random, LivingEntity entity, ItemConvertible sword, ItemConvertible helmet, ItemConvertible chestplate, ItemConvertible leggings, ItemConvertible boots, ToolsConfig.ArmorSpawnChanceConfig chanceConfig) {
-        if (entity instanceof ZombieEntity && random.nextDouble() < chanceConfig.swordChance.get()) {
+    private static void setEntityArmorWithChance(Random random, LivingEntity entity, ItemLike sword, ItemLike helmet, ItemLike chestplate, ItemLike leggings, ItemLike boots, ToolsConfig.ArmorSpawnChanceConfig chanceConfig) {
+        if (entity instanceof Zombie && random.nextDouble() < chanceConfig.swordChance.get()) {
             setStackIfEmpty(entity, EquipmentSlot.MAINHAND, new ItemStack(sword));
         }
         if (random.nextDouble() < chanceConfig.helmetChance.get()) {

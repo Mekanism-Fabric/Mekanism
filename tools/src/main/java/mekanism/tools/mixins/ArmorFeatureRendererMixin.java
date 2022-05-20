@@ -2,16 +2,15 @@ package mekanism.tools.mixins;
 
 import mekanism.tools.items.IHazGlowEffect;
 import mekanism.tools.material.BaseMekanismMaterial;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,13 +19,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
+import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Map;
 
-@Mixin(ArmorFeatureRenderer.class)
-public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> {
+@Mixin(HumanoidArmorLayer.class)
+public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extends HumanoidModel<T>, A extends HumanoidModel<T>> {
 
-    @Shadow @Final private static Map<String, Identifier> ARMOR_TEXTURE_CACHE;
+    @Shadow @Final private static Map<String, ResourceLocation> ARMOR_TEXTURE_CACHE;
 
     @ModifyArg(
         at = @At(
@@ -35,8 +34,8 @@ public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extend
         ),
         method = "render"
     )
-    private int replaceWithGlow(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity, EquipmentSlot armorSlot, int light, A model) {
-        ItemStack itemStack = entity.getEquippedStack(armorSlot);
+    private int replaceWithGlow(PoseStack matrices, MultiBufferSource vertexConsumers, T entity, EquipmentSlot armorSlot, int light, A model) {
+        ItemStack itemStack = entity.getItemBySlot(armorSlot);
 
         if (itemStack.getItem() instanceof IHazGlowEffect) {
             return ((IHazGlowEffect) itemStack.getItem()).getCustomLightLevel(itemStack, light);
@@ -50,7 +49,7 @@ public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extend
         method = "getArmorTexture",
         cancellable = true
     )
-    private void getArmorTexture(ArmorItem item, boolean legs, @Nullable String overlay, CallbackInfoReturnable<Identifier> callbackInfo) {
+    private void getArmorTexture(ArmorItem item, boolean legs, @Nullable String overlay, CallbackInfoReturnable<ResourceLocation> callbackInfo) {
         ArmorMaterial material = item.getMaterial();
 
         if (material instanceof BaseMekanismMaterial) {
@@ -64,7 +63,7 @@ public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extend
                 texture = String.format(texture, parts[0], s);
             }
 
-            callbackInfo.setReturnValue(ARMOR_TEXTURE_CACHE.computeIfAbsent(texture, Identifier::new));
+            callbackInfo.setReturnValue(ARMOR_TEXTURE_CACHE.computeIfAbsent(texture, ResourceLocation::new));
         }
     }
 

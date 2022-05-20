@@ -2,7 +2,7 @@ package mekanism.api.providers;
 
 import mekanism.api.gear.ICustomModule;
 import mekanism.api.gear.ModuleData;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 public interface IModuleDataProvider<MODULE extends ICustomModule<MODULE>> extends IBaseProvider {
@@ -14,7 +14,7 @@ public interface IModuleDataProvider<MODULE extends ICustomModule<MODULE>> exten
     ModuleData<MODULE> getModuleData();
 
     @Override
-    default Identifier getRegistryName() {
+    default ResourceLocation getRegistryName() {
         return getModuleData().getRegistryName();
     }
 

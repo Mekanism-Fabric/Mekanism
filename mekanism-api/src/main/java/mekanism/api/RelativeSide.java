@@ -4,7 +4,7 @@ import mekanism.api.math.MathUtils;
 import mekanism.api.text.APILang;
 import mekanism.api.text.IHasTranslationKey;
 import mekanism.api.text.ILangEntry;
-import net.minecraft.util.math.Direction;
+import net.minecraft.core.Direction;
 import org.jetbrains.annotations.NotNull;
 
 public enum RelativeSide implements IHasTranslationKey {
@@ -53,12 +53,12 @@ public enum RelativeSide implements IHasTranslationKey {
             if (facing == Direction.DOWN || facing == Direction.UP) {
                 return Direction.EAST;
             }
-            return facing.rotateClockwise(facing.getAxis());
+            return facing.getClockWise(facing.getAxis());
         } else if (this == RIGHT) {
             if (facing == Direction.DOWN || facing == Direction.UP) {
                 return Direction.WEST;
             }
-            return facing.rotateCounterclockwise(facing.getAxis());
+            return facing.getCounterClockWise(facing.getAxis());
         } else if (this == TOP) {
             if (facing == Direction.DOWN) {
                 return Direction.NORTH;
@@ -107,9 +107,9 @@ public enum RelativeSide implements IHasTranslationKey {
             return BOTTOM;
         } else if (side == Direction.UP) {
             return TOP;
-        } else if (side == facing.rotateCounterclockwise(facing.getAxis())) {
+        } else if (side == facing.getCounterClockWise(facing.getAxis())) {
             return RIGHT;
-        } else if (side == facing.rotateClockwise(facing.getAxis())) {
+        } else if (side == facing.getClockWise(facing.getAxis())) {
             return LEFT;
         }
         //Fall back to front, should never get here

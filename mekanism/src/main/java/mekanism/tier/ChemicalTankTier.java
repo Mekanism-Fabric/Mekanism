@@ -4,10 +4,10 @@ import java.util.Locale;
 import mekanism.api.tier.BaseTier;
 import mekanism.api.tier.ITier;
 import mekanism.config.value.CachedLongValue;
-import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.StringRepresentable;
 import org.jetbrains.annotations.NotNull;
 
-public enum ChemicalTankTier implements ITier, StringIdentifiable {
+public enum ChemicalTankTier implements ITier, StringRepresentable {
     BASIC(BaseTier.BASIC, 64_000, 1_000),
     ADVANCED(BaseTier.ADVANCED, 256_000, 16_000),
     ELITE(BaseTier.ELITE, 1_024_000, 128_000),
@@ -34,7 +34,7 @@ public enum ChemicalTankTier implements ITier, StringIdentifiable {
 
     @NotNull
     @Override
-    public String asString() {
+    public String getSerializedName() {
         return name().toLowerCase(Locale.ROOT);
     }
 

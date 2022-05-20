@@ -1,7 +1,7 @@
 package mekanism.api.providers;
 
 import mekanism.api.robit.RobitSkin;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 public interface IRobitSkinProvider extends IBaseProvider {
@@ -13,7 +13,7 @@ public interface IRobitSkinProvider extends IBaseProvider {
     RobitSkin getSkin();
 
     @Override
-    default Identifier getRegistryName() {
+    default ResourceLocation getRegistryName() {
         return getSkin().getRegistryName();
     }
 

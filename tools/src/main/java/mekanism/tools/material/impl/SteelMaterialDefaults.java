@@ -2,10 +2,10 @@ package mekanism.tools.material.impl;
 
 import mekanism.tags.MekanismTags;
 import mekanism.tools.material.BaseMekanismMaterial;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
 public class SteelMaterialDefaults extends BaseMekanismMaterial {
@@ -26,22 +26,22 @@ public class SteelMaterialDefaults extends BaseMekanismMaterial {
     }
 
     @Override
-    public int getDurability() {
+    public int getUses() {
         return 500;
     }
 
     @Override
-    public float getMiningSpeedMultiplier() {
+    public float getSpeed() {
         return 8;
     }
 
     @Override
-    public float getAttackDamage() {
+    public float getAttackDamageBonus() {
         return 3;
     }
 
     @Override
-    public int getMiningLevel() {
+    public int getLevel() {
         return 3;
     }
 
@@ -56,7 +56,7 @@ public class SteelMaterialDefaults extends BaseMekanismMaterial {
     }
 
     @Override
-    public int getDurability(@NotNull EquipmentSlot slotType) {
+    public int getDurabilityForSlot(@NotNull EquipmentSlot slotType) {
         switch (slotType) {
             case FEET:
                 return 260;
@@ -71,7 +71,7 @@ public class SteelMaterialDefaults extends BaseMekanismMaterial {
     }
 
     @Override
-    public int getProtectionAmount(@NotNull EquipmentSlot slotType) {
+    public int getDefenseForSlot(@NotNull EquipmentSlot slotType) {
         switch (slotType) {
             case FEET:
                 return 3;
@@ -100,13 +100,13 @@ public class SteelMaterialDefaults extends BaseMekanismMaterial {
     @NotNull
     @Override
     public SoundEvent getEquipSound() {
-        return SoundEvents.ITEM_ARMOR_EQUIP_IRON;
+        return SoundEvents.ARMOR_EQUIP_IRON;
     }
 
     @NotNull
     @Override
     public Ingredient getCommonRepairMaterial() {
-        return Ingredient.fromTag(MekanismTags.Items.INGOTS_STEEL);
+        return Ingredient.of(MekanismTags.Items.INGOTS_STEEL);
     }
 
     @Override

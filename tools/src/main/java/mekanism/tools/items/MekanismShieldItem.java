@@ -3,12 +3,12 @@ package mekanism.tools.items;
 import mekanism.tools.material.BaseMekanismMaterial;
 import mekanism.tools.registries.ToolItems;
 import mekanism.tools.utils.ToolsUtils;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShieldItem;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShieldItem;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -19,15 +19,15 @@ public class MekanismShieldItem extends ShieldItem implements IHazGlowEffect {
 
     private final BaseMekanismMaterial material;
 
-    public MekanismShieldItem(BaseMekanismMaterial material, Item.Settings settings) {
-        super(settings.maxDamage(material.getShieldDurability()));
+    public MekanismShieldItem(BaseMekanismMaterial material, Item.Properties settings) {
+        super(settings.durability(material.getShieldDurability()));
 
         this.material = material;
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        super.appendTooltip(stack, world, tooltip, context);
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
+        super.appendHoverText(stack, world, tooltip, context);
 
         ToolsUtils.addDurability(tooltip, stack);
     }

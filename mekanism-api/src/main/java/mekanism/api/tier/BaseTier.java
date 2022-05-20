@@ -2,8 +2,7 @@ package mekanism.api.tier;
 
 import mekanism.api.math.MathUtils;
 import mekanism.api.text.EnumColor;
-import net.minecraft.util.StringIdentifiable;
-
+import net.minecraft.util.StringRepresentable;
 import org.jetbrains.annotations.NotNull;
 import java.util.Locale;
 
@@ -12,7 +11,7 @@ import java.util.Locale;
  *
  * @author aidancbrady
  */
-public enum BaseTier implements StringIdentifiable {
+public enum BaseTier implements StringRepresentable {
     BASIC("Basic", EnumColor.BRIGHT_GREEN, EnumColor.BRIGHT_GREEN),
     ADVANCED("Advanced", EnumColor.DARK_RED, EnumColor.RED),
     ELITE("Elite", EnumColor.INDIGO, EnumColor.INDIGO),
@@ -61,7 +60,7 @@ public enum BaseTier implements StringIdentifiable {
 
     @NotNull
     @Override
-    public String asString() {
+    public String getSerializedName() {
         return name().toLowerCase(Locale.ROOT);
     }
 

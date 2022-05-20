@@ -1,15 +1,15 @@
 package mekanism.resource;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.util.StringIdentifiable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
+import net.minecraft.util.StringRepresentable;
 
-public enum OreType implements StringIdentifiable {
+public enum OreType implements StringRepresentable {
     COPPER(PrimaryResource.COPPER, 16, 8, 0, 0, 60),
     TIN(PrimaryResource.TIN, 14, 8, 0, 0, 60),
     OSMIUM(PrimaryResource.OSMIUM, 12, 8, 0, 0, 60),
@@ -17,8 +17,8 @@ public enum OreType implements StringIdentifiable {
     FLUORITE(MiscResource.FLUORITE, 6, 12, 0, 0, 32, 1, 4),
     LEAD(PrimaryResource.LEAD, 8, 8, 0, 0, 48);
 
-    public static Codec<OreType> CODEC = StringIdentifiable.createCodec(OreType::values, OreType::byName);
-    private static final Map<String, OreType> NAME_LOOKUP = Arrays.stream(values()).collect(Collectors.toMap(OreType::asString, oreType -> oreType));
+    public static Codec<OreType> CODEC = StringRepresentable.fromEnum(OreType::values, OreType::byName);
+    private static final Map<String, OreType> NAME_LOOKUP = Arrays.stream(values()).collect(Collectors.toMap(OreType::getSerializedName, oreType -> oreType));
 
     private final IResource resource;
     private final int perChunk;
@@ -87,7 +87,7 @@ public enum OreType implements StringIdentifiable {
 
     @NotNull
     @Override
-    public String asString() {
+    public String getSerializedName() {
         return resource.getRegistrySuffix();
     }
 

@@ -1,11 +1,11 @@
 package mekanism.additions.content.blocktype;
 
 import static mekanism.util.VoxelShapeUtils.setShape;
-import static net.minecraft.block.Block.createCuboidShape;
+import static net.minecraft.world.level.block.Block.box;
 
 import mekanism.util.EnumUtils;
 import mekanism.util.VoxelShapeUtils;
-import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public final class BlockShapes {
 
@@ -16,8 +16,8 @@ public final class BlockShapes {
 
     static {
         setShape(VoxelShapeUtils.combine(
-                createCuboidShape(4, 14, 4, 12, 16, 12),
-                createCuboidShape(5, 13.5, 5, 11, 14, 11)
+                box(4, 14, 4, 12, 16, 12),
+                box(5, 13.5, 5, 11, 14, 11)
         ), GLOW_PANEL, true);
     }
 }

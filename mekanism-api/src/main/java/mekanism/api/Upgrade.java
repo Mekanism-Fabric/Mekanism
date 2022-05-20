@@ -4,10 +4,10 @@ import mekanism.api.math.MathUtils;
 import mekanism.api.text.APILang;
 import mekanism.api.text.EnumColor;
 import mekanism.api.text.IHasTranslationKey;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.text.Text;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumMap;
@@ -47,12 +47,12 @@ public enum Upgrade implements IHasTranslationKey {
      *
      * @return Installed upgrade map.
      */
-    public static Map<Upgrade, Integer> buildMap(@Nullable NbtCompound nbtTags) {
+    public static Map<Upgrade, Integer> buildMap(@Nullable CompoundTag nbtTags) {
         Map<Upgrade, Integer> upgrades = new EnumMap<>(Upgrade.class);
-        if (nbtTags != null && nbtTags.contains(NBTConstants.UPGRADES, NbtElement.LIST_TYPE)) {
-            NbtList list = nbtTags.getList(NBTConstants.UPGRADES, NbtElement.COMPOUND_TYPE);
+        if (nbtTags != null && nbtTags.contains(NBTConstants.UPGRADES, Tag.TAG_LIST)) {
+            ListTag list = nbtTags.getList(NBTConstants.UPGRADES, Tag.TAG_COMPOUND);
             for (int tagCount = 0; tagCount < list.size(); tagCount++) {
-                NbtCompound compound = list.getCompound(tagCount);
+                CompoundTag compound = list.getCompound(tagCount);
                 Upgrade upgrade = byIndexStatic(compound.getInt(NBTConstants.TYPE));
                 upgrades.put(upgrade, Math.min(upgrade.maxStack, compound.getInt(NBTConstants.AMOUNT)));
             }
@@ -66,8 +66,8 @@ public enum Upgrade implements IHasTranslationKey {
      * @param upgrades Upgrades to store.
      * @param nbtTags  Tag to write to.
      */
-    public static void saveMap(Map<Upgrade, Integer> upgrades, NbtCompound nbtTags) {
-        NbtList list = new NbtList();
+    public static void saveMap(Map<Upgrade, Integer> upgrades, CompoundTag nbtTags) {
+        ListTag list = new ListTag();
         for (Entry<Upgrade, Integer> entry : upgrades.entrySet()) {
             list.add(entry.getKey().getTag(entry.getValue()));
         }
@@ -85,8 +85,8 @@ public enum Upgrade implements IHasTranslationKey {
      * @deprecated use {@link #getTag(int)} instead.
      */
     @Deprecated//TODO - 1.18: Remove this
-    public static NbtCompound getTagFor(Upgrade upgrade, int amount) {
-        NbtCompound compound = new NbtCompound();
+    public static CompoundTag getTagFor(Upgrade upgrade, int amount) {
+        CompoundTag compound = new CompoundTag();
         compound.putInt(NBTConstants.TYPE, upgrade.ordinal());
         compound.putInt(NBTConstants.AMOUNT, amount);
         return compound;
@@ -99,8 +99,8 @@ public enum Upgrade implements IHasTranslationKey {
      *
      * @return NBT.
      */
-    public NbtCompound getTag(int amount) {
-        NbtCompound compound = new NbtCompound();
+    public CompoundTag getTag(int amount) {
+        CompoundTag compound = new CompoundTag();
         compound.putInt(NBTConstants.TYPE, ordinal());
         compound.putInt(NBTConstants.AMOUNT, amount);
         return compound;
@@ -121,7 +121,7 @@ public enum Upgrade implements IHasTranslationKey {
     /**
      * Gets the description for this upgrade.
      */
-    public Text getDescription() {
+    public Component getDescription() {
         return descLangKey.translate();
     }
 
@@ -160,6 +160,6 @@ public enum Upgrade implements IHasTranslationKey {
 
     public interface IUpgradeInfoHandler {
 
-        List<Text> getInfo(Upgrade upgrade);
+        List<Component> getInfo(Upgrade upgrade);
     }
 }

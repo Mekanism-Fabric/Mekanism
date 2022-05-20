@@ -3,8 +3,8 @@ package mekanism.api.providers;
 import mekanism.api.text.IHasTextComponent;
 import mekanism.api.text.IHasTranslationKey;
 import mekanism.api.text.TextComponentUtil;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 
 public interface IBaseProvider extends IHasTextComponent, IHasTranslationKey {
 
@@ -13,7 +13,7 @@ public interface IBaseProvider extends IHasTextComponent, IHasTranslationKey {
      *
      * @return Registry name.
      */
-    Identifier getRegistryName();
+    ResourceLocation getRegistryName();
 
     /**
      * Gets the "name" or "path" of the registry name.
@@ -23,7 +23,7 @@ public interface IBaseProvider extends IHasTextComponent, IHasTranslationKey {
     }
 
     @Override
-    default Text getTextComponent() {
+    default Component getTextComponent() {
         return TextComponentUtil.translate(getTranslationKey());
     }
 }

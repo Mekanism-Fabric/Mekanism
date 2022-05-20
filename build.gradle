@@ -8,11 +8,9 @@ plugins {
 class Globals {
 	static def baseVersion = "1.0.0"
 	static def mcVersion = "1.18.1"
-	static def yarnVersion = "+build.22"
 	static def loaderVersion = "0.12.12"
 	static def maven_group = "mekanism"
 	static def fabricVersion = "0.46.1+1.18"
-	static def clothConfigVersion = "6.1.48"
 	static def modMenuVersion = "3.0.1"
 	static def wthitVersion = "4.4.1"
 	static def techRebornEnergyVersion = "2.1.0"
@@ -93,7 +91,10 @@ allprojects {
 
 	dependencies {
 		minecraft "com.mojang:minecraft:$Globals.mcVersion"
-		mappings "net.fabricmc:yarn:${Globals.mcVersion}${Globals.yarnVersion}:v2"
+		mappings loom.layered() {
+			officialMojangMappings()
+			parchment("org.parchmentmc.data:parchment-1.18.1:2022.03.06@zip")
+		}
 		modApi "net.fabricmc:fabric-loader:${Globals.loaderVersion}"
 		modImplementation "net.fabricmc.fabric-api:fabric-api:${Globals.fabricVersion}"
 
@@ -132,6 +133,7 @@ allprojects {
 		maven { url "https://bai.jfrog.io/artifactory/maven" }
 		maven { url "https://maven.bai.lol" }
 		maven { url "https://cursemaven.com" }
+		maven { url "https://maven.parchmentmc.org"}
 		mavenCentral()
 	}
 

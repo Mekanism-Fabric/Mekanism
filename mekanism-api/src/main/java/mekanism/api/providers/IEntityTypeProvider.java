@@ -1,8 +1,8 @@
 package mekanism.api.providers;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
 import org.jetbrains.annotations.NotNull;
 
 public interface IEntityTypeProvider extends IBaseProvider {
@@ -14,17 +14,17 @@ public interface IEntityTypeProvider extends IBaseProvider {
     EntityType<?> getEntityType();
 
     @Override
-    default Identifier getRegistryName() {
-        return getEntityType().getLootTableId();
+    default ResourceLocation getRegistryName() {
+        return getEntityType().getDefaultLootTable();
     }
 
     @Override
-    default Text getTextComponent() {
-        return getEntityType().getName();
+    default Component getTextComponent() {
+        return getEntityType().getDescription();
     }
 
     @Override
     default String getTranslationKey() {
-        return getEntityType().getTranslationKey();
+        return getEntityType().getDescriptionId();
     }
 }

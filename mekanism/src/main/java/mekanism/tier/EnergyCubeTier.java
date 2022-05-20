@@ -5,11 +5,11 @@ import mekanism.api.math.FloatingLong;
 import mekanism.api.tier.BaseTier;
 import mekanism.api.tier.ITier;
 import mekanism.config.value.CachedFloatingLongValue;
-import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.util.StringRepresentable;
 
 @MethodsReturnNonnullByDefault
-public enum EnergyCubeTier implements ITier, StringIdentifiable {
+public enum EnergyCubeTier implements ITier, StringRepresentable {
     BASIC(BaseTier.BASIC, FloatingLong.createConst(4_000_000), FloatingLong.createConst(4_000)),
     ADVANCED(BaseTier.ADVANCED, FloatingLong.createConst(16_000_000), FloatingLong.createConst(16_000)),
     ELITE(BaseTier.ELITE, FloatingLong.createConst(64_000_000), FloatingLong.createConst(64_000)),
@@ -34,7 +34,7 @@ public enum EnergyCubeTier implements ITier, StringIdentifiable {
     }
 
     @Override
-    public String asString() {
+    public String getSerializedName() {
         return name().toLowerCase(Locale.ROOT);
     }
 

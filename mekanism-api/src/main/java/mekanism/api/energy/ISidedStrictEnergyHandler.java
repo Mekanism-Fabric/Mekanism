@@ -3,8 +3,8 @@ package mekanism.api.energy;
 import mekanism.api.Action;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.math.FloatingLongTransferUtils;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
-import net.minecraft.util.math.Direction;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.Direction;
 import org.jetbrains.annotations.Nullable;
 
 /**

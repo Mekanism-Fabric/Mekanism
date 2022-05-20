@@ -1,8 +1,8 @@
 package mekanism.api.gear;
 
 import java.util.Map;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -26,11 +26,11 @@ public abstract class EnchantmentBasedModule<MODULE extends EnchantmentBasedModu
     public void onAdded(IModule<MODULE> module, boolean first) {
         if (module.isEnabled()) {
             if (first) {
-                module.getContainer().addEnchantment(getEnchantment(), 1);
+                module.getContainer().enchant(getEnchantment(), 1);
             } else {
-                Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(module.getContainer());
+                Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(module.getContainer());
                 enchantments.put(getEnchantment(), module.getInstalledCount());
-                EnchantmentHelper.set(enchantments, module.getContainer());
+                EnchantmentHelper.setEnchantments(enchantments, module.getContainer());
             }
         }
     }
@@ -38,13 +38,13 @@ public abstract class EnchantmentBasedModule<MODULE extends EnchantmentBasedModu
     @Override
     public void onRemoved(IModule<MODULE> module, boolean last) {
         if (module.isEnabled()) {
-            Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(module.getContainer());
+            Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(module.getContainer());
             if (last) {
                 enchantments.remove(getEnchantment());
             } else {
                 enchantments.put(getEnchantment(), module.getInstalledCount());
             }
-            EnchantmentHelper.set(enchantments, module.getContainer());
+            EnchantmentHelper.setEnchantments(enchantments, module.getContainer());
         }
     }
 
@@ -52,12 +52,12 @@ public abstract class EnchantmentBasedModule<MODULE extends EnchantmentBasedModu
     public void onEnabledStateChange(IModule<MODULE> module) {
         if (module.isEnabled()) {
             //Was disabled and now is enabled, add enchantment
-            module.getContainer().addEnchantment(getEnchantment(), module.getInstalledCount());
+            module.getContainer().enchant(getEnchantment(), module.getInstalledCount());
         } else {
             //Was enabled and is now disabled, remove the enchantment
-            Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(module.getContainer());
+            Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(module.getContainer());
             enchantments.remove(getEnchantment());
-            EnchantmentHelper.set(enchantments, module.getContainer());
+            EnchantmentHelper.setEnchantments(enchantments, module.getContainer());
         }
     }
 }

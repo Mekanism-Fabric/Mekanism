@@ -1,28 +1,28 @@
 package mekanism.item.gear;
 
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.crafting.Ingredient;
 
 @MethodsReturnNonnullByDefault
 public abstract class BaseSpecialArmorMaterial implements ArmorMaterial {
 
     @Override
-    public int getDurability(EquipmentSlot slotType) {
+    public int getDurabilityForSlot(EquipmentSlot slotType) {
         return 0;
     }
 
     @Override
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
         return 0;
     }
 
     @Override
     public SoundEvent getEquipSound() {
-        return SoundEvents.ITEM_ARMOR_EQUIP_GENERIC;
+        return SoundEvents.ARMOR_EQUIP_GENERIC;
     }
 
     @Override
@@ -31,7 +31,7 @@ public abstract class BaseSpecialArmorMaterial implements ArmorMaterial {
     }
 
     @Override
-    public int getProtectionAmount(EquipmentSlot slotType) {
+    public int getDefenseForSlot(EquipmentSlot slotType) {
         return 0;
     }
 

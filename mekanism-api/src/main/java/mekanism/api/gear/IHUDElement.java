@@ -1,16 +1,16 @@
 package mekanism.api.gear;
 
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Interface representing the needed information for rendering elements on the MekaSuit HUD. It is recommended to use one of the following helper methods to build this,
  * though it is possible to implement HUD Elements manually.
  * <ul>
- *     <li>{@link IModuleHelper#hudElement(Identifier, Text, HUDColor)}</li>
- *     <li>{@link IModuleHelper#hudElementEnabled(Identifier, boolean)}</li>
- *     <li>{@link IModuleHelper#hudElementPercent(Identifier, double)}</li>
+ *     <li>{@link IModuleHelper#hudElement(ResourceLocation, Component, HUDColor)}</li>
+ *     <li>{@link IModuleHelper#hudElementEnabled(ResourceLocation, boolean)}</li>
+ *     <li>{@link IModuleHelper#hudElementPercent(ResourceLocation, double)}</li>
  * </ul>
  */
 public interface IHUDElement {
@@ -21,7 +21,7 @@ public interface IHUDElement {
      * @return Icon.
      */
     @NotNull
-    Identifier getIcon();
+    ResourceLocation getIcon();
 
     /**
      * Gets the text to render for this {@link IHUDElement}.
@@ -29,7 +29,7 @@ public interface IHUDElement {
      * @return Text to render.
      */
     @NotNull
-    Text getText();
+    Component getText();
 
     /**
      * Gets the color to use for this {@link IHUDElement}.

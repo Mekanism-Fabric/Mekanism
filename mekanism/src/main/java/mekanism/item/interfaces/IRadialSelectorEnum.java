@@ -2,14 +2,14 @@ package mekanism.item.interfaces;
 
 import mekanism.api.IIncrementalEnum;
 import mekanism.api.text.EnumColor;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 
 public interface IRadialSelectorEnum<TYPE extends Enum<TYPE> & IRadialSelectorEnum<TYPE>> extends IIncrementalEnum<TYPE> {
 
-    Text getShortText();
+    Component getShortText();
 
-    Identifier getIcon();
+    ResourceLocation getIcon();
 
     default EnumColor getColor() {
         return null;

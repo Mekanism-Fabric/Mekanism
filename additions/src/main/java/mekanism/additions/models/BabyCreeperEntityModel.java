@@ -2,12 +2,18 @@ package mekanism.additions.models;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.AnimalModel;
-import net.minecraft.client.render.entity.model.EntityModelPartNames;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartNames;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 
-public class BabyCreeperEntityModel<T extends Entity> extends AnimalModel<T> {
+public class BabyCreeperEntityModel<T extends Entity> extends AgeableListModel<T> {
 
     private final ModelPart head;
     private final ModelPart body;
@@ -17,50 +23,50 @@ public class BabyCreeperEntityModel<T extends Entity> extends AnimalModel<T> {
     private final ModelPart rightFrontLeg;
 
     public BabyCreeperEntityModel(ModelPart root) {
-        this.head = root.getChild(EntityModelPartNames.HEAD);
-        this.body = root.getChild(EntityModelPartNames.BODY);
-        this.rightHindLeg = root.getChild(EntityModelPartNames.RIGHT_HIND_LEG);
-        this.leftHindLeg = root.getChild(EntityModelPartNames.LEFT_HIND_LEG);
-        this.rightFrontLeg = root.getChild(EntityModelPartNames.RIGHT_FRONT_LEG);
-        this.leftFrontLeg = root.getChild(EntityModelPartNames.LEFT_FRONT_LEG);
+        this.head = root.getChild(PartNames.HEAD);
+        this.body = root.getChild(PartNames.BODY);
+        this.rightHindLeg = root.getChild(PartNames.RIGHT_HIND_LEG);
+        this.leftHindLeg = root.getChild(PartNames.LEFT_HIND_LEG);
+        this.rightFrontLeg = root.getChild(PartNames.RIGHT_FRONT_LEG);
+        this.leftFrontLeg = root.getChild(PartNames.LEFT_FRONT_LEG);
     }
 
-    public static TexturedModelData getTexturedModelData(Dilation dilation) {
-        ModelData modelData = new ModelData();
-        ModelPartData modelPartData = modelData.getRoot();
+    public static LayerDefinition getTexturedModelData(CubeDeformation dilation) {
+        MeshDefinition modelData = new MeshDefinition();
+        PartDefinition modelPartData = modelData.getRoot();
 
         //Only real difference between this model and the vanilla creeper model is the "fix" for the head's rotation point
         // the other difference is extending ageable model instead
-        modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv( 0,  0).cuboid(-4.0F, -8.0F, -4.0F, 8.0F,  8.0F, 8.0F, dilation), ModelTransform.pivot(0.0F, 10.0F, -2.0F));
-        modelPartData.addChild(EntityModelPartNames.BODY, ModelPartBuilder.create().uv(16, 16).cuboid(-4.0F,  0.0F, -2.0F, 8.0F, 12.0F, 4.0F, dilation), ModelTransform.pivot(0.0F,  6.0F,  0.0F));
+        modelPartData.addOrReplaceChild(PartNames.HEAD, CubeListBuilder.create().texOffs( 0,  0).addBox(-4.0F, -8.0F, -4.0F, 8.0F,  8.0F, 8.0F, dilation), PartPose.offset(0.0F, 10.0F, -2.0F));
+        modelPartData.addOrReplaceChild(PartNames.BODY, CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F,  0.0F, -2.0F, 8.0F, 12.0F, 4.0F, dilation), PartPose.offset(0.0F,  6.0F,  0.0F));
 
-        ModelPartBuilder modelPartBuilder = ModelPartBuilder.create().uv( 0, 16).cuboid(-2.0F,  0.0F, -2.0F, 4.0F,  6.0F, 4.0F, dilation);
+        CubeListBuilder modelPartBuilder = CubeListBuilder.create().texOffs( 0, 16).addBox(-2.0F,  0.0F, -2.0F, 4.0F,  6.0F, 4.0F, dilation);
 
-        modelPartData.addChild(EntityModelPartNames.RIGHT_HIND_LEG,  modelPartBuilder, ModelTransform.pivot(-2.0F, 18.0F, 4.0F));
-        modelPartData.addChild(EntityModelPartNames.LEFT_HIND_LEG,   modelPartBuilder, ModelTransform.pivot(2.0F, 18.0F, 4.0F));
-        modelPartData.addChild(EntityModelPartNames.RIGHT_FRONT_LEG, modelPartBuilder, ModelTransform.pivot(-2.0F, 18.0F, -4.0F));
-        modelPartData.addChild(EntityModelPartNames.LEFT_FRONT_LEG,  modelPartBuilder, ModelTransform.pivot(2.0F, 18.0F, -4.0F));
+        modelPartData.addOrReplaceChild(PartNames.RIGHT_HIND_LEG,  modelPartBuilder, PartPose.offset(-2.0F, 18.0F, 4.0F));
+        modelPartData.addOrReplaceChild(PartNames.LEFT_HIND_LEG,   modelPartBuilder, PartPose.offset(2.0F, 18.0F, 4.0F));
+        modelPartData.addOrReplaceChild(PartNames.RIGHT_FRONT_LEG, modelPartBuilder, PartPose.offset(-2.0F, 18.0F, -4.0F));
+        modelPartData.addOrReplaceChild(PartNames.LEFT_FRONT_LEG,  modelPartBuilder, PartPose.offset(2.0F, 18.0F, -4.0F));
 
-        return TexturedModelData.of(modelData, 64, 32);
+        return LayerDefinition.create(modelData, 64, 32);
     }
 
     @Override
-    protected Iterable<ModelPart> getHeadParts() {
+    protected Iterable<ModelPart> headParts() {
         return ImmutableList.of(this.head);
     }
 
     @Override
-    protected Iterable<ModelPart> getBodyParts() {
+    protected Iterable<ModelPart> bodyParts() {
         return ImmutableList.of(this.body, this.leftHindLeg, this.rightHindLeg, this.leftFrontLeg, this.rightFrontLeg);
     }
 
     @Override
-    public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
-        this.head.pitch = headPitch * ((float)Math.PI / 180F);
-        this.head.yaw = headYaw * ((float)Math.PI / 180F);
-        this.rightHindLeg.pitch = MathHelper.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;
-        this.leftHindLeg.pitch = MathHelper.cos(limbAngle * 0.6662F + (float)Math.PI) * 1.4F * limbDistance;
-        this.rightFrontLeg.pitch = MathHelper.cos(limbAngle * 0.6662F + (float)Math.PI) * 1.4F * limbDistance;
-        this.leftFrontLeg.pitch = MathHelper.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;
+    public void setupAnim(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+        this.head.xRot = headPitch * ((float)Math.PI / 180F);
+        this.head.yRot = headYaw * ((float)Math.PI / 180F);
+        this.rightHindLeg.xRot = Mth.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;
+        this.leftHindLeg.xRot = Mth.cos(limbAngle * 0.6662F + (float)Math.PI) * 1.4F * limbDistance;
+        this.rightFrontLeg.xRot = Mth.cos(limbAngle * 0.6662F + (float)Math.PI) * 1.4F * limbDistance;
+        this.leftFrontLeg.xRot = Mth.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;
     }
 }

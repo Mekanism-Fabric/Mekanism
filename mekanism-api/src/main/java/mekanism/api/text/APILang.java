@@ -1,8 +1,8 @@
 package mekanism.api.text;
 
 import mekanism.api.MekanismAPI;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
+import net.minecraft.Util;
+import net.minecraft.resources.ResourceLocation;
 
 /**
  * Lang entries declared in the API and provided by Mekanism.
@@ -71,7 +71,7 @@ public enum APILang implements ILangEntry {
     private final String key;
 
     APILang(String type, String path) {
-        this(Util.createTranslationKey(type, new Identifier(MekanismAPI.MEKANISM_MODID, path)));
+        this(Util.makeDescriptionId(type, new ResourceLocation(MekanismAPI.MEKANISM_MODID, path)));
     }
 
     APILang(String key) {

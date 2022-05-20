@@ -1,15 +1,15 @@
 package mekanism.tools.mixins;
 
 import mekanism.tools.items.MekanismShieldItem;
-import net.minecraft.entity.ai.brain.task.RemoveOffHandItemTask;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.world.entity.monster.piglin.StopHoldingItemIfNoLongerAdmiring;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(RemoveOffHandItemTask.class)
+@Mixin(StopHoldingItemIfNoLongerAdmiring.class)
 public abstract class RemoveOffHandItemTaskMixin {
 
     @Redirect(
@@ -24,7 +24,7 @@ public abstract class RemoveOffHandItemTaskMixin {
             return true;
         }
 
-        return itemStack.isOf(item);
+        return itemStack.is(item);
     }
 
 }

@@ -6,8 +6,8 @@ import mekanism.config.IMekanismConfig;
 import mekanism.config.value.CachedBooleanValue;
 import mekanism.config.value.CachedDoubleValue;
 import mekanism.config.value.CachedResourceLocationListValue;
-import net.minecraft.entity.EntityType;
-import net.minecraft.util.registry.BuiltinRegistries;
+import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig.Type;
 
@@ -86,9 +86,9 @@ public class AdditionsCommonConfig extends BaseMekanismConfig {
                     .worldRestart()
                     .defineInRange("maxSpawnCostPercentage", 1D, 0, 100));
             this.biomeBlackList = CachedResourceLocationListValue.define(config, builder.comment("The list of biome ids that " + name + " will not spawn in even if the normal mob variant can spawn.")
-                    .worldRestart(), "biomeBlackList", BuiltinRegistries.BIOME::containsId);
+                    .worldRestart(), "biomeBlackList", BuiltinRegistries.BIOME::containsKey);
             this.structureBlackList = CachedResourceLocationListValue.define(config, builder.comment("The list of structure ids that " + name + " will not spawn in even if the normal mob variant can spawn.")
-                    .worldRestart(), "structureBlackList", BuiltinRegistries.STRUCTURE_POOL::containsId);
+                    .worldRestart(), "structureBlackList", BuiltinRegistries.TEMPLATE_POOL::containsKey);
             builder.pop();
         }
     }

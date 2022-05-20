@@ -1,13 +1,12 @@
 package mekanism.item.interfaces;
 
 import java.util.List;
-
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 public interface IItemHUDProvider {
 
-    void addHUDStrings(List<Text> list, PlayerEntity player, ItemStack stack, EquipmentSlot slotType);
+    void addHUDStrings(List<Component> list, Player player, ItemStack stack, EquipmentSlot slotType);
 }

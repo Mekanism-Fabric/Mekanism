@@ -3,12 +3,12 @@ package mekanism.tools.items;
 import mekanism.tools.material.BaseMekanismMaterial;
 import mekanism.tools.registries.ToolItems;
 import mekanism.tools.utils.ToolsUtils;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -20,16 +20,16 @@ public class MekanismArmorItem extends ArmorItem implements IHazPiglinInfluence,
     private final BaseMekanismMaterial material;
     private final boolean makesPiglinsNeutral;
 
-    public MekanismArmorItem(BaseMekanismMaterial material, EquipmentSlot slot, Settings settings, boolean makesPiglinsNeutral) {
-        super(material, slot, settings.maxDamage(material.getDurability(slot)));
+    public MekanismArmorItem(BaseMekanismMaterial material, EquipmentSlot slot, Properties settings, boolean makesPiglinsNeutral) {
+        super(material, slot, settings.durability(material.getDurabilityForSlot(slot)));
 
         this.material = material;
         this.makesPiglinsNeutral = makesPiglinsNeutral;
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        super.appendTooltip(stack, world, tooltip, context);
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
+        super.appendHoverText(stack, world, tooltip, context);
 
         ToolsUtils.addDurability(tooltip, stack);
     }
@@ -40,8 +40,8 @@ public class MekanismArmorItem extends ArmorItem implements IHazPiglinInfluence,
     }
 
     @Override
-    public boolean isDamageable() {
-        return material.getDurability(slot) > 0;
+    public boolean canBeDepleted() {
+        return material.getDurabilityForSlot(slot) > 0;
     }
 
     @Override

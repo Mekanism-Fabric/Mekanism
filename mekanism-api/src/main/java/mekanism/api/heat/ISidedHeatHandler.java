@@ -1,7 +1,7 @@
 package mekanism.api.heat;
 
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
-import net.minecraft.util.math.Direction;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.Direction;
 import org.jetbrains.annotations.Nullable;
 
 /**

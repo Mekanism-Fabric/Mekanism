@@ -1,6 +1,6 @@
 package mekanism.resource;
 
-import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.world.level.material.PushReaction;
 
 public enum BlockResourceInfo implements IResource {
     OSMIUM("osmium", 7.5F, 12, 1),
@@ -12,11 +12,11 @@ public enum BlockResourceInfo implements IResource {
     FLUORITE("fluorite", 5, 9, 1),
     BRONZE("bronze", 5, 9, 1),
     STEEL("steel", 5, 9, 1),
-    REFINED_OBSIDIAN("refined_obsidian", 50, 2_400, 2, -1, 8, false, true, PistonBehavior.BLOCK),
+    REFINED_OBSIDIAN("refined_obsidian", 50, 2_400, 2, -1, 8, false, true, PushReaction.BLOCK),
     REFINED_GLOWSTONE("refined_glowstone", 5, 6, 1, -1, 15);
 
     private final String registrySuffix;
-    private final PistonBehavior pushReaction;
+    private final PushReaction pushReaction;
     private final boolean portalFrame;
     private final boolean burnsInFire;
     private final float resistance;
@@ -35,11 +35,11 @@ public enum BlockResourceInfo implements IResource {
     }
 
     BlockResourceInfo(String registrySuffix, float hardness, float resistance, int harvestLevel, int burnTime, int lightValue) {
-        this(registrySuffix, hardness, resistance, harvestLevel, burnTime, lightValue, true, false, PistonBehavior.NORMAL);
+        this(registrySuffix, hardness, resistance, harvestLevel, burnTime, lightValue, true, false, PushReaction.NORMAL);
     }
 
     BlockResourceInfo(String registrySuffix, float hardness, float resistance, int harvestLevel, int burnTime, int lightValue, boolean burnsInFire, boolean portalFrame,
-                      PistonBehavior pushReaction) {
+                      PushReaction pushReaction) {
         this.registrySuffix = registrySuffix;
         this.pushReaction = pushReaction;
         this.portalFrame = portalFrame;
@@ -84,7 +84,7 @@ public enum BlockResourceInfo implements IResource {
         return burnsInFire;
     }
 
-    public PistonBehavior getPushReaction() {
+    public PushReaction getPushReaction() {
         return pushReaction;
     }
 }

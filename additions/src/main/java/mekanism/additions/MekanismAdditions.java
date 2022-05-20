@@ -4,7 +4,7 @@ import mekanism.additions.config.MekanismAdditionsConfig;
 import mekanism.additions.registries.AdditionsEntityTypes;
 import mekanism.additions.registries.AdditionsItems;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,7 +28,7 @@ public class MekanismAdditions implements ModInitializer {
         LOGGER.log(level, message);
     }
 
-    public static Identifier id(String path) {
-        return new Identifier(MekanismAdditions.MODID, path);
+    public static ResourceLocation id(String path) {
+        return new ResourceLocation(MekanismAdditions.MODID, path);
     }
 }

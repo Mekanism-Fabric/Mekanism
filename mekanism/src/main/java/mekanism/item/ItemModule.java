@@ -9,12 +9,12 @@ import mekanism.MekanismLang;
 import mekanism.content.gear.IModuleItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Rarity;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class ItemModule extends Item implements IModuleItem {
 
     private final IModuleDataProvider<?> moduleData;
 
-    public ItemModule(IModuleDataProvider<?> moduleData, Settings properties) {
+    public ItemModule(IModuleDataProvider<?> moduleData, Properties properties) {
         super(properties);
         this.moduleData = moduleData;
     }
@@ -45,7 +45,7 @@ public class ItemModule extends Item implements IModuleItem {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void appendTooltip(@NotNull ItemStack stack, World world, @NotNull List<Text> tooltip, @NotNull TooltipContext flag) {
+    public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
 //        if (MekKeyHandler.isKeyPressed(MekanismKeyHandler.detailsKey)) {
 //            for (Item item : MekanismAPI.getModuleHelper().getSupported(getModuleData())) {
 //                tooltip.add(item.getName(new ItemStack(item)));
@@ -60,7 +60,7 @@ public class ItemModule extends Item implements IModuleItem {
 
     @NotNull
     @Override
-    public String getTranslationKey() {
+    public String getDescriptionId() {
         return getModuleData().getTranslationKey();
     }
 }

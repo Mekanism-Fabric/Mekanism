@@ -2,10 +2,10 @@ package mekanism.additions.registries;
 
 import mekanism.additions.MekanismAdditions;
 import mekanism.registration.ItemRegistry;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.item.SpawnEggItem;
 
 public final class AdditionsItems {
     public static final ItemRegistry ITEMS = new ItemRegistry(MekanismAdditions.MODID);
@@ -20,7 +20,7 @@ public final class AdditionsItems {
 
     }
 
-    private static <ENTITY extends MobEntity> SpawnEggItem registerSpawnEgg(EntityType<ENTITY> entityTypeProvider, int primaryColor, int secondaryColor) {
-        return ITEMS.register(Registry.ENTITY_TYPE.getId(entityTypeProvider).getPath() + "_spawn_egg", () -> new SpawnEggItem(entityTypeProvider, primaryColor, secondaryColor, ItemRegistry.getMekBaseProperties()));
+    private static <ENTITY extends Mob> SpawnEggItem registerSpawnEgg(EntityType<ENTITY> entityTypeProvider, int primaryColor, int secondaryColor) {
+        return ITEMS.register(Registry.ENTITY_TYPE.getKey(entityTypeProvider).getPath() + "_spawn_egg", () -> new SpawnEggItem(entityTypeProvider, primaryColor, secondaryColor, ItemRegistry.getMekBaseProperties()));
     }
 }

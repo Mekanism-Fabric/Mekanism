@@ -8,8 +8,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.function.Supplier;
 import mekanism.config.IMekanismConfig;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.InvalidIdentifierException;
+import net.minecraft.ResourceLocationException;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
@@ -23,7 +23,7 @@ public class CachedOredictionificatorConfigValue extends CachedResolvableConfigV
           Supplier<Map<String, List<String>>> defaults) {
         return new CachedOredictionificatorConfigValue(config, builder.defineListAllowEmpty(Collections.singletonList(path), () -> encodeStatic(defaults.get()), o -> {
             if (o instanceof String) {
-                return Identifier.tryParse(((String) o).toLowerCase(Locale.ROOT)) != null;
+                return ResourceLocation.tryParse(((String) o).toLowerCase(Locale.ROOT)) != null;
             }
             return false;
         }));
@@ -35,7 +35,7 @@ public class CachedOredictionificatorConfigValue extends CachedResolvableConfigV
         // validation should have happened before we got here, but in case something went wrong we don't want to crash and burn
         Map<String, List<String>> resolved = new HashMap<>(encoded.size());
         for (String s : encoded) {
-            Identifier rl = Identifier.tryParse(s.toLowerCase(Locale.ROOT));
+            ResourceLocation rl = ResourceLocation.tryParse(s.toLowerCase(Locale.ROOT));
             if (rl != null) {
                 resolved.computeIfAbsent(rl.getNamespace(), r -> new ArrayList<>()).add(rl.getPath());
             }
@@ -56,10 +56,10 @@ public class CachedOredictionificatorConfigValue extends CachedResolvableConfigV
             for (String path : entry.getValue()) {
                 try {
                     //Try to create a resource location from it to ensure all characters are valid
-                    Identifier rl = new Identifier(namespace + ":" + path.toLowerCase(Locale.ROOT));
+                    ResourceLocation rl = new ResourceLocation(namespace + ":" + path.toLowerCase(Locale.ROOT));
                     // if they are, add it
                     encoded.add(rl.toString());
-                } catch (InvalidIdentifierException ignored) {
+                } catch (ResourceLocationException ignored) {
                 }
             }
         }

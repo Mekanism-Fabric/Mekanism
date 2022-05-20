@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import mekanism.api.utilport.ItemHandlerHelper;
 import mekanism.util.StackUtils;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -73,8 +73,8 @@ public class HashedItem {
     private int initHashCode() {
         int code = 1;
         code = 31 * code + itemStack.getItem().hashCode();
-        if (itemStack.hasNbt()) {
-            code = 31 * code + itemStack.getNbt().hashCode();
+        if (itemStack.hasTag()) {
+            code = 31 * code + itemStack.getTag().hashCode();
         }
         return code;
     }

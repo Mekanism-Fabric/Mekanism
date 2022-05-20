@@ -1,42 +1,41 @@
 package mekanism.additions.entities;
 
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityPose;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.mob.StrayEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
 import java.util.Random;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.monster.Stray;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 
-public class BabyStrayEntity extends StrayEntity implements IBabyEntity {
+public class BabyStrayEntity extends Stray implements IBabyEntity {
 
-    private static final TrackedData<Boolean> IS_CHILD = DataTracker.registerData(BabyStrayEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> IS_CHILD = SynchedEntityData.defineId(BabyStrayEntity.class, EntityDataSerializers.BOOLEAN);
 
-    public static boolean spawnRestrictions(EntityType<BabyStrayEntity> type, ServerWorld world, SpawnReason reason, BlockPos pos, Random random) {
-        return canMobSpawn(type, world, reason, pos, random) && (reason == SpawnReason.SPAWNER || world.isSkyVisible(pos));
+    public static boolean spawnRestrictions(EntityType<BabyStrayEntity> type, ServerLevel world, MobSpawnType reason, BlockPos pos, Random random) {
+        return checkMobSpawnRules(type, world, reason, pos, random) && (reason == MobSpawnType.SPAWNER || world.canSeeSky(pos));
     }
 
-    public BabyStrayEntity(EntityType<? extends StrayEntity> entityType, World world) {
+    public BabyStrayEntity(EntityType<? extends Stray> entityType, Level world) {
         super(entityType, world);
         setBaby(true);
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        getDataTracker().startTracking(IS_CHILD, false);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        getEntityData().define(IS_CHILD, false);
     }
 
     @Override
     public boolean isBaby() {
-        return getDataTracker().get(IS_CHILD);
+        return getEntityData().get(IS_CHILD);
     }
 
     @Override
@@ -45,25 +44,25 @@ public class BabyStrayEntity extends StrayEntity implements IBabyEntity {
     }
 
     @Override
-    public void onTrackedDataSet(TrackedData<?> data) {
-        if (IS_CHILD.equals(data)) calculateDimensions();
-        super.onTrackedDataSet(data);
+    public void onSyncedDataUpdated(EntityDataAccessor<?> data) {
+        if (IS_CHILD.equals(data)) refreshDimensions();
+        super.onSyncedDataUpdated(data);
     }
 
     @Override
-    protected int getXpToDrop(PlayerEntity player) {
-        if (isBaby()) experiencePoints = (int) (experiencePoints * 2.5F);
-        return super.getXpToDrop(player);
+    protected int getExperienceReward(Player player) {
+        if (isBaby()) xpReward = (int) (xpReward * 2.5F);
+        return super.getExperienceReward(player);
     }
 
     @Override
-    public double getHeightOffset() {
-        return isBaby() ? 0 : super.getHeightOffset();
+    public double getMyRidingOffset() {
+        return isBaby() ? 0 : super.getMyRidingOffset();
     }
 
     @Override
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return isBaby() ? 0.93F : super.getActiveEyeHeight(pose, dimensions);
+    protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {
+        return isBaby() ? 0.93F : super.getStandingEyeHeight(pose, dimensions);
     }
 
 }

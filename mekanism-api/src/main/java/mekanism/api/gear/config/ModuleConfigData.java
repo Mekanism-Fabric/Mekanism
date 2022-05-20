@@ -1,6 +1,6 @@
 package mekanism.api.gear.config;
 
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.CompoundTag;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -32,7 +32,7 @@ public interface ModuleConfigData<TYPE> {
      * @param name Name of the config data to read.
      * @param tag  Stored data.
      */
-    void read(String name, NbtCompound tag);
+    void read(String name, CompoundTag tag);
 
     /**
      * Attempts to write the current value of this {@link ModuleConfigData} into the given {@link CompoundNBT} using the given name.
@@ -40,5 +40,5 @@ public interface ModuleConfigData<TYPE> {
      * @param name Name of the config data to write to.
      * @param tag  Data to store the value in.
      */
-    void write(String name, NbtCompound tag);
+    void write(String name, CompoundTag tag);
 }

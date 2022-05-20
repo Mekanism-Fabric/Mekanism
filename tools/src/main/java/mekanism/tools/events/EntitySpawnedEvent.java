@@ -2,10 +2,10 @@ package mekanism.tools.events;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.world.MobSpawnerLogic;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.level.BaseSpawner;
+import net.minecraft.world.level.Level;
 
 public final class EntitySpawnedEvent {
     public static Event<EntitySpawned> EVENT = EventFactory.createArrayBacked(EntitySpawned.class,
@@ -18,6 +18,6 @@ public final class EntitySpawnedEvent {
 
     @FunctionalInterface
     public interface EntitySpawned {
-        void onEntitySpawned(MobEntity entity, World world, float x, float y, float z, MobSpawnerLogic spawnerLogic, SpawnReason spawnReason);
+        void onEntitySpawned(Mob entity, Level world, float x, float y, float z, BaseSpawner spawnerLogic, MobSpawnType spawnReason);
     }
 }

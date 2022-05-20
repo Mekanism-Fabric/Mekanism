@@ -10,18 +10,18 @@ import mekanism.api.providers.IRobitSkinProvider;
 import mekanism.api.text.IHasTextComponent;
 import mekanism.api.text.IHasTranslationKey;
 import mekanism.api.text.TextComponentUtil;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.Util;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @MethodsReturnNonnullByDefault
 public class RobitSkin extends RegistryEntry<RobitSkin> implements IRobitSkinProvider, IHasTranslationKey, IHasTextComponent {
 
-    private final List<Identifier> textures;
+    private final List<ResourceLocation> textures;
     private String translationKey;
 
     /**
@@ -29,7 +29,7 @@ public class RobitSkin extends RegistryEntry<RobitSkin> implements IRobitSkinPro
      *
      * @param textures Textures to use for the skin. If this is an empty array then {@link #getTextures()} must be overridden.
      */
-    public RobitSkin(Identifier... textures) {
+    public RobitSkin(ResourceLocation... textures) {
         Objects.requireNonNull(textures, "Textures cannot be null.");
         if (textures.length == 0) {
             this.textures = Collections.emptyList();
@@ -48,7 +48,7 @@ public class RobitSkin extends RegistryEntry<RobitSkin> implements IRobitSkinPro
      * @apiNote This is mostly untested currently so if you run into issues please report them.
      */
     @Nullable
-    public Identifier getCustomModel() {
+    public ResourceLocation getCustomModel() {
         return null;
     }
 
@@ -63,7 +63,7 @@ public class RobitSkin extends RegistryEntry<RobitSkin> implements IRobitSkinPro
      *
      * @return Unmodifiable list of textures for this skin.
      */
-    public List<Identifier> getTextures() {
+    public List<ResourceLocation> getTextures() {
         return textures;
     }
 
@@ -74,7 +74,7 @@ public class RobitSkin extends RegistryEntry<RobitSkin> implements IRobitSkinPro
      *
      * @return {@code true} if the player has access.
      */
-    public boolean isUnlocked(@NotNull PlayerEntity player) {
+    public boolean isUnlocked(@NotNull Player player) {
         //TODO: Have some skins that are potentially locked as patreon rewards?
         return true;
     }
@@ -88,13 +88,13 @@ public class RobitSkin extends RegistryEntry<RobitSkin> implements IRobitSkinPro
     @Override
     public String getTranslationKey() {
         if (translationKey == null) {
-            translationKey = Util.createTranslationKey("robit_skin", getRegistryName());
+            translationKey = Util.makeDescriptionId("robit_skin", getRegistryName());
         }
         return translationKey;
     }
 
     @Override
-    public Text getTextComponent() {
+    public Component getTextComponent() {
         return TextComponentUtil.translate(getTranslationKey());
     }
 }

@@ -1,7 +1,7 @@
 package mekanism.api.lasers;
 
 import mekanism.api.math.FloatingLong;
-import net.minecraft.util.math.Direction;
+import net.minecraft.core.Direction;
 import org.jetbrains.annotations.NotNull;
 
 /**

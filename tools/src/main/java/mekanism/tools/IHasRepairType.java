@@ -1,6 +1,6 @@
 package mekanism.tools;
 
-import net.minecraft.recipe.Ingredient;
+import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
 public interface IHasRepairType {

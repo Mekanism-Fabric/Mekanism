@@ -1,33 +1,33 @@
 package mekanism.additions.entities;
 
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityPose;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.mob.WitherSkeletonEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.world.World;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.monster.WitherSkeleton;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 
-public class BabyWitherSkeletonEntity extends WitherSkeletonEntity implements IBabyEntity {
+public class BabyWitherSkeletonEntity extends WitherSkeleton implements IBabyEntity {
 
-    private static final TrackedData<Boolean> IS_CHILD = DataTracker.registerData(BabyWitherSkeletonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> IS_CHILD = SynchedEntityData.defineId(BabyWitherSkeletonEntity.class, EntityDataSerializers.BOOLEAN);
 
-    public BabyWitherSkeletonEntity(EntityType<? extends WitherSkeletonEntity> entityType, World world) {
+    public BabyWitherSkeletonEntity(EntityType<? extends WitherSkeleton> entityType, Level world) {
         super(entityType, world);
         setBaby(true);
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        getDataTracker().startTracking(IS_CHILD, false);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        getEntityData().define(IS_CHILD, false);
     }
 
     @Override
     public boolean isBaby() {
-        return getDataTracker().get(IS_CHILD);
+        return getEntityData().get(IS_CHILD);
     }
 
     @Override
@@ -36,24 +36,24 @@ public class BabyWitherSkeletonEntity extends WitherSkeletonEntity implements IB
     }
 
     @Override
-    public void onTrackedDataSet(TrackedData<?> data) {
-        if (IS_CHILD.equals(data)) calculateDimensions();
-        super.onTrackedDataSet(data);
+    public void onSyncedDataUpdated(EntityDataAccessor<?> data) {
+        if (IS_CHILD.equals(data)) refreshDimensions();
+        super.onSyncedDataUpdated(data);
     }
 
     @Override
-    protected int getXpToDrop(PlayerEntity player) {
-        if (isBaby()) experiencePoints = (int) (experiencePoints * 2.5F);
-        return super.getXpToDrop(player);
+    protected int getExperienceReward(Player player) {
+        if (isBaby()) xpReward = (int) (xpReward * 2.5F);
+        return super.getExperienceReward(player);
     }
 
     @Override
-    public double getHeightOffset() {
-        return isBaby() ? 0 : super.getHeightOffset();
+    public double getMyRidingOffset() {
+        return isBaby() ? 0 : super.getMyRidingOffset();
     }
 
     @Override
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return isBaby() ? 1.12F : super.getActiveEyeHeight(pose, dimensions);
+    protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {
+        return isBaby() ? 1.12F : super.getStandingEyeHeight(pose, dimensions);
     }
 }

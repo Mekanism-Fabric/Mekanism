@@ -1,17 +1,17 @@
 package mekanism.tools.mixins;
 
 import mekanism.tools.items.MekanismShieldItem;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.player.ItemCooldownManager;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemCooldowns;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(MobEntity.class)
+@Mixin(Mob.class)
 public abstract class MobEntityMixin {
 
     @Redirect(
@@ -24,7 +24,7 @@ public abstract class MobEntityMixin {
     private boolean disablePlayerShieldIsOf(ItemStack playerStack, Item item) {
         if (playerStack.getItem() instanceof MekanismShieldItem && item == Items.SHIELD) return true;
 
-        return playerStack.isOf(item);
+        return playerStack.is(item);
     }
 
     @Redirect(
@@ -34,11 +34,11 @@ public abstract class MobEntityMixin {
         ),
         method = "disablePlayerShield"
     )
-    private void disablePlayerShield(ItemCooldownManager itemCooldownManager, Item item, int duration, PlayerEntity player, ItemStack mobStack, ItemStack playerStack) {
+    private void disablePlayerShield(ItemCooldowns itemCooldownManager, Item item, int duration, Player player, ItemStack mobStack, ItemStack playerStack) {
         if (playerStack.getItem() instanceof MekanismShieldItem && item == Items.SHIELD) {
-            itemCooldownManager.set(playerStack.getItem(), duration);
+            itemCooldownManager.addCooldown(playerStack.getItem(), duration);
         } else {
-            itemCooldownManager.set(item, duration);
+            itemCooldownManager.addCooldown(item, duration);
         }
     }
 

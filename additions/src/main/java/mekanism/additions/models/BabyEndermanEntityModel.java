@@ -1,24 +1,24 @@
 package mekanism.additions.models;
 
 import mekanism.additions.entities.BabyEndermanEntity;
-import net.minecraft.client.model.ModelPart;
-import net.minecraft.client.render.entity.model.EndermanEntityModel;
+import net.minecraft.client.model.EndermanModel;
+import net.minecraft.client.model.geom.ModelPart;
 
-public class BabyEndermanEntityModel<T extends BabyEndermanEntity> extends EndermanEntityModel<T> {
+public class BabyEndermanEntityModel<T extends BabyEndermanEntity> extends EndermanModel<T> {
 
     public BabyEndermanEntityModel(ModelPart modelPart) {
         super(modelPart);
     }
 
     @Override
-    public void setAngles(T livingEntity, float f, float g, float h, float i, float j) {
-        super.setAngles(livingEntity, f, g, h, i, j);
+    public void setupAnim(T livingEntity, float f, float g, float h, float i, float j) {
+        super.setupAnim(livingEntity, f, g, h, i, j);
 
         //Shift the head to be in the proper place for baby endermen
-        head.pivotY += 5.0F;
-        if (this.angry) {
+        head.y += 5.0F;
+        if (this.creepy) {
             //Shift the head when angry to only the third the distance it goes up when it is an adult
-            head.pivotY += 5.0F / 3;
+            head.y += 5.0F / 3;
         }
     }
 }

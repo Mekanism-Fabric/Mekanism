@@ -1,10 +1,10 @@
 package mekanism.tools.mixins;
 
 import mekanism.tools.items.MekanismShieldItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.ShieldDecorationRecipe;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.ShieldDecorationRecipe;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -24,7 +24,7 @@ public abstract class ShieldDecorationRecipeMixin {
             return true;
         }
 
-        return stack.isOf(item);
+        return stack.is(item);
     }
 
 }

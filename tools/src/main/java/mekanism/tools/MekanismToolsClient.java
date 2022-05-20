@@ -7,7 +7,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.fabricmc.fabric.impl.client.rendering.BuiltinItemRendererRegistryImpl;
-import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 
 public class MekanismToolsClient implements ClientModInitializer {
 
@@ -17,16 +17,16 @@ public class MekanismToolsClient implements ClientModInitializer {
     }
 
     public static void registerShieldHandlers() {
-        ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((atlasTexture, registry) -> {
+        ClientSpriteRegistryCallback.event(TextureAtlas.LOCATION_BLOCKS).register((atlasTexture, registry) -> {
             for (ShieldTextures value : ShieldTextures.values()) {
-                registry.register(value.getBase().getTextureId());
+                registry.register(value.getBase().texture());
             }
         });
 
         for (MekanismShieldItem shieldItem : RenderMekanismShieldItem.initShieldTextureMap()) {
             BuiltinItemRendererRegistryImpl.INSTANCE.register(shieldItem, RenderMekanismShieldItem::render);
             FabricModelPredicateProviderRegistry.register(shieldItem, MekanismTools.id("blocking"), (stack, world, entity, seed) ->
-                entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F
+                entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F
             );
         }
     }

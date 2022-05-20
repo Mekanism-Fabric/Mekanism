@@ -1,21 +1,15 @@
 package mekanism.item.gear;
 
 import mekanism.item.interfaces.ISpecialGear;
-import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class ItemSpecialArmor extends ArmorItem implements ISpecialGear {
 
-    protected ItemSpecialArmor(ArmorMaterial material, EquipmentSlot slot, Settings properties) {
+    protected ItemSpecialArmor(ArmorMaterial material, EquipmentSlot slot, Properties properties) {
         super(material, slot, properties);
     }
     /*
@@ -28,7 +22,7 @@ public abstract class ItemSpecialArmor extends ArmorItem implements ISpecialGear
 
     @Override
     public boolean isEnchantable(@NotNull ItemStack stack) {
-        return type.getEnchantability() > 0 && super.isEnchantable(stack);
+        return material.getEnchantmentValue() > 0 && super.isEnchantable(stack);
     }
 
 }

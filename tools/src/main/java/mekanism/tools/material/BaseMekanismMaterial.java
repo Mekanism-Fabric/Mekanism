@@ -1,7 +1,7 @@
 package mekanism.tools.material;
 
 import mekanism.tools.MekanismTools;
-import net.minecraft.recipe.Ingredient;
+import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class BaseMekanismMaterial extends IItemTierHelper implements IArmorMaterialHelper, IPaxelMaterial {
@@ -38,11 +38,11 @@ public abstract class BaseMekanismMaterial extends IItemTierHelper implements IA
 
     public float getHoeDamage() {
         //Default to match the vanilla hoe's implementation of being negative the attack damage of the material
-        return -getAttackDamage();
+        return -getAttackDamageBonus();
     }
 
     public float getHoeAtkSpeed() {
-        return getAttackDamage() - 3.0F;
+        return getAttackDamageBonus() - 3.0F;
     }
 
     @Override
@@ -52,17 +52,17 @@ public abstract class BaseMekanismMaterial extends IItemTierHelper implements IA
 
     @Override
     public int getPaxelHarvestLevel() {
-        return getMiningLevel();
+        return getLevel();
     }
 
     @Override
     public int getPaxelMaxUses() {
-        return 2 * getDurability();
+        return 2 * getUses();
     }
 
     @Override
     public float getPaxelEfficiency() {
-        return getMiningSpeedMultiplier();
+        return getSpeed();
     }
 
     @Override

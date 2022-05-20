@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import java.util.Objects;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.FriendlyByteBuf;
 
 /**
  * A class representing a positive number with an internal value defined by an unsigned long, and a floating point number stored in a short
@@ -151,11 +151,11 @@ public class FloatingLong extends Number implements Comparable<FloatingLong> {
     /**
      * Reads a mutable {@link FloatingLong} from a buffer
      *
-     * @param buffer The {@link PacketByteBuf} to read from
+     * @param buffer The {@link FriendlyByteBuf} to read from
      *
      * @return A mutable {@link FloatingLong}
      */
-    public static FloatingLong readFromBuffer(PacketByteBuf buffer) {
+    public static FloatingLong readFromBuffer(FriendlyByteBuf buffer) {
         return new FloatingLong(buffer.readVarLong(), buffer.readShort(), false);
     }
 
@@ -850,9 +850,9 @@ public class FloatingLong extends Number implements Comparable<FloatingLong> {
     /**
      * Writes this {@link FloatingLong} to the given buffer
      *
-     * @param buffer The {@link PacketByteBuf} to write to.
+     * @param buffer The {@link FriendlyByteBuf} to write to.
      */
-    public void writeToBuffer(PacketByteBuf buffer) {
+    public void writeToBuffer(FriendlyByteBuf buffer) {
         buffer.writeVarLong(value);
         buffer.writeShort(decimal);
     }

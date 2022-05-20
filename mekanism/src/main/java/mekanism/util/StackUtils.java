@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import mekanism.api.inventory.IInventorySlot;
 import mekanism.api.utilport.ItemHandlerHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -64,7 +64,7 @@ public final class StackUtils {
         if (toAdd.isEmpty() || !ItemHandlerHelper.canItemStacksStack(orig, toAdd)) {
             return orig;
         }
-        return size(orig, Math.min(orig.getMaxCount(), orig.getCount() + toAdd.getCount()));
+        return size(orig, Math.min(orig.getMaxStackSize(), orig.getCount() + toAdd.getCount()));
     }
 
     private static ItemStack getMergeReject(ItemStack orig, ItemStack toAdd) {
@@ -75,8 +75,8 @@ public final class StackUtils {
             return orig;
         }
         int newSize = orig.getCount() + toAdd.getCount();
-        if (newSize > orig.getMaxCount()) {
-            return size(orig, newSize - orig.getMaxCount());
+        if (newSize > orig.getMaxStackSize()) {
+            return size(orig, newSize - orig.getMaxStackSize());
         }
         return size(orig, newSize);
     }
@@ -88,11 +88,11 @@ public final class StackUtils {
      * @param pos    where
      * @param player our fake player, usually
      *
-     * @return the result of {@link Block#getPlacementState(ItemPlacementContext)}, or null if it cannot be placed in that location
+     * @return the result of {@link Block#getStateForPlacement(BlockPlaceContext)}, or null if it cannot be placed in that location
      */
     @Nullable
-    public static BlockState getStateForPlacement(ItemStack stack, BlockPos pos, PlayerEntity player) {
-        return Block.getBlockFromItem(stack.getItem()).getPlacementState(new ItemPlacementContext(new ItemUsageContext(player, Hand.MAIN_HAND,
-              new BlockHitResult(Vec3d.ZERO, Direction.UP, pos, false))));
+    public static BlockState getStateForPlacement(ItemStack stack, BlockPos pos, Player player) {
+        return Block.byItem(stack.getItem()).getStateForPlacement(new BlockPlaceContext(new UseOnContext(player, InteractionHand.MAIN_HAND,
+              new BlockHitResult(Vec3.ZERO, Direction.UP, pos, false))));
     }
 }

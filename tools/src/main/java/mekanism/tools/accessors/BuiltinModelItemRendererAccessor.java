@@ -1,12 +1,12 @@
 package mekanism.tools.accessors;
 
-import net.minecraft.client.render.entity.model.ShieldEntityModel;
-import net.minecraft.client.render.item.BuiltinModelItemRenderer;
+import net.minecraft.client.model.ShieldModel;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(BuiltinModelItemRenderer.class)
+@Mixin(BlockEntityWithoutLevelRenderer.class)
 public interface BuiltinModelItemRendererAccessor {
-    @Accessor
-    ShieldEntityModel getModelShield();
+    @Accessor("shieldModel")
+    ShieldModel getModelShield();
 }

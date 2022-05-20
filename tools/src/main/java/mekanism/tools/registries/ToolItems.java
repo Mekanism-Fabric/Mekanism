@@ -7,29 +7,28 @@ import mekanism.tools.config.MekanismToolsConfig;
 import mekanism.tools.items.*;
 import mekanism.tools.material.BaseMekanismMaterial;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.block.Block;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.Item;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.item.ToolMaterials;
-import net.minecraft.tag.Tag;
-
+import net.minecraft.tags.Tag;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.level.block.Block;
 import java.util.Locale;
 import java.util.function.Supplier;
 
 public final class ToolItems {
     public static final ItemRegistry ITEMS = new ItemRegistry(MekanismTools.MODID);
 
-    public static final Tag.Identified<Block> PAXEL_MINEABLE = BlockTagsAccessor.register(MekanismTools.id("mineable/paxel").toString());
+    public static final Tag.Named<Block> PAXEL_MINEABLE = BlockTagsAccessor.register(MekanismTools.id("mineable/paxel").toString());
 
     public static final int REFINED_GLOWSTONE_LIGHT_LEVEL = 0xF000F0;
 
-    public static final MekanismPaxelItem WOOD_PAXEL      = registerPaxel(ToolMaterials.WOOD);
-    public static final MekanismPaxelItem STONE_PAXEL     = registerPaxel(ToolMaterials.STONE);
-    public static final MekanismPaxelItem IRON_PAXEL      = registerPaxel(ToolMaterials.IRON);
-    public static final MekanismPaxelItem DIAMOND_PAXEL   = registerPaxel(ToolMaterials.DIAMOND);
-    public static final MekanismPaxelItem GOLD_PAXEL      = registerPaxel(ToolMaterials.GOLD);
-    public static final MekanismPaxelItem NETHERITE_PAXEL = registerPaxel(ToolMaterials.NETHERITE);
+    public static final MekanismPaxelItem WOOD_PAXEL      = registerPaxel(Tiers.WOOD);
+    public static final MekanismPaxelItem STONE_PAXEL     = registerPaxel(Tiers.STONE);
+    public static final MekanismPaxelItem IRON_PAXEL      = registerPaxel(Tiers.IRON);
+    public static final MekanismPaxelItem DIAMOND_PAXEL   = registerPaxel(Tiers.DIAMOND);
+    public static final MekanismPaxelItem GOLD_PAXEL      = registerPaxel(Tiers.GOLD);
+    public static final MekanismPaxelItem NETHERITE_PAXEL = registerPaxel(Tiers.NETHERITE);
 
     public static final MekanismPickaxeItem BRONZE_PICKAXE = registerPickaxe(MekanismToolsConfig.tools.bronze);
     public static final MekanismAxeItem BRONZE_AXE = registerAxe(MekanismToolsConfig.tools.bronze);
@@ -107,7 +106,7 @@ public final class ToolItems {
 
     }
 
-    private static MekanismPaxelItem registerPaxel(ToolMaterials material) {
+    private static MekanismPaxelItem registerPaxel(Tiers material) {
         return registerPaxel(material.name(), () -> new MekanismPaxelItem(material, getItemProperties(material)));
     }
 
@@ -161,10 +160,10 @@ public final class ToolItems {
         return ITEMS.register(name.toLowerCase(Locale.ROOT), supplier);
     }
 
-    private static Item.Settings getItemProperties(ToolMaterial material) {
+    private static Item.Properties getItemProperties(Tier material) {
         FabricItemSettings properties = ItemRegistry.getMekBaseProperties();
 
-        if (material == ToolMaterials.NETHERITE) {
+        if (material == Tiers.NETHERITE) {
             properties = properties.fireproof();
         } else if (material instanceof BaseMekanismMaterial && !((BaseMekanismMaterial)material).burnsInFire()) {
             properties = properties.fireproof();

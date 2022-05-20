@@ -3,11 +3,11 @@ package mekanism.api.gear;
 import mekanism.api.energy.IEnergyContainer;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.text.IHasTextComponent;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -62,7 +62,7 @@ public interface IModule<MODULE extends ICustomModule<MODULE>> {
      * @param modeName Name of the mode being changed.
      * @param mode     New mode value.
      */
-    void displayModeChange(PlayerEntity player, Text modeName, IHasTextComponent mode);
+    void displayModeChange(Player player, Component modeName, IHasTextComponent mode);
 
     /**
      * Helper to toggle the enabled state of this module and send a message saying the given module was enabled or disabled.
@@ -70,7 +70,7 @@ public interface IModule<MODULE extends ICustomModule<MODULE>> {
      * @param player   Player to send the message to.
      * @param modeName Text to display that was either enabled or disabled.
      */
-    void toggleEnabled(PlayerEntity player, Text modeName);
+    void toggleEnabled(Player player, Component modeName);
 
     /**
      * Gets the item this module is installed on.

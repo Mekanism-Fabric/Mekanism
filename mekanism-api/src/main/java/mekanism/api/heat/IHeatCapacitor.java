@@ -3,11 +3,11 @@ package mekanism.api.heat;
 import mekanism.api.IContentsListener;
 import mekanism.api.NBTConstants;
 import mekanism.api.annotations.INBTSerializable;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.nbt.CompoundTag;
 
 @MethodsReturnNonnullByDefault
-public interface IHeatCapacitor extends INBTSerializable<NbtCompound>, IContentsListener {
+public interface IHeatCapacitor extends INBTSerializable<CompoundTag>, IContentsListener {
 
     /**
      * Returns the temperature of this capacitor.
@@ -69,8 +69,8 @@ public interface IHeatCapacitor extends INBTSerializable<NbtCompound>, IContents
     void handleHeat(double transfer);
 
     @Override
-    default NbtCompound serializeNBT() {
-        NbtCompound nbt = new NbtCompound();
+    default CompoundTag serializeNBT() {
+        CompoundTag nbt = new CompoundTag();
         nbt.putDouble(NBTConstants.STORED, getHeat());
         return nbt;
     }

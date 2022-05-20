@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Set;
 import mekanism.api.gear.IHUDElement.HUDColor;
 import mekanism.api.providers.IModuleDataProvider;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -31,7 +31,7 @@ public interface IModuleHelper {
      * have a {@code null} reference when using {@link dev.architectury.registry.registries.DeferredRegister}s where both the {@link ModuleData} and the {@link Item} need
      * references of each other.
      */
-    Item createModuleItem(IModuleDataProvider<?> moduleDataProvider, Item.Settings properties);
+    Item createModuleItem(IModuleDataProvider<?> moduleDataProvider, Item.Properties properties);
 
     /**
      * Gets all the module types a given item support.
@@ -109,7 +109,7 @@ public interface IModuleHelper {
      *
      * @return A new HUD element.
      */
-    IHUDElement hudElement(Identifier icon, Text text, HUDColor color);
+    IHUDElement hudElement(ResourceLocation icon, Component text, HUDColor color);
 
     /**
      * Helper method to create a HUD element representing an enabled state with a given icon.
@@ -119,7 +119,7 @@ public interface IModuleHelper {
      *
      * @return A new HUD element.
      */
-    IHUDElement hudElementEnabled(Identifier icon, boolean enabled);
+    IHUDElement hudElementEnabled(ResourceLocation icon, boolean enabled);
 
     /**
      * Helper method to create a HUD element representing a ratio with a given icon.
@@ -130,5 +130,5 @@ public interface IModuleHelper {
      *
      * @return A new HUD element.
      */
-    IHUDElement hudElementPercent(Identifier icon, double ratio);
+    IHUDElement hudElementPercent(ResourceLocation icon, double ratio);
 }

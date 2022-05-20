@@ -8,14 +8,13 @@ import mekanism.resource.PrimaryResource;
 import mekanism.resource.ResourceType;
 import mekanism.util.EnumUtils;
 import net.fabricmc.fabric.api.tag.TagFactory;
-import net.minecraft.block.Block;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.Item;
-import net.minecraft.tag.Tag;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.Tag;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.material.Fluid;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -167,7 +166,7 @@ public class MekanismTags {
         public static final Tag<Item> COLORABLE_BANNERS = tag("colorable/banners");
 
         private static Tag<Item> forgeTag(String name) {
-            return TagFactory.ITEM.create(new Identifier("fabric:" + name));
+            return TagFactory.ITEM.create(new ResourceLocation("fabric:" + name));
         }
 
         private static Tag<Item> tag(String name) {
@@ -213,7 +212,7 @@ public class MekanismTags {
         public static final Tag<Block> STORAGE_BLOCKS_FLUORITE = forgeTag("storage_blocks/fluorite");
 
         private static Tag<Block> forgeTag(String name) {
-            return TagFactory.BLOCK.create(new Identifier("fabric:" + name));
+            return TagFactory.BLOCK.create(new ResourceLocation("fabric:" + name));
         }
 
         private static Tag<Block> tag(String name) {
@@ -248,7 +247,7 @@ public class MekanismTags {
         public static final Tag<Fluid> HYDROFLUORIC_ACID = forgeTag("hydrofluoric_acid");
 
         private static Tag<Fluid> forgeTag(String name) {
-            return TagFactory.FLUID.create(new Identifier("fabric:" + name));
+            return TagFactory.FLUID.create(new ResourceLocation("fabric:" + name));
         }
     }
 
@@ -320,7 +319,7 @@ public class MekanismTags {
 
         private static Tag<BlockEntityType<?>> forgeTag(String name) {
             //return ForgeTagHandler.makeWrapperTag(ForgeRegistries.TILE_ENTITIES, new ResourceLocation("forge", name));
-            return TagFactoryExtension.BLOCK_ENTITY_TYPE.create(new Identifier("fabric:" + name));
+            return TagFactoryExtension.BLOCK_ENTITY_TYPE.create(new ResourceLocation("fabric:" + name));
         }
 
         private static Tag<BlockEntityType<?>> tag(String name) {
@@ -330,6 +329,6 @@ public class MekanismTags {
     }
 
     public interface TagFactoryExtension extends TagFactory {
-        TagFactory<BlockEntityType<?>> BLOCK_ENTITY_TYPE = TagFactory.of(Registry.BLOCK_ENTITY_TYPE_KEY, "tags/block_entity_types");
+        TagFactory<BlockEntityType<?>> BLOCK_ENTITY_TYPE = TagFactory.of(Registry.BLOCK_ENTITY_TYPE_REGISTRY, "tags/block_entity_types");
     }
 }

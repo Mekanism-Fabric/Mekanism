@@ -4,15 +4,15 @@ import mekanism.api.Action;
 import mekanism.api.IContentsListener;
 import mekanism.api.annotations.INBTSerializable;
 import mekanism.api.utilport.ItemHandlerHelper;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.Container;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 @MethodsReturnNonnullByDefault
-public interface IInventorySlot extends INBTSerializable<NbtCompound>, IContentsListener {
+public interface IInventorySlot extends INBTSerializable<CompoundTag>, IContentsListener {
 
     /**
      * Returns the {@link ItemStack} in this {@link IInventorySlot}.
@@ -99,7 +99,7 @@ public interface IInventorySlot extends INBTSerializable<NbtCompound>, IContents
      * Extracts an {@link ItemStack} from this {@link IInventorySlot}.
      * <p>
      * The returned value must be empty if nothing is extracted, otherwise its stack size must be less than or equal to {@code amount} and {@link
-     * ItemStack#getMaxCount()}.
+     * ItemStack#getMaxStackSize()}.
      * </p>
      *
      * @param amount         Amount to extract (may be greater than the current stack's max limit)
@@ -121,7 +121,7 @@ public interface IInventorySlot extends INBTSerializable<NbtCompound>, IContents
         ItemStack current = getStack();
         //Ensure that if this slot allows going past the max stack size of an item, that when extracting we don't act as if we have more than
         // the max stack size, as the JavaDoc for IItemHandler requires that the returned stack is not larger than its stack size
-        int currentAmount = Math.min(getCount(), current.getMaxCount());
+        int currentAmount = Math.min(getCount(), current.getMaxStackSize());
         if (currentAmount < amount) {
             //If we are trying to extract more than we have, just change it so that we are extracting it all
             amount = currentAmount;
@@ -139,7 +139,7 @@ public interface IInventorySlot extends INBTSerializable<NbtCompound>, IContents
     }
 
     /**
-     * Retrieves the maximum stack size allowed to exist in this {@link IInventorySlot}. Unlike {@link Inventory#getMaxCountPerStack()} this takes a stack that it can use
+     * Retrieves the maximum stack size allowed to exist in this {@link IInventorySlot}. Unlike {@link Container#getMaxStackSize()} this takes a stack that it can use
      * for checking max stack size, if this {@link IInventorySlot} wants to respect the maximum stack size.
      *
      * @param stack The stack we want to know the limit for in case this {@link IInventorySlot} wants to obey the stack limit. If the empty stack is passed, then it
@@ -153,7 +153,7 @@ public interface IInventorySlot extends INBTSerializable<NbtCompound>, IContents
 
     /**
      * <p>
-     * This function re-implements the vanilla function {@link Inventory#isValid(int, ItemStack)}. It should be used instead of simulated insertions in cases where
+     * This function re-implements the vanilla function {@link Container#canPlaceItem(int, ItemStack)}. It should be used instead of simulated insertions in cases where
      * the contents and state of the inventory are irrelevant, mainly for the purpose of automation and logic (for instance, testing if a minecart can wait to deposit its
      * items into a full inventory, or if the items in the minecart can never be placed into the inventory and should move on).
      * </p>

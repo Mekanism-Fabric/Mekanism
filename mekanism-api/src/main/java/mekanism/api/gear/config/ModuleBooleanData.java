@@ -1,9 +1,9 @@
 package mekanism.api.gear.config;
 
-import net.minecraft.nbt.NbtCompound;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
+import net.minecraft.nbt.CompoundTag;
 
 /**
  * Boolean implementation of {@link ModuleConfigData}.
@@ -40,14 +40,14 @@ public final class ModuleBooleanData implements ModuleConfigData<Boolean> {
     }
 
     @Override
-    public void read(String name, NbtCompound tag) {
+    public void read(String name, CompoundTag tag) {
         Objects.requireNonNull(tag, "Tag cannot be null.");
         Objects.requireNonNull(name, "Name cannot be null.");
         value = tag.getBoolean(name);
     }
 
     @Override
-    public void write(String name, NbtCompound tag) {
+    public void write(String name, CompoundTag tag) {
         Objects.requireNonNull(tag, "Tag cannot be null.");
         Objects.requireNonNull(name, "Name cannot be null.");
         tag.putBoolean(name, value);

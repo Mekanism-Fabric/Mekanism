@@ -1,5 +1,7 @@
 package mekanism.tools.rendering;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
 import mekanism.tools.accessors.BuiltinModelItemRendererAccessor;
 import mekanism.tools.accessors.ItemRendererAccessor;
@@ -7,29 +9,26 @@ import mekanism.tools.items.MekanismShieldItem;
 import mekanism.tools.registries.ToolItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.entity.BannerBlockEntity;
-import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.entity.BannerBlockEntityRenderer;
-import net.minecraft.client.render.entity.model.ShieldEntityModel;
-import net.minecraft.client.render.item.BuiltinModelItemRenderer;
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.render.model.json.ModelTransformation;
-import net.minecraft.client.util.SpriteIdentifier;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShieldItem;
-import net.minecraft.util.DyeColor;
-
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ShieldModel;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.renderer.blockentity.BannerRenderer;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShieldItem;
+import net.minecraft.world.level.block.entity.BannerBlockEntity;
+import net.minecraft.world.level.block.entity.BannerPattern;
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
 public final class RenderMekanismShieldItem {
 
-    private static final MinecraftClient client = MinecraftClient.getInstance();
+    private static final Minecraft client = Minecraft.getInstance();
     private static final Map<MekanismShieldItem, ShieldTextures> shieldTexturesMap = new HashMap<>();
 
     public static Set<MekanismShieldItem> initShieldTextureMap() {
@@ -52,7 +51,7 @@ public final class RenderMekanismShieldItem {
     }
 
 
-    public static void render(ItemStack stack, ModelTransformation.Mode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int lightLevel, int overlay) {
+    public static void render(ItemStack stack, ItemTransforms.TransformType mode, PoseStack matrices, MultiBufferSource vertexConsumers, int lightLevel, int overlay) {
         Item item = stack.getItem();
         if (!(item instanceof MekanismShieldItem)) return;
 
@@ -60,26 +59,26 @@ public final class RenderMekanismShieldItem {
         ShieldTextures shieldTexture = getShieldTexture(shieldItem).orElse(null);
         if (shieldTexture == null) return;
 
-        SpriteIdentifier spriteIdentifier = shieldTexture.getBase();
-        ShieldEntityModel shieldModel = getShieldModel();
+        Material spriteIdentifier = shieldTexture.getBase();
+        ShieldModel shieldModel = getShieldModel();
         lightLevel = shieldItem.getCustomLightLevel(stack, lightLevel);
 
-        matrices.push();
+        matrices.pushPose();
         matrices.scale(1.0F, -1.0F, -1.0F);
-        VertexConsumer vertexConsumer = spriteIdentifier.getSprite().getTextureSpecificVertexConsumer(ItemRenderer.getDirectItemGlintConsumer(vertexConsumers, shieldModel.getLayer(spriteIdentifier.getAtlasId()), true, stack.hasGlint()));
-        shieldModel.getHandle().render(matrices, vertexConsumer, lightLevel, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
-        if (stack.getSubNbt("BlockEntityTag") != null) {
-            List<Pair<BannerPattern, DyeColor>> list = BannerBlockEntity.getPatternsFromNbt(ShieldItem.getColor(stack), BannerBlockEntity.getPatternListNbt(stack));
-            BannerBlockEntityRenderer.renderCanvas(matrices, vertexConsumers, lightLevel, overlay, shieldModel.getPlate(), spriteIdentifier, false, list, stack.hasGlint());
+        VertexConsumer vertexConsumer = spriteIdentifier.sprite().wrap(ItemRenderer.getFoilBufferDirect(vertexConsumers, shieldModel.renderType(spriteIdentifier.atlasLocation()), true, stack.hasFoil()));
+        shieldModel.handle().render(matrices, vertexConsumer, lightLevel, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
+        if (stack.getTagElement("BlockEntityTag") != null) {
+            List<Pair<BannerPattern, DyeColor>> list = BannerBlockEntity.createPatterns(ShieldItem.getColor(stack), BannerBlockEntity.getItemPatterns(stack));
+            BannerRenderer.renderPatterns(matrices, vertexConsumers, lightLevel, overlay, shieldModel.plate(), spriteIdentifier, false, list, stack.hasFoil());
         } else {
-            shieldModel.getPlate().render(matrices, vertexConsumer, lightLevel, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
+            shieldModel.plate().render(matrices, vertexConsumer, lightLevel, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
         }
-        matrices.pop();
+        matrices.popPose();
     }
 
-    private static ShieldEntityModel getShieldModel() {
+    private static ShieldModel getShieldModel() {
         ItemRenderer itemRenderer = client.getItemRenderer();
-        BuiltinModelItemRenderer builtinModelItemRenderer = ((ItemRendererAccessor) itemRenderer).getBuiltinModelItemRenderer();
+        BlockEntityWithoutLevelRenderer builtinModelItemRenderer = ((ItemRendererAccessor) itemRenderer).getBuiltinModelItemRenderer();
         return ((BuiltinModelItemRendererAccessor) builtinModelItemRenderer).getModelShield();
     }
 }

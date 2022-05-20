@@ -1,6 +1,6 @@
 package mekanism.api.heat;
 
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
 public interface IHeatHandler {

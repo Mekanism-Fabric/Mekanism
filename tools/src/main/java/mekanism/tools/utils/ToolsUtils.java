@@ -2,8 +2,8 @@ package mekanism.tools.utils;
 
 import mekanism.tools.ToolsLang;
 import mekanism.tools.config.MekanismToolsConfig;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -15,9 +15,9 @@ public final class ToolsUtils {
      *
      * @apiNote Only call on client
      */
-    public static void addDurability(@NotNull List<Text> tooltip, @NotNull ItemStack stack) {
+    public static void addDurability(@NotNull List<Component> tooltip, @NotNull ItemStack stack) {
         if (MekanismToolsConfig.toolsClient.displayDurabilityTooltips.getAsBoolean()) {
-            tooltip.add(ToolsLang.HP.translate(stack.getMaxDamage() - stack.getDamage()));
+            tooltip.add(ToolsLang.HP.translate(stack.getMaxDamage() - stack.getDamageValue()));
         }
     }
 

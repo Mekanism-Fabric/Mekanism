@@ -2,20 +2,20 @@ package mekanism.additions.rendering;
 
 import mekanism.additions.entities.BabyEndermanEntity;
 import mekanism.additions.models.BabyEndermanEntityModel;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.entity.feature.EyesFeatureRenderer;
-import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.layers.EyesLayer;
+import net.minecraft.resources.ResourceLocation;
 
-public class BabyEndermanEyesFeatureRenderer<T extends BabyEndermanEntity> extends EyesFeatureRenderer<T, BabyEndermanEntityModel<T>> {
-    private static final RenderLayer SKIN = RenderLayer.getEyes(new Identifier("textures/entity/enderman/enderman_eyes.png"));
+public class BabyEndermanEyesFeatureRenderer<T extends BabyEndermanEntity> extends EyesLayer<T, BabyEndermanEntityModel<T>> {
+    private static final RenderType SKIN = RenderType.eyes(new ResourceLocation("textures/entity/enderman/enderman_eyes.png"));
 
-    public BabyEndermanEyesFeatureRenderer(FeatureRendererContext<T, BabyEndermanEntityModel<T>> featureRendererContext) {
+    public BabyEndermanEyesFeatureRenderer(RenderLayerParent<T, BabyEndermanEntityModel<T>> featureRendererContext) {
         super(featureRendererContext);
     }
 
     @Override
-    public RenderLayer getEyesTexture() {
+    public RenderType renderType() {
         return SKIN;
     }
 }

@@ -1,15 +1,15 @@
 package mekanism.tools.material.impl.vanilla;
 
 import mekanism.tools.material.VanillaPaxelMaterial;
-import net.minecraft.item.ToolMaterials;
+import net.minecraft.world.item.Tiers;
 import org.jetbrains.annotations.NotNull;
 
 public class NetheritePaxelMaterialDefaults extends VanillaPaxelMaterial {
 
     @NotNull
     @Override
-    public ToolMaterials getVanillaTier() {
-        return ToolMaterials.NETHERITE;
+    public Tiers getVanillaTier() {
+        return Tiers.NETHERITE;
     }
 
     @Override

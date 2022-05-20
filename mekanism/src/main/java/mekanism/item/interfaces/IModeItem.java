@@ -1,9 +1,9 @@
 package mekanism.item.interfaces;
 
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,23 +17,23 @@ public interface IModeItem {
      * @param shift                The amount to shift the mode by, may be negative for indicating the mode should decrease.
      * @param displayChangeMessage {@code true} if a message should be displayed when the mode changes
      */
-    void changeMode(@NotNull PlayerEntity player, @NotNull ItemStack stack, int shift, boolean displayChangeMessage);
+    void changeMode(@NotNull Player player, @NotNull ItemStack stack, int shift, boolean displayChangeMessage);
 
     default boolean supportsSlotType(ItemStack stack, @NotNull EquipmentSlot slotType) {
         return slotType == EquipmentSlot.MAINHAND || slotType == EquipmentSlot.OFFHAND;
     }
 
     @Nullable
-    default Text getScrollTextComponent(@NotNull ItemStack stack) {
+    default Component getScrollTextComponent(@NotNull ItemStack stack) {
         return null;
     }
 
-    static boolean isModeItem(@NotNull PlayerEntity player, @NotNull EquipmentSlot slotType) {
+    static boolean isModeItem(@NotNull Player player, @NotNull EquipmentSlot slotType) {
         return isModeItem(player, slotType, true);
     }
 
-    static boolean isModeItem(@NotNull PlayerEntity player, @NotNull EquipmentSlot slotType, boolean allowRadial) {
-        return isModeItem(player.getEquippedStack(slotType), slotType, allowRadial);
+    static boolean isModeItem(@NotNull Player player, @NotNull EquipmentSlot slotType, boolean allowRadial) {
+        return isModeItem(player.getItemBySlot(slotType), slotType, allowRadial);
     }
 
     static boolean isModeItem(@NotNull ItemStack stack, @NotNull EquipmentSlot slotType) {

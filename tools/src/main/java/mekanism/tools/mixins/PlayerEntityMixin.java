@@ -1,22 +1,22 @@
 package mekanism.tools.mixins;
 
 import mekanism.tools.items.MekanismShieldItem;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.ItemCooldownManager;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemCooldowns;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(PlayerEntity.class)
+@Mixin(Player.class)
 public abstract class PlayerEntityMixin extends LivingEntity {
 
-    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -25,14 +25,14 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             value = "INVOKE",
             target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"
         ),
-        method = "damageShield"
+        method = "hurtCurrentlyUsedShield"
     )
     protected boolean damageShield(ItemStack itemStack, Item item) {
         if (itemStack.getItem() instanceof MekanismShieldItem && item == Items.SHIELD) {
             return true;
         }
 
-        return itemStack.isOf(item);
+        return itemStack.is(item);
     }
 
     @Redirect(
@@ -42,13 +42,13 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         ),
         method = "disableShield"
     )
-    public void disableShield(ItemCooldownManager itemCooldownManager, Item item, int duration) {
-        Item activeItem = this.activeItemStack.getItem();
+    public void disableShield(ItemCooldowns itemCooldownManager, Item item, int duration) {
+        Item activeItem = this.useItem.getItem();
 
         if (activeItem instanceof MekanismShieldItem && item == Items.SHIELD) {
-            itemCooldownManager.set(activeItem, duration);
+            itemCooldownManager.addCooldown(activeItem, duration);
         } else {
-            itemCooldownManager.set(item, duration);
+            itemCooldownManager.addCooldown(item, duration);
         }
 
     }

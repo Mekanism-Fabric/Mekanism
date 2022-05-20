@@ -9,11 +9,11 @@ import mekanism.api.gear.config.ModuleConfigItemCreator;
 import mekanism.api.providers.IItemProvider;
 import mekanism.api.providers.IModuleDataProvider;
 import mekanism.api.text.IHasTranslationKey;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Rarity;
-import net.minecraft.util.Util;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.Util;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -155,7 +155,7 @@ public class ModuleData<MODULE extends ICustomModule<MODULE>> extends RegistryEn
     @Override
     public String getTranslationKey() {
         if (translationKey == null) {
-            translationKey = Util.createTranslationKey("module", getRegistryName());
+            translationKey = Util.makeDescriptionId("module", getRegistryName());
         }
         return translationKey;
     }
@@ -165,7 +165,7 @@ public class ModuleData<MODULE extends ICustomModule<MODULE>> extends RegistryEn
      */
     public String getDescriptionTranslationKey() {
         if (descriptionTranslationKey == null) {
-            descriptionTranslationKey = Util.createTranslationKey("description", getRegistryName());
+            descriptionTranslationKey = Util.makeDescriptionId("description", getRegistryName());
         }
         return descriptionTranslationKey;
     }
@@ -271,7 +271,7 @@ public class ModuleData<MODULE extends ICustomModule<MODULE>> extends RegistryEn
         }
 
         /**
-         * Marks this module type as being able to handle mode changes. In addition to using this method {@link ICustomModule#changeMode(IModule, PlayerEntity, ItemStack,
+         * Marks this module type as being able to handle mode changes. In addition to using this method {@link ICustomModule#changeMode(IModule, Player, ItemStack,
          * int, boolean)} should be implemented.
          */
         public ModuleDataBuilder<MODULE> handlesModeChange() {
@@ -280,8 +280,8 @@ public class ModuleData<MODULE extends ICustomModule<MODULE>> extends RegistryEn
         }
 
         /**
-         * Marks this module type as having HUD elements to render. In addition to using this method {@link ICustomModule#addHUDElements(IModule, PlayerEntity, Consumer)} or {@link
-         * ICustomModule#addHUDStrings(IModule, PlayerEntity, Consumer)} should be implemented.
+         * Marks this module type as having HUD elements to render. In addition to using this method {@link ICustomModule#addHUDElements(IModule, Player, Consumer)} or {@link
+         * ICustomModule#addHUDStrings(IModule, Player, Consumer)} should be implemented.
          */
         public ModuleDataBuilder<MODULE> rendersHUD() {
             rendersHUD = true;

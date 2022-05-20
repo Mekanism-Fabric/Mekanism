@@ -1,14 +1,14 @@
 package mekanism.api.inventory;
 
 import mekanism.api.Action;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
-import net.minecraft.util.math.Direction;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.Direction;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 @MethodsReturnNonnullByDefault
-public interface ISidedItemHandler extends Inventory {
+public interface ISidedItemHandler extends Container {
 
     /**
      * The side this {@link ISidedItemHandler} is for. This defaults to null, which is for internal use.
@@ -32,12 +32,12 @@ public interface ISidedItemHandler extends Inventory {
     void setStackInSlot(int slot, ItemStack stack, @Nullable Direction side);
 
     @Override
-    default void setStack(int slot, ItemStack stack) {
+    default void setItem(int slot, ItemStack stack) {
         setStackInSlot(slot, stack, getInventorySideFor());
     }
 
     /**
-     * A sided variant of {@link Inventory#size()}, docs copied for convenience.
+     * A sided variant of {@link Container#getContainerSize()}, docs copied for convenience.
      *
      * Returns the number of slots available
      *
@@ -48,12 +48,12 @@ public interface ISidedItemHandler extends Inventory {
     int getSlots(@Nullable Direction side);
 
     @Override
-    default int size() {
+    default int getContainerSize() {
         return getSlots(getInventorySideFor());
     }
 
     /**
-     * A sided variant of {@link Inventory#getStack(int)}, docs copied for convenience.
+     * A sided variant of {@link Container#getItem(int)}, docs copied for convenience.
      *
      * Returns the {@link ItemStack} in a given slot.
      *
@@ -79,7 +79,7 @@ public interface ISidedItemHandler extends Inventory {
     ItemStack getStackInSlot(int slot, @Nullable Direction side);
 
     @Override
-    default ItemStack getStack(int slot) {
+    default ItemStack getItem(int slot) {
         return getStackInSlot(slot, getInventorySideFor());
     }
 
@@ -108,7 +108,7 @@ public interface ISidedItemHandler extends Inventory {
      * Extracts an {@link ItemStack} from the given slot.
      * <p>
      * The returned value must be empty if nothing is extracted, otherwise its stack size must be less than or equal to {@code amount} and {@link
-     * ItemStack#getMaxCount()}.
+     * ItemStack#getMaxStackSize()}.
      * </p>
      *
      * @param slot   Slot to extract from.
@@ -142,10 +142,10 @@ public interface ISidedItemHandler extends Inventory {
     }
 
     /**
-     * A sided variant of {@link Inventory#isValid(int, ItemStack)}, docs copied for convenience.
+     * A sided variant of {@link Container#canPlaceItem(int, ItemStack)}, docs copied for convenience.
      *
      * <p>
-     * This function re-implements the vanilla function {@link Inventory#isValid(int, ItemStack)}. It should be used instead of simulated insertions in cases where
+     * This function re-implements the vanilla function {@link Container#canPlaceItem(int, ItemStack)}. It should be used instead of simulated insertions in cases where
      * the contents and state of the inventory are irrelevant, mainly for the purpose of automation and logic (for instance, testing if a minecart can wait to deposit its
      * items into a full inventory, or if the items in the minecart can never be placed into the inventory and should move on).
      * </p>
@@ -165,7 +165,7 @@ public interface ISidedItemHandler extends Inventory {
     boolean isItemValid(int slot, ItemStack stack, @Nullable Direction side);
 
     @Override
-    default boolean isValid(int slot, ItemStack stack) {
+    default boolean canPlaceItem(int slot, ItemStack stack) {
         return isItemValid(slot, stack, getInventorySideFor());
     }
 }

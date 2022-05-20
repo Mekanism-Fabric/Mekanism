@@ -1,13 +1,13 @@
 package mekanism.item;
 
 import mekanism.api.tier.AlloyTier;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemAlloy extends Item {
 
     private final AlloyTier tier;
 
-    public ItemAlloy(AlloyTier tier, Settings properties) {
+    public ItemAlloy(AlloyTier tier, Properties properties) {
         super(properties);
         this.tier = tier;
     }

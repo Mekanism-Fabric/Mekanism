@@ -1,16 +1,16 @@
 package mekanism.api.inventory;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * NO-OP IInventory
  */
 @MethodsReturnNonnullByDefault
-public final class IgnoredIInventory implements Inventory {
+public final class IgnoredIInventory implements Container {
 
     public static final IgnoredIInventory INSTANCE = new IgnoredIInventory();
 
@@ -18,7 +18,7 @@ public final class IgnoredIInventory implements Inventory {
     }
 
     @Override
-    public int size() {
+    public int getContainerSize() {
         return 0;
     }
 
@@ -28,34 +28,34 @@ public final class IgnoredIInventory implements Inventory {
     }
 
     @Override
-    public ItemStack getStack(int index) {
+    public ItemStack getItem(int index) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public ItemStack removeStack(int index, int count) {
+    public ItemStack removeItem(int index, int count) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public ItemStack removeStack(int index) {
+    public ItemStack removeItemNoUpdate(int index) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public void setStack(int index, @NotNull ItemStack stack) {
+    public void setItem(int index, @NotNull ItemStack stack) {
     }
 
     @Override
-    public void markDirty() {
+    public void setChanged() {
     }
 
     @Override
-    public boolean canPlayerUse(@NotNull PlayerEntity player) {
+    public boolean stillValid(@NotNull Player player) {
         return false;
     }
 
     @Override
-    public void clear() {
+    public void clearContent() {
     }
 }

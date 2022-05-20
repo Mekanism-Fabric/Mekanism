@@ -15,8 +15,8 @@ import mekanism.resource.MiscResource;
 import mekanism.resource.PrimaryResource;
 import mekanism.resource.ResourceType;
 import mekanism.util.EnumUtils;
-import net.minecraft.item.Item;
-import net.minecraft.util.Rarity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 
 public class MekanismItems {
 

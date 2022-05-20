@@ -6,15 +6,15 @@ import mekanism.api.functions.FloatSupplier;
 import mekanism.api.gear.config.ModuleConfigItemCreator;
 import mekanism.api.math.FloatingLongSupplier;
 import mekanism.api.text.IHasTextComponent;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPointer;
+import net.minecraft.core.BlockSource;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,7 +39,7 @@ public interface ICustomModule<MODULE extends ICustomModule<MODULE>> {
      * @param module Module instance.
      * @param player Player wearing the MekaSuit.
      */
-    default void tickServer(IModule<MODULE> module, PlayerEntity player) {
+    default void tickServer(IModule<MODULE> module, Player player) {
     }
 
     /**
@@ -48,7 +48,7 @@ public interface ICustomModule<MODULE extends ICustomModule<MODULE>> {
      * @param module Module instance.
      * @param player Player wearing the MekaSuit.
      */
-    default void tickClient(IModule<MODULE> module, PlayerEntity player) {
+    default void tickClient(IModule<MODULE> module, Player player) {
     }
 
     /**
@@ -59,7 +59,7 @@ public interface ICustomModule<MODULE extends ICustomModule<MODULE>> {
      *                       easier.
      * @param hudStringAdder Accepts and adds HUD strings.
      */
-    default void addHUDStrings(IModule<MODULE> module, PlayerEntity player, Consumer<Text> hudStringAdder) {
+    default void addHUDStrings(IModule<MODULE> module, Player player, Consumer<Component> hudStringAdder) {
     }
 
     /**
@@ -73,7 +73,7 @@ public interface ICustomModule<MODULE extends ICustomModule<MODULE>> {
      *
      * @apiNote See {@link IModuleHelper} for various helpers to create HUD elements.
      */
-    default void addHUDElements(IModule<MODULE> module, PlayerEntity player, Consumer<IHUDElement> hudElementAdder) {
+    default void addHUDElements(IModule<MODULE> module, Player player, Consumer<IHUDElement> hudElementAdder) {
     }
 
     /**
@@ -90,7 +90,7 @@ public interface ICustomModule<MODULE extends ICustomModule<MODULE>> {
 
     /**
      * Called to change the mode of the module. This will only be called if {@link ModuleData#handlesModeChange()} is {@code true}. {@link
-     * IModule#displayModeChange(PlayerEntity, Text, IHasTextComponent)} is provided to help display the mode change when {@code displayChangeMessage} is {@code
+     * IModule#displayModeChange(Player, Component, IHasTextComponent)} is provided to help display the mode change when {@code displayChangeMessage} is {@code
      * true}.
      *
      * @param module               Module instance.
@@ -99,7 +99,7 @@ public interface ICustomModule<MODULE extends ICustomModule<MODULE>> {
      * @param shift                The amount to shift the mode by, may be negative for indicating the mode should decrease.
      * @param displayChangeMessage {@code true} if a message should be displayed when the mode changes
      */
-    default void changeMode(IModule<MODULE> module, PlayerEntity player, ItemStack stack, int shift, boolean displayChangeMessage) {
+    default void changeMode(IModule<MODULE> module, Player player, ItemStack stack, int shift, boolean displayChangeMessage) {
     }
 
     /**
@@ -147,11 +147,11 @@ public interface ICustomModule<MODULE extends ICustomModule<MODULE>> {
      * @param module  Module instance.
      * @param context Use context.
      *
-     * @return Result type or {@link ActionResult#PASS} to pass.
+     * @return Result type or {@link InteractionResult#PASS} to pass.
      */
     @NotNull
-    default ActionResult onItemUse(IModule<MODULE> module, ItemUsageContext context) {
-        return ActionResult.PASS;
+    default InteractionResult onItemUse(IModule<MODULE> module, UseOnContext context) {
+        return InteractionResult.PASS;
     }
 
     /**
@@ -162,11 +162,11 @@ public interface ICustomModule<MODULE extends ICustomModule<MODULE>> {
      * @param entity Entity type being interacted with.
      * @param hand   Hand used.
      *
-     * @return Result type or {@link ActionResult#PASS} to pass.
+     * @return Result type or {@link InteractionResult#PASS} to pass.
      */
     @NotNull
-    default ActionResult onInteract(IModule<MODULE> module, PlayerEntity player, LivingEntity entity, Hand hand) {
-        return ActionResult.PASS;
+    default InteractionResult onInteract(IModule<MODULE> module, Player player, LivingEntity entity, InteractionHand hand) {
+        return InteractionResult.PASS;
     }
 
     /**
@@ -179,7 +179,7 @@ public interface ICustomModule<MODULE extends ICustomModule<MODULE>> {
      * @return The {@link ModuleDispenseResult} defining how this dispenser should behave.
      */
     @NotNull
-    default ModuleDispenseResult onDispense(IModule<MODULE> module, BlockPointer source) {
+    default ModuleDispenseResult onDispense(IModule<MODULE> module, BlockSource source) {
         return ModuleDispenseResult.DEFAULT;
     }
 
@@ -214,7 +214,7 @@ public interface ICustomModule<MODULE extends ICustomModule<MODULE>> {
     }
 
     /**
-     * Represents the different result states of {@link ICustomModule#onDispense(IModule, BlockPointer)}.
+     * Represents the different result states of {@link ICustomModule#onDispense(IModule, BlockSource)}.
      */
     enum ModuleDispenseResult {
         /**

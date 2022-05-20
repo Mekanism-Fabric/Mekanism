@@ -5,10 +5,10 @@ import mekanism.resource.OreType;
 import mekanism.resource.PrimaryResource;
 import mekanism.resource.ResourceType;
 import mekanism.tier.*;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.util.math.Direction;
 import mekanism.util.UnitDisplayUtils.FloatingLongMeasurementUnit;
 import mekanism.util.UnitDisplayUtils.MeasurementUnit;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.EquipmentSlot;
 
 
 public class EnumUtils {

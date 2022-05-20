@@ -1,7 +1,7 @@
 package mekanism.api.providers;
 
-import net.minecraft.block.Block;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 public interface IBlockProvider extends IItemProvider {
@@ -10,13 +10,13 @@ public interface IBlockProvider extends IItemProvider {
     Block getBlock();
 
     @Override
-    default Identifier getRegistryName() {
+    default ResourceLocation getRegistryName() {
         //Make sure to use the block's registry name in case it somehow doesn't match
-        return getBlock().getLootTableId();
+        return getBlock().getLootTable();
     }
 
     @Override
     default String getTranslationKey() {
-        return getBlock().getTranslationKey();
+        return getBlock().getDescriptionId();
     }
 }

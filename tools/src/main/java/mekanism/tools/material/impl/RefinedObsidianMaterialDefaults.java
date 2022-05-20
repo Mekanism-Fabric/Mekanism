@@ -2,10 +2,10 @@ package mekanism.tools.material.impl;
 
 import mekanism.tags.MekanismTags;
 import mekanism.tools.material.BaseMekanismMaterial;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
 public class RefinedObsidianMaterialDefaults extends BaseMekanismMaterial {
@@ -26,22 +26,22 @@ public class RefinedObsidianMaterialDefaults extends BaseMekanismMaterial {
     }
 
     @Override
-    public int getDurability() {
+    public int getUses() {
         return 4_096;
     }
 
     @Override
-    public float getMiningSpeedMultiplier() {
+    public float getSpeed() {
         return 12;
     }
 
     @Override
-    public float getAttackDamage() {
+    public float getAttackDamageBonus() {
         return 8;
     }
 
     @Override
-    public int getMiningLevel() {
+    public int getLevel() {
         return 4;
     }
 
@@ -61,7 +61,7 @@ public class RefinedObsidianMaterialDefaults extends BaseMekanismMaterial {
     }
 
     @Override
-    public int getDurability(@NotNull EquipmentSlot slotType) {
+    public int getDurabilityForSlot(@NotNull EquipmentSlot slotType) {
         switch (slotType) {
             case FEET:
                 return 975;
@@ -76,7 +76,7 @@ public class RefinedObsidianMaterialDefaults extends BaseMekanismMaterial {
     }
 
     @Override
-    public int getProtectionAmount(@NotNull EquipmentSlot slotType) {
+    public int getDefenseForSlot(@NotNull EquipmentSlot slotType) {
         switch (slotType) {
             case FEET:
                 return 5;
@@ -105,13 +105,13 @@ public class RefinedObsidianMaterialDefaults extends BaseMekanismMaterial {
     @NotNull
     @Override
     public SoundEvent getEquipSound() {
-        return SoundEvents.ITEM_ARMOR_EQUIP_IRON;
+        return SoundEvents.ARMOR_EQUIP_IRON;
     }
 
     @NotNull
     @Override
     public Ingredient getCommonRepairMaterial() {
-        return Ingredient.fromTag(MekanismTags.Items.INGOTS_REFINED_OBSIDIAN);
+        return Ingredient.of(MekanismTags.Items.INGOTS_REFINED_OBSIDIAN);
     }
 
     @Override

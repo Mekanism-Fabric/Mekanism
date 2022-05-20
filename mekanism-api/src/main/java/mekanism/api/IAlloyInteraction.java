@@ -1,8 +1,8 @@
 package mekanism.api;
 
 import mekanism.api.tier.AlloyTier;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -19,5 +19,5 @@ public interface IAlloyInteraction {
      * @param stack  - the stack of alloy being right-clicked
      * @param tier   - the tier of the alloy
      */
-    void onAlloyInteraction(PlayerEntity player, ItemStack stack, @NotNull AlloyTier tier);
+    void onAlloyInteraction(Player player, ItemStack stack, @NotNull AlloyTier tier);
 }

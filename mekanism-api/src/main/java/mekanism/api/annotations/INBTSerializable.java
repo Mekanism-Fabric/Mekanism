@@ -1,8 +1,8 @@
 package mekanism.api.annotations;
 
-import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.Tag;
 
-public interface INBTSerializable<T extends NbtElement> {
+public interface INBTSerializable<T extends Tag> {
     T serializeNBT();
 
     void deserializeNBT(T Nbt);

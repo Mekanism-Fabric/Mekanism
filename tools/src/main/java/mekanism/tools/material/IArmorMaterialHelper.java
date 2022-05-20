@@ -1,7 +1,7 @@
 package mekanism.tools.material;
 
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.recipe.Ingredient;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
 interface IArmorMaterialHelper extends ArmorMaterial {
@@ -16,7 +16,7 @@ interface IArmorMaterialHelper extends ArmorMaterial {
      * BaseMekanismMaterial}
      */
     @Override
-    default int getEnchantability() {
+    default int getEnchantmentValue() {
         return getArmorEnchantability();
     }
 

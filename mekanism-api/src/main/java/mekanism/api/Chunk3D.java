@@ -3,9 +3,9 @@ package mekanism.api;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.World;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Chunk3D extends ChunkPos {
 
-    public final RegistryKey<World> dimension;
+    public final ResourceKey<Level> dimension;
 
     /**
      * Creates a Chunk3D from the defined chunk x, chunk z, and dimension values.
@@ -22,7 +22,7 @@ public class Chunk3D extends ChunkPos {
      * @param z         Chunk Z coordinate
      * @param dimension Dimension ID
      */
-    public Chunk3D(int x, int z, RegistryKey<World> dimension) {
+    public Chunk3D(int x, int z, ResourceKey<Level> dimension) {
         super(x, z);
         this.dimension = dimension;
     }
@@ -61,7 +61,7 @@ public class Chunk3D extends ChunkPos {
     @NotNull
     @Override
     public String toString() {
-        return "[Chunk3D: " + x + ", " + z + ", dim=" + dimension.getValue() + "]";
+        return "[Chunk3D: " + x + ", " + z + ", dim=" + dimension.location() + "]";
     }
 
     @Override

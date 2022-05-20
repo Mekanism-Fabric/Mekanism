@@ -5,7 +5,7 @@ import mekanism.api.tier.BaseTier;
 import mekanism.api.tier.ITier;
 import mekanism.config.value.CachedFloatingLongValue;
 import mekanism.util.EnumUtils;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
 public enum CableTier implements ITier {

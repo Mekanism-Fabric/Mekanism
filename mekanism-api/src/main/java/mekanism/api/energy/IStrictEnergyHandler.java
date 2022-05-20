@@ -3,7 +3,7 @@ package mekanism.api.energy;
 import mekanism.api.Action;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.math.FloatingLongTransferUtils;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
 public interface IStrictEnergyHandler {

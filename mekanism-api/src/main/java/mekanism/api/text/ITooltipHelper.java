@@ -1,7 +1,7 @@
 package mekanism.api.text;
 
 import mekanism.api.math.FloatingLong;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 /**
  * Interface mostly meant as a way to provide us a way to access some internal formatting helpers for some tooltips that are defined in the API. These methods are
@@ -9,11 +9,11 @@ import net.minecraft.text.Text;
  */
 public interface ITooltipHelper {
 
-    Text getEnergyPerMBDisplayShort(FloatingLong energy);
+    Component getEnergyPerMBDisplayShort(FloatingLong energy);
 
-    Text getRadioactivityDisplayShort(double radioactivity);
+    Component getRadioactivityDisplayShort(double radioactivity);
 
     String getFormattedNumber(long number);
 
-    Text getPercent(double ratio);
+    Component getPercent(double ratio);
 }

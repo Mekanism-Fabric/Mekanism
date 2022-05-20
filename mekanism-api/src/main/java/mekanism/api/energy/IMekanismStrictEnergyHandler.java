@@ -5,8 +5,8 @@ import mekanism.api.Action;
 import mekanism.api.IContentsListener;
 import mekanism.api.inventory.AutomationType;
 import mekanism.api.math.FloatingLong;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
-import net.minecraft.util.math.Direction;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.Direction;
 import org.jetbrains.annotations.Nullable;
 
 @MethodsReturnNonnullByDefault

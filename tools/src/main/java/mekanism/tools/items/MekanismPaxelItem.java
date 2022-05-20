@@ -2,18 +2,24 @@ package mekanism.tools.items;
 
 import mekanism.tools.material.BaseMekanismMaterial;
 import mekanism.tools.utils.ToolsUtils;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.*;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.DiggerItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 import static mekanism.tools.registries.ToolItems.PAXEL_MINEABLE;
 
-public class MekanismPaxelItem extends MiningToolItem {
+public class MekanismPaxelItem extends DiggerItem {
 
     private static final float DEFAULT_ATTACK_DAMAGE = 4.0F;
 
@@ -23,24 +29,24 @@ public class MekanismPaxelItem extends MiningToolItem {
         Items.NETHERITE_PICKAXE
     };
 
-    public MekanismPaxelItem(ToolMaterials material, Settings settings) {
+    public MekanismPaxelItem(Tiers material, Properties settings) {
         super(DEFAULT_ATTACK_DAMAGE, -2.4F, material, PAXEL_MINEABLE, settings);
     }
 
-    public MekanismPaxelItem(BaseMekanismMaterial material, Settings settings) {
-        super(material.getPaxelDamage(), material.getPaxelAtkSpeed(), material, PAXEL_MINEABLE, settings.maxDamage(material.getPaxelMaxUses()));
+    public MekanismPaxelItem(BaseMekanismMaterial material, Properties settings) {
+        super(material.getPaxelDamage(), material.getPaxelAtkSpeed(), material, PAXEL_MINEABLE, settings.durability(material.getPaxelMaxUses()));
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        super.appendTooltip(stack, world, tooltip, context);
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
+        super.appendHoverText(stack, world, tooltip, context);
 
         ToolsUtils.addDurability(tooltip, stack);
     }
 
     @Override
     public float getAttackDamage() {
-        ToolMaterial material = this.getMaterial();
+        Tier material = this.getTier();
 
         float damage = DEFAULT_ATTACK_DAMAGE;
 
@@ -48,31 +54,31 @@ public class MekanismPaxelItem extends MiningToolItem {
             damage = ((BaseMekanismMaterial) material).getPaxelDamage();
         }
 
-        return damage + getMaterial().getAttackDamage();
+        return damage + getTier().getAttackDamageBonus();
     }
 
     @Override
-    public boolean isDamageable() {
-        ToolMaterial material = this.getMaterial();
+    public boolean canBeDepleted() {
+        Tier material = this.getTier();
 
         if (material instanceof BaseMekanismMaterial) {
             return ((BaseMekanismMaterial) material).getPaxelMaxUses() > 0;
         } else {
-            return super.isDamageable();
+            return super.canBeDepleted();
         }
     }
 
     @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        ActionResult result = ActionResult.PASS;
+    public InteractionResult useOn(UseOnContext context) {
+        InteractionResult result = InteractionResult.PASS;
 
         for (Item validTool : VALID_TOOLS) {
-            result = validTool.useOnBlock(context);
-            if (result != ActionResult.PASS) break;
+            result = validTool.useOn(context);
+            if (result != InteractionResult.PASS) break;
         }
 
-        if (result != ActionResult.PASS) return result;
+        if (result != InteractionResult.PASS) return result;
 
-        return super.useOnBlock(context);
+        return super.useOn(context);
     }
 }

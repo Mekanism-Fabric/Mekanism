@@ -3,30 +3,30 @@ package mekanism.additions.rendering;
 import mekanism.additions.entities.BabyCreeperEntity;
 import mekanism.additions.models.BabyCreeperEntityModel;
 import mekanism.additions.registries.AdditionsEntityModelLayers;
-import net.minecraft.client.render.entity.feature.EnergySwirlOverlayFeatureRenderer;
-import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.entity.model.EntityModelLoader;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.layers.EnergySwirlLayer;
+import net.minecraft.resources.ResourceLocation;
 
-public class BabyCreeperChargeFeatureRenderer extends EnergySwirlOverlayFeatureRenderer<BabyCreeperEntity, BabyCreeperEntityModel<BabyCreeperEntity>> {
-    private static final Identifier SKIN = new Identifier("textures/entity/creeper/creeper_armor.png");
+public class BabyCreeperChargeFeatureRenderer extends EnergySwirlLayer<BabyCreeperEntity, BabyCreeperEntityModel<BabyCreeperEntity>> {
+    private static final ResourceLocation SKIN = new ResourceLocation("textures/entity/creeper/creeper_armor.png");
     private final BabyCreeperEntityModel<BabyCreeperEntity> model;
 
-    public BabyCreeperChargeFeatureRenderer(FeatureRendererContext<BabyCreeperEntity, BabyCreeperEntityModel<BabyCreeperEntity>> context, EntityModelLoader loader) {
+    public BabyCreeperChargeFeatureRenderer(RenderLayerParent<BabyCreeperEntity, BabyCreeperEntityModel<BabyCreeperEntity>> context, EntityModelSet loader) {
         super(context);
-        this.model = new BabyCreeperEntityModel<>(loader.getModelPart(AdditionsEntityModelLayers.BABY_CREEPER_ARMOR));
+        this.model = new BabyCreeperEntityModel<>(loader.bakeLayer(AdditionsEntityModelLayers.BABY_CREEPER_ARMOR));
     }
 
-    protected float getEnergySwirlX(float partialAge) {
+    protected float xOffset(float partialAge) {
         return partialAge * 0.01F;
     }
 
-    protected Identifier getEnergySwirlTexture() {
+    protected ResourceLocation getTextureLocation() {
         return SKIN;
     }
 
-    protected EntityModel<BabyCreeperEntity> getEnergySwirlModel() {
+    protected EntityModel<BabyCreeperEntity> model() {
         return this.model;
     }
 }

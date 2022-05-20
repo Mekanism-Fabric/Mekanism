@@ -5,13 +5,12 @@ import mekanism.api.text.EnumColor;
 import mekanism.api.text.TextComponentUtil;
 import mekanism.item.ItemModule;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.text.Texts;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Rarity;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -35,11 +34,11 @@ public class ItemRegistry {
     public Item register(String name) {
         return register(name, Item::new);
     }
-    public <ITEM extends Item> ITEM register(String name, Function<Item.Settings, ITEM> sup) {
+    public <ITEM extends Item> ITEM register(String name, Function<Item.Properties, ITEM> sup) {
         return register(name, () -> sup.apply(getMekBaseProperties()));
     }
     public <ITEM extends Item> ITEM register(String name, Supplier<? extends ITEM> sup) {
-        ITEM registeredItem = Registry.register(Registry.ITEM, new Identifier(modid, name), sup.get());
+        ITEM registeredItem = Registry.register(Registry.ITEM, new ResourceLocation(modid, name), sup.get());
         allItems.add(registeredItem);
         return registeredItem;
     }
@@ -50,7 +49,7 @@ public class ItemRegistry {
         return register(name, properties -> new Item(properties) {
             @NotNull
             @Override
-            public Text getName(@NotNull ItemStack stack) {
+            public Component getName(@NotNull ItemStack stack) {
                 return TextComponentUtil.build(color, super.getName(stack));
             }
         });
@@ -59,8 +58,8 @@ public class ItemRegistry {
     public Item registerUnburnable(String name) {
         return registerUnburnable(name, Item::new);
     }
-    public <ITEM extends Item> ITEM registerUnburnable(String name, Function<Item.Settings, ITEM> sup) {
-        return register(name, () -> sup.apply(getMekBaseProperties().fireproof()));
+    public <ITEM extends Item> ITEM registerUnburnable(String name, Function<Item.Properties, ITEM> sup) {
+        return register(name, () -> sup.apply(getMekBaseProperties().fireResistant()));
     }
 
 //    public ItemModule registerModule(ModuleRegistryObject<?> moduleDataSupplier) {

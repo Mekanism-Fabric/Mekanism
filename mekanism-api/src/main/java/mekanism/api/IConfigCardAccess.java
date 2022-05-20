@@ -1,8 +1,8 @@
 package mekanism.api;
 
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 /**
  * Expose this as a capability on your TileEntity to expose it to Mekanism's Configuration card for purposes of saving data to the card and then loading it on another
@@ -40,28 +40,28 @@ public interface IConfigCardAccess {
     }
 
     /**
-     * Collects configuration data for this capability into a new {@link NbtCompound}.
+     * Collects configuration data for this capability into a new {@link CompoundTag}.
      * <br><br>
-     * Mekanism additionally adds two extra pieces of data to this {@link NbtCompound} afterwards corresponding to the following two constants: {@link
+     * Mekanism additionally adds two extra pieces of data to this {@link CompoundTag} afterwards corresponding to the following two constants: {@link
      * NBTConstants#DATA_NAME} and {@link NBTConstants#DATA_TYPE} so it is recommended to ensure you don't put any data in a matching entry, or it will be overwritten.
      *
      * @param player - Player who is using the configuration card.
      *
-     * @return A new {@link NbtCompound} containing all pertinent configuration data.
+     * @return A new {@link CompoundTag} containing all pertinent configuration data.
      */
-    NbtCompound getConfigurationData(PlayerEntity player);
+    CompoundTag getConfigurationData(Player player);
 
     /**
-     * Sets the configuration data for the tile this capability represents from the given {@link NbtCompound} that contains the previously stored configuration data.
+     * Sets the configuration data for the tile this capability represents from the given {@link CompoundTag} that contains the previously stored configuration data.
      *
      * @param player - Player who is using the configuration card.
-     * @param data   - {@link NbtCompound} of the configuration data stored on the configuration card ItemStack.
+     * @param data   - {@link CompoundTag} of the configuration data stored on the configuration card ItemStack.
      */
-    void setConfigurationData(PlayerEntity player, NbtCompound data);
+    void setConfigurationData(Player player, CompoundTag data);
 
     /**
-     * This is called after {@link #setConfigurationData(PlayerEntity, NbtCompound)} to allow for easily doing any post-processing such as invalidating capabilities while
-     * ensuring that the proper data can be set first if a hierarchy is used so there may be multiple layers of {@link #setConfigurationData(PlayerEntity, NbtCompound)}
+     * This is called after {@link #setConfigurationData(Player, CompoundTag)} to allow for easily doing any post-processing such as invalidating capabilities while
+     * ensuring that the proper data can be set first if a hierarchy is used so there may be multiple layers of {@link #setConfigurationData(Player, CompoundTag)}
      * and ensuring the post-processing doesn't happen until afterwards would lead to a bunch of duplicate code.
      */
     void configurationDataSet();
