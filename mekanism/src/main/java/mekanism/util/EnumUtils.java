@@ -1,7 +1,7 @@
 package mekanism.util;
 
 import mekanism.api.text.EnumColor;
-import mekanism.resource.OreType;
+import mekanism.resource.ore.OreType;
 import mekanism.resource.PrimaryResource;
 import mekanism.resource.ResourceType;
 import mekanism.tier.*;

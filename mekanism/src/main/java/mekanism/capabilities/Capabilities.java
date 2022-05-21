@@ -28,16 +28,16 @@ public class Capabilities {
 //
 
     public static final BlockApiLookup<IStrictEnergyHandler, @NotNull Direction> STRICT_ENERGY_CAPABILITY =
-            BlockApiLookup.get(Mekanism.id("strict_energy_handler"), IStrictEnergyHandler.class, Direction.class);
+            BlockApiLookup.get(Mekanism.rl("strict_energy_handler"), IStrictEnergyHandler.class, Direction.class);
 
     public static final BlockApiLookup<IConfigurable, @NotNull Direction> CONFIGURABLE_CAPABILITY =
-            BlockApiLookup.get(Mekanism.id("configurable"), IConfigurable.class, Direction.class);
+            BlockApiLookup.get(Mekanism.rl("configurable"), IConfigurable.class, Direction.class);
 
     public static final BlockApiLookup<IAlloyInteraction, @NotNull Direction> ALLOY_INTERACTION_CAPABILITY =
-            BlockApiLookup.get(Mekanism.id("alloy_interaction"), IAlloyInteraction.class, Direction.class);
+            BlockApiLookup.get(Mekanism.rl("alloy_interaction"), IAlloyInteraction.class, Direction.class);
 
     public static final BlockApiLookup<IConfigCardAccess, @NotNull Direction> CONFIG_CARD_CAPABILITY =
-            BlockApiLookup.get(Mekanism.id("config_card_access"), IConfigCardAccess.class, Direction.class);
+            BlockApiLookup.get(Mekanism.rl("config_card_access"), IConfigCardAccess.class, Direction.class);
 
 //    @CapabilityInject(IEvaporationSolar.class)
 //    public static Capability<IEvaporationSolar> EVAPORATION_SOLAR_CAPABILITY;

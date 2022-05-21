@@ -2,12 +2,12 @@ package mekanism.tools.registries;
 
 import mekanism.registration.ItemRegistry;
 import mekanism.tools.MekanismTools;
-import mekanism.tools.accessors.BlockTagsAccessor;
 import mekanism.tools.config.MekanismToolsConfig;
 import mekanism.tools.items.*;
 import mekanism.tools.material.BaseMekanismMaterial;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.tags.Tag;
+import net.minecraft.core.Registry;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tier;
@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 public final class ToolItems {
     public static final ItemRegistry ITEMS = new ItemRegistry(MekanismTools.MODID);
 
-    public static final Tag.Named<Block> PAXEL_MINEABLE = BlockTagsAccessor.register(MekanismTools.id("mineable/paxel").toString());
+    public static final TagKey<Block> PAXEL_MINEABLE = TagKey.create(Registry.BLOCK_REGISTRY, MekanismTools.rl("mineable/paxel"));
 
     public static final int REFINED_GLOWSTONE_LIGHT_LEVEL = 0xF000F0;
 

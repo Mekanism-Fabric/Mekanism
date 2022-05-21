@@ -25,7 +25,7 @@ public class MekanismToolsClient implements ClientModInitializer {
 
         for (MekanismShieldItem shieldItem : RenderMekanismShieldItem.initShieldTextureMap()) {
             BuiltinItemRendererRegistryImpl.INSTANCE.register(shieldItem, RenderMekanismShieldItem::render);
-            FabricModelPredicateProviderRegistry.register(shieldItem, MekanismTools.id("blocking"), (stack, world, entity, seed) ->
+            FabricModelPredicateProviderRegistry.register(shieldItem, MekanismTools.rl("blocking"), (stack, world, entity, seed) ->
                 entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F
             );
         }

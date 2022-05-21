@@ -1,6 +1,9 @@
-package mekanism.resource;
+package mekanism.resource.ore;
 
 import com.mojang.serialization.Codec;
+import mekanism.resource.IResource;
+import mekanism.resource.MiscResource;
+import mekanism.resource.PrimaryResource;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

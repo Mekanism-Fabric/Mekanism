@@ -8,27 +8,16 @@ import dev.architectury.core.RegistryEntry;
 import mekanism.api.gear.config.ModuleConfigItemCreator;
 import mekanism.api.providers.IItemProvider;
 import mekanism.api.providers.IModuleDataProvider;
-import mekanism.api.text.IHasTranslationKey;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.Util;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 @MethodsReturnNonnullByDefault
-public class ModuleData<MODULE extends ICustomModule<MODULE>> extends RegistryEntry<ModuleData<?>> implements IHasTranslationKey, IModuleDataProvider<MODULE> {
+public class ModuleData<MODULE extends ICustomModule<MODULE>> implements IModuleDataProvider<MODULE> {
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    public static Class<ModuleData<?>> getClassWithGeneric() {
-        return (Class) ModuleData.class;
-    }
-
-    @Nullable
-    @Deprecated
-    private final String legacyName;
-    @NotNull
     private final Supplier<MODULE> supplier;
     private final IItemProvider itemProvider;
     private final int maxStackSize;
@@ -38,16 +27,15 @@ public class ModuleData<MODULE extends ICustomModule<MODULE>> extends RegistryEn
     private final boolean rendersHUD;
     private final boolean noDisable;
     private final boolean disabledByDefault;
-    @Nullable
+    @NotNull
     private String translationKey;
-    @Nullable
+    @NotNull
     private String descriptionTranslationKey;
 
     /**
      * Creates a new module data from the given builder.
      */
     public ModuleData(ModuleDataBuilder<MODULE> builder) {
-        this.legacyName = builder.legacyName;
         this.supplier = builder.supplier;
         this.itemProvider = builder.itemProvider;
         this.rarity = builder.rarity;
@@ -63,18 +51,6 @@ public class ModuleData<MODULE extends ICustomModule<MODULE>> extends RegistryEn
     @Override
     public final ModuleData<MODULE> getModuleData() {
         return this;
-    }
-
-    /**
-     * Gets the legacy name for this module. This is mainly used to be able to load legacy modules from before the module system was exposed to the API and modules had a
-     * slightly different naming scheme.
-     *
-     * @deprecated Will be removed in 1.18
-     */
-    @Nullable
-    @Deprecated//TODO - 1.18: Remove
-    public final String getLegacyName() {
-        return legacyName;
     }
 
     /**
@@ -178,7 +154,7 @@ public class ModuleData<MODULE extends ICustomModule<MODULE>> extends RegistryEn
         @SuppressWarnings("rawtypes")
         private static final ICustomModule<?> MARKER_MODULE = new ICustomModule() {
         };
-        private static final @NotNull Supplier<ICustomModule<?>> MARKER_MODULE_SUPPLIER = () -> MARKER_MODULE;
+        private static final Supplier<ICustomModule<?>> MARKER_MODULE_SUPPLIER = () -> MARKER_MODULE;
 
         /**
          * Helper creator for creating a module that has no special implementation details and is only used mainly as a marker for if it is installed and how many are
@@ -209,9 +185,6 @@ public class ModuleData<MODULE extends ICustomModule<MODULE>> extends RegistryEn
 
         private final Supplier<MODULE> supplier;
         private final IItemProvider itemProvider;
-        @Nullable
-        @Deprecated
-        private String legacyName;
         private Rarity rarity = Rarity.COMMON;
         private int maxStackSize = 1;
         private boolean exclusive;
@@ -223,20 +196,6 @@ public class ModuleData<MODULE extends ICustomModule<MODULE>> extends RegistryEn
         private ModuleDataBuilder(@NotNull Supplier<MODULE> supplier, @NotNull IItemProvider itemProvider) {
             this.supplier = Objects.requireNonNull(supplier, "Supplier cannot be null.");
             this.itemProvider = Objects.requireNonNull(itemProvider, "Item provider cannot be null.");
-        }
-
-        /**
-         * Sets the legacy name for this module. This should probably not ever be used outside of modules built into Mekanism, as it is mainly used to be able to load
-         * legacy modules from before the module system was exposed to the API and modules had a slightly different naming scheme.
-         *
-         * @param legacyName Legacy name of the module.
-         *
-         * @deprecated Will be removed in 1.18
-         */
-        @Deprecated//TODO - 1.18: Remove
-        public ModuleDataBuilder<MODULE> legacyName(@NotNull String legacyName) {
-            this.legacyName = Objects.requireNonNull(legacyName, "Legacy name should not be null if specified.");
-            return this;
         }
 
         /**
@@ -271,8 +230,8 @@ public class ModuleData<MODULE extends ICustomModule<MODULE>> extends RegistryEn
         }
 
         /**
-         * Marks this module type as being able to handle mode changes. In addition to using this method {@link ICustomModule#changeMode(IModule, Player, ItemStack,
-         * int, boolean)} should be implemented.
+         * Marks this module type as being able to handle mode changes. In addition to using this method {@link ICustomModule#changeMode(IModule, Player, ItemStack, int,
+         * boolean)} should be implemented.
          */
         public ModuleDataBuilder<MODULE> handlesModeChange() {
             handlesModeChange = true;
@@ -280,8 +239,8 @@ public class ModuleData<MODULE extends ICustomModule<MODULE>> extends RegistryEn
         }
 
         /**
-         * Marks this module type as having HUD elements to render. In addition to using this method {@link ICustomModule#addHUDElements(IModule, Player, Consumer)} or {@link
-         * ICustomModule#addHUDStrings(IModule, Player, Consumer)} should be implemented.
+         * Marks this module type as having HUD elements to render. In addition to using this method {@link ICustomModule#addHUDElements(IModule, Player, Consumer)} or
+         * {@link ICustomModule#addHUDStrings(IModule, Player, Consumer)} should be implemented.
          */
         public ModuleDataBuilder<MODULE> rendersHUD() {
             rendersHUD = true;

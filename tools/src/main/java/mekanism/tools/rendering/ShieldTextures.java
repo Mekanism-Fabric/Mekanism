@@ -23,6 +23,6 @@ public enum ShieldTextures {
     }
 
     private static Material material(String path) {
-        return new Material(TextureAtlas.LOCATION_BLOCKS, MekanismTools.id(path));
+        return new Material(TextureAtlas.LOCATION_BLOCKS, MekanismTools.rl(path));
     }
 }

@@ -3,12 +3,16 @@ package mekanism.tools.material.impl;
 import mekanism.resource.PrimaryResource;
 import mekanism.resource.ResourceType;
 import mekanism.tags.MekanismTags;
+import mekanism.tools.ToolsTags;
 import mekanism.tools.material.BaseMekanismMaterial;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class OsmiumMaterialDefaults extends BaseMekanismMaterial {
 
@@ -59,32 +63,24 @@ public class OsmiumMaterialDefaults extends BaseMekanismMaterial {
 
     @Override
     public int getDurabilityForSlot(@NotNull EquipmentSlot slotType) {
-        switch (slotType) {
-            case FEET:
-                return 390;
-            case LEGS:
-                return 450;
-            case CHEST:
-                return 480;
-            case HEAD:
-                return 330;
-        }
-        return 0;
+        return switch (slotType) {
+            case FEET -> 390;
+            case LEGS -> 450;
+            case CHEST -> 480;
+            case HEAD -> 330;
+            default -> 0;
+        };
     }
 
     @Override
     public int getDefenseForSlot(@NotNull EquipmentSlot slotType) {
-        switch (slotType) {
-            case FEET:
-                return 3;
-            case LEGS:
-                return 6;
-            case CHEST:
-                return 8;
-            case HEAD:
-                return 4;
-        }
-        return 0;
+        return switch (slotType) {
+            case FEET -> 3;
+            case LEGS -> 6;
+            case CHEST -> 8;
+            case HEAD -> 4;
+            default -> 0;
+        };
     }
 
     @NotNull
@@ -97,6 +93,12 @@ public class OsmiumMaterialDefaults extends BaseMekanismMaterial {
     @Override
     public String getRegistryPrefix() {
         return "osmium";
+    }
+
+    @Nullable
+    @Override
+    public TagKey<Block> getTag() {
+        return ToolsTags.Blocks.NEEDS_OSMIUM_TOOL;
     }
 
     @NotNull

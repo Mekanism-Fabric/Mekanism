@@ -26,7 +26,7 @@ public class Mekanism implements ModInitializer {
         logger.log(level, message);
     }
 
-    public static ResourceLocation id(String path) {
+    public static ResourceLocation rl(String path) {
         return new ResourceLocation(Mekanism.MODID, path);
     }
 }

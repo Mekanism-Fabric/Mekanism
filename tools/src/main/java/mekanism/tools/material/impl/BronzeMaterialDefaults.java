@@ -1,12 +1,16 @@
 package mekanism.tools.material.impl;
 
 import mekanism.tags.MekanismTags;
+import mekanism.tools.ToolsTags;
 import mekanism.tools.material.BaseMekanismMaterial;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class BronzeMaterialDefaults extends BaseMekanismMaterial {
 
@@ -57,32 +61,24 @@ public class BronzeMaterialDefaults extends BaseMekanismMaterial {
 
     @Override
     public int getDurabilityForSlot(@NotNull EquipmentSlot slotType) {
-        switch (slotType) {
-            case FEET:
-                return 234;
-            case LEGS:
-                return 270;
-            case CHEST:
-                return 288;
-            case HEAD:
-                return 198;
-        }
-        return 0;
+        return switch (slotType) {
+            case FEET -> 234;
+            case LEGS -> 270;
+            case CHEST -> 288;
+            case HEAD -> 198;
+            default -> 0;
+        };
     }
 
     @Override
     public int getDefenseForSlot(@NotNull EquipmentSlot slotType) {
-        switch (slotType) {
-            case FEET:
-                return 2;
-            case LEGS:
-                return 6;
-            case CHEST:
-                return 7;
-            case HEAD:
-                return 3;
-        }
-        return 0;
+        return switch (slotType) {
+            case FEET -> 2;
+            case LEGS -> 6;
+            case CHEST -> 7;
+            case HEAD -> 3;
+            default -> 0;
+        };
     }
 
     @NotNull
@@ -95,6 +91,12 @@ public class BronzeMaterialDefaults extends BaseMekanismMaterial {
     @Override
     public String getRegistryPrefix() {
         return "bronze";
+    }
+
+    @Nullable
+    @Override
+    public TagKey<Block> getTag() {
+        return ToolsTags.Blocks.NEEDS_BRONZE_TOOL;
     }
 
     @NotNull

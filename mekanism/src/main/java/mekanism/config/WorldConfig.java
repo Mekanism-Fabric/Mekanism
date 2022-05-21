@@ -4,7 +4,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import mekanism.config.value.CachedBooleanValue;
 import mekanism.config.value.CachedIntValue;
-import mekanism.resource.OreType;
+import mekanism.resource.ore.OreType;
 import mekanism.util.EnumUtils;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig.Type;

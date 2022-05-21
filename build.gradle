@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT' apply false
+	id 'fabric-loom' version '0.10-SNAPSHOT' apply false
 	id 'maven-publish'
 	id "java-library"
 	id 'idea'
@@ -7,14 +7,14 @@ plugins {
 
 class Globals {
 	static def baseVersion = "1.0.0"
-	static def mcVersion = "1.18.1"
-	static def loaderVersion = "0.12.12"
+	static def mcVersion = "1.18.2"
+	static def loaderVersion = "0.14.6"
 	static def maven_group = "mekanism"
-	static def fabricVersion = "0.46.1+1.18"
-	static def modMenuVersion = "3.0.1"
-	static def wthitVersion = "4.4.1"
+	static def fabricVersion = "0.51.1+1.18.2"
+	static def modMenuVersion = "3.2.2"
+	static def wthitVersion = "4.10.3"
 	static def techRebornEnergyVersion = "2.1.0"
-	static def reiVersion = "7.1.390"
+	static def reiVersion = "8.1.457"
 }
 
 version = Globals.baseVersion
@@ -93,7 +93,7 @@ allprojects {
 		minecraft "com.mojang:minecraft:$Globals.mcVersion"
 		mappings loom.layered() {
 			officialMojangMappings()
-			parchment("org.parchmentmc.data:parchment-1.18.1:2022.03.06@zip")
+			parchment("org.parchmentmc.data:parchment-1.18.2:2022.05.02@zip")
 		}
 		modApi "net.fabricmc:fabric-loader:${Globals.loaderVersion}"
 		modImplementation "net.fabricmc.fabric-api:fabric-api:${Globals.fabricVersion}"
@@ -121,6 +121,8 @@ allprojects {
 		}
 
 		modImplementation "curse.maven:ForgeConfigAPIPort-547434:3600918"
+
+
 	}
 
 	configurations { dev }

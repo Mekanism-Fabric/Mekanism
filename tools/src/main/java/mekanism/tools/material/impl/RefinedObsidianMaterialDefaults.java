@@ -1,12 +1,16 @@
 package mekanism.tools.material.impl;
 
 import mekanism.tags.MekanismTags;
+import mekanism.tools.ToolsTags;
 import mekanism.tools.material.BaseMekanismMaterial;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class RefinedObsidianMaterialDefaults extends BaseMekanismMaterial {
 
@@ -62,32 +66,24 @@ public class RefinedObsidianMaterialDefaults extends BaseMekanismMaterial {
 
     @Override
     public int getDurabilityForSlot(@NotNull EquipmentSlot slotType) {
-        switch (slotType) {
-            case FEET:
-                return 975;
-            case LEGS:
-                return 1_125;
-            case CHEST:
-                return 1_200;
-            case HEAD:
-                return 825;
-        }
-        return 0;
+        return switch (slotType) {
+            case FEET -> 975;
+            case LEGS -> 1_125;
+            case CHEST -> 1_200;
+            case HEAD -> 825;
+            default -> 0;
+        };
     }
 
     @Override
     public int getDefenseForSlot(@NotNull EquipmentSlot slotType) {
-        switch (slotType) {
-            case FEET:
-                return 5;
-            case LEGS:
-                return 8;
-            case CHEST:
-                return 12;
-            case HEAD:
-                return 6;
-        }
-        return 0;
+        return switch (slotType) {
+            case FEET -> 5;
+            case LEGS -> 8;
+            case CHEST -> 12;
+            case HEAD -> 6;
+            default -> 0;
+        };
     }
 
     @NotNull
@@ -100,6 +96,12 @@ public class RefinedObsidianMaterialDefaults extends BaseMekanismMaterial {
     @Override
     public String getRegistryPrefix() {
         return "refined_obsidian";
+    }
+
+    @Nullable
+    @Override
+    public TagKey<Block> getTag() {
+        return ToolsTags.Blocks.NEEDS_REFINED_OBSIDIAN_TOOL;
     }
 
     @NotNull
