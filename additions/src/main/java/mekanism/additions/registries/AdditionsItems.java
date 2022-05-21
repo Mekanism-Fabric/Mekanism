@@ -1,26 +1,37 @@
 package mekanism.additions.registries;
 
 import mekanism.additions.MekanismAdditions;
-import mekanism.registration.ItemRegistry;
-import net.minecraft.core.Registry;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.item.SpawnEggItem;
+import mekanism.api.text.EnumColor;
+import mekanism.registration.impl.ItemDeferredRegister;
+import mekanism.registration.impl.ItemRegistryObject;
+import mekanism.util.EnumUtils;
+import net.minecraft.item.SpawnEggItem;
+
+import java.util.EnumMap;
 
 public final class AdditionsItems {
-    public static final ItemRegistry ITEMS = new ItemRegistry(MekanismAdditions.MODID);
 
-    public static final SpawnEggItem BABY_CREEPER_SPAWN_EGG = registerSpawnEgg(AdditionsEntityTypes.BABY_CREEPER, 0x31E02F, 0x1E1E1E);
-    public static final SpawnEggItem BABY_ENDERMAN_SPAWN_EGG = registerSpawnEgg(AdditionsEntityTypes.BABY_ENDERMAN, 0x242424, 0x1E1E1E);
-    public static final SpawnEggItem BABY_SKELETON_SPAWN_EGG = registerSpawnEgg(AdditionsEntityTypes.BABY_SKELETON, 0xFFFFFF, 0x800080);
-    public static final SpawnEggItem BABY_STRAY_SPAWN_EGG = registerSpawnEgg(AdditionsEntityTypes.BABY_STRAY, 0x7B9394, 0xF2FAFA);
-    public static final SpawnEggItem BABY_WITHER_SKELETON_SPAWN_EGG = registerSpawnEgg(AdditionsEntityTypes.BABY_WITHER_SKELETON, 0x303030, 0x525454);
+
+
+    public static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(MekanismAdditions.MODID);
+
+    public static final ItemRegistryObject<SpawnEggItem> BABY_CREEPER_SPAWN_EGG = ITEMS.registerSpawnEgg(AdditionsEntityTypes.BABY_CREEPER, 0x31E02F, 0x1E1E1E);
+    public static final ItemRegistryObject<SpawnEggItem> BABY_ENDERMAN_SPAWN_EGG = ITEMS.registerSpawnEgg(AdditionsEntityTypes.BABY_ENDERMAN, 0x242424, 0x1E1E1E);
+    public static final ItemRegistryObject<SpawnEggItem> BABY_SKELETON_SPAWN_EGG = ITEMS.registerSpawnEgg(AdditionsEntityTypes.BABY_SKELETON, 0xFFFFFF, 0x800080);
+    public static final ItemRegistryObject<SpawnEggItem> BABY_STRAY_SPAWN_EGG = ITEMS.registerSpawnEgg(AdditionsEntityTypes.BABY_STRAY, 0x7B9394, 0xF2FAFA);
+    public static final ItemRegistryObject<SpawnEggItem> BABY_WITHER_SKELETON_SPAWN_EGG = ITEMS.registerSpawnEgg(AdditionsEntityTypes.BABY_WITHER_SKELETON, 0x303030, 0x525454);
+//    public static final ItemRegistryObject<ItemWalkieTalkie> WALKIE_TALKIE = ITEMS.register("walkie_talkie", ItemWalkieTalkie::new);
+//
+//    public static final Map<EnumColor, ItemRegistryObject<ItemBalloon>> BALLOONS = new EnumMap<>(EnumColor.class);
+//
+//    static {
+//        for (EnumColor color : EnumUtils.COLORS) {
+//            BALLOONS.put(color, ITEMS.register(color.getRegistryPrefix() + "_balloon", () -> new ItemBalloon(color)));
+//        }
+//    }
 
     public static void init() {
 
     }
 
-    private static <ENTITY extends Mob> SpawnEggItem registerSpawnEgg(EntityType<ENTITY> entityTypeProvider, int primaryColor, int secondaryColor) {
-        return ITEMS.register(Registry.ENTITY_TYPE.getKey(entityTypeProvider).getPath() + "_spawn_egg", () -> new SpawnEggItem(entityTypeProvider, primaryColor, secondaryColor, ItemRegistry.getMekBaseProperties()));
-    }
 }

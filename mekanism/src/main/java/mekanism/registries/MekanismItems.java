@@ -7,9 +7,9 @@ import mekanism.api.text.EnumColor;
 import mekanism.api.tier.AlloyTier;
 import mekanism.api.tier.BaseTier;
 import mekanism.item.ItemAlloy;
-import mekanism.item.ItemModule;
 import mekanism.item.ItemRefinedGlowstoneIngot;
-import mekanism.registration.ItemRegistry;
+import mekanism.registration.impl.ItemDeferredRegister;
+import mekanism.registration.impl.ItemRegistryObject;
 import mekanism.resource.IResource;
 import mekanism.resource.MiscResource;
 import mekanism.resource.PrimaryResource;
@@ -23,8 +23,8 @@ public class MekanismItems {
     private MekanismItems() {
     }
 
-    public static final ItemRegistry ITEMS = new ItemRegistry(Mekanism.MODID);
-    public static final Table<ResourceType, PrimaryResource, Item> PROCESSED_RESOURCES = HashBasedTable.create();
+    public static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(Mekanism.MODID);
+    public static final Table<ResourceType, PrimaryResource, ItemRegistryObject<Item>> PROCESSED_RESOURCES = HashBasedTable.create();
 
 //    public static final ItemRegistryObject<ItemRobit> ROBIT = ITEMS.register("robit", ItemRobit::new);
 //    public static final ItemRegistryObject<ItemEnergized> ENERGY_TABLET = ITEMS.register("energy_tablet", () -> new ItemEnergized(MekanismConfig.gear.tabletChargeRate, MekanismConfig.gear.tabletMaxEnergy, BasicEnergyContainer.alwaysTrue, BasicEnergyContainer.alwaysTrue, ItemDeferredRegister.getMekBaseProperties().rarity(Rarity.UNCOMMON)));
@@ -68,33 +68,33 @@ public class MekanismItems {
 //    public static final ItemRegistryObject<ItemMekaSuitArmor> MEKASUIT_PANTS = ITEMS.registerUnburnable("mekasuit_pants", props -> new ItemMekaSuitArmor(EquipmentSlotType.LEGS, props));
 //    public static final ItemRegistryObject<ItemMekaSuitArmor> MEKASUIT_BOOTS = ITEMS.registerUnburnable("mekasuit_boots", props -> new ItemMekaSuitArmor(EquipmentSlotType.FEET, props));
 //
-    public static final Item MODULE_BASE = ITEMS.register("module_base");
+    public static final ItemRegistryObject<Item> MODULE_BASE = ITEMS.register("module_base");
 
-//    public static final ItemModule MODULE_ENERGY = ITEMS.registerModule(MekanismModules.ENERGY_UNIT);
-//    public static final ItemModule MODULE_LASER_DISSIPATION = ITEMS.registerModule(MekanismModules.LASER_DISSIPATION_UNIT);
-//    public static final ItemModule MODULE_RADIATION_SHIELDING = ITEMS.registerModule(MekanismModules.RADIATION_SHIELDING_UNIT);
-//    public static final ItemModule MODULE_EXCAVATION_ESCALATION = ITEMS.registerModule(MekanismModules.EXCAVATION_ESCALATION_UNIT);
-//    public static final ItemModule MODULE_ATTACK_AMPLIFICATION = ITEMS.registerModule(MekanismModules.ATTACK_AMPLIFICATION_UNIT);
-//    public static final ItemModule MODULE_FARMING = ITEMS.registerModule(MekanismModules.FARMING_UNIT);
-//    public static final ItemModule MODULE_SHEARING = ITEMS.registerModule(MekanismModules.SHEARING_UNIT);
-//    public static final ItemModule MODULE_SILK_TOUCH = ITEMS.registerModule(MekanismModules.SILK_TOUCH_UNIT);
-//    public static final ItemModule MODULE_VEIN_MINING = ITEMS.registerModule(MekanismModules.VEIN_MINING_UNIT);
-//    public static final ItemModule MODULE_TELEPORTATION = ITEMS.registerModule(MekanismModules.TELEPORTATION_UNIT);
-//    public static final ItemModule MODULE_ELECTROLYTIC_BREATHING = ITEMS.registerModule(MekanismModules.ELECTROLYTIC_BREATHING_UNIT);
-//    public static final ItemModule MODULE_INHALATION_PURIFICATION = ITEMS.registerModule(MekanismModules.INHALATION_PURIFICATION_UNIT);
-//    public static final ItemModule MODULE_VISION_ENHANCEMENT = ITEMS.registerModule(MekanismModules.VISION_ENHANCEMENT_UNIT);
-//    public static final ItemModule MODULE_SOLAR_RECHARGING = ITEMS.registerModule(MekanismModules.SOLAR_RECHARGING_UNIT);
-//    public static final ItemModule MODULE_NUTRITIONAL_INJECTION = ITEMS.registerModule(MekanismModules.NUTRITIONAL_INJECTION_UNIT);
-//    public static final ItemModule MODULE_DOSIMETER = ITEMS.registerModule(MekanismModules.DOSIMETER_UNIT);
-//    public static final ItemModule MODULE_GEIGER = ITEMS.registerModule(MekanismModules.GEIGER_UNIT);
-//    public static final ItemModule MODULE_JETPACK = ITEMS.registerModule(MekanismModules.JETPACK_UNIT);
-//    public static final ItemModule MODULE_CHARGE_DISTRIBUTION = ITEMS.registerModule(MekanismModules.CHARGE_DISTRIBUTION_UNIT);
-//    public static final ItemModule MODULE_GRAVITATIONAL_MODULATING = ITEMS.registerModule(MekanismModules.GRAVITATIONAL_MODULATING_UNIT);
-//    public static final ItemModule MODULE_ELYTRA = ITEMS.registerModule(MekanismModules.ELYTRA_UNIT);
-//    public static final ItemModule MODULE_LOCOMOTIVE_BOOSTING = ITEMS.registerModule(MekanismModules.LOCOMOTIVE_BOOSTING_UNIT);
-//    public static final ItemModule MODULE_HYDRAULIC_PROPULSION = ITEMS.registerModule(MekanismModules.HYDRAULIC_PROPULSION_UNIT);
-//    public static final ItemModule MODULE_MAGNETIC_ATTRACTION = ITEMS.registerModule(MekanismModules.MAGNETIC_ATTRACTION_UNIT);
-//    public static final ItemModule MODULE_FROST_WALKER = ITEMS.registerModule(MekanismModules.FROST_WALKER_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_ENERGY = ITEMS.registerModule(MekanismModules.ENERGY_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_LASER_DISSIPATION = ITEMS.registerModule(MekanismModules.LASER_DISSIPATION_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_RADIATION_SHIELDING = ITEMS.registerModule(MekanismModules.RADIATION_SHIELDING_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_EXCAVATION_ESCALATION = ITEMS.registerModule(MekanismModules.EXCAVATION_ESCALATION_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_ATTACK_AMPLIFICATION = ITEMS.registerModule(MekanismModules.ATTACK_AMPLIFICATION_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_FARMING = ITEMS.registerModule(MekanismModules.FARMING_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_SHEARING = ITEMS.registerModule(MekanismModules.SHEARING_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_SILK_TOUCH = ITEMS.registerModule(MekanismModules.SILK_TOUCH_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_VEIN_MINING = ITEMS.registerModule(MekanismModules.VEIN_MINING_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_TELEPORTATION = ITEMS.registerModule(MekanismModules.TELEPORTATION_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_ELECTROLYTIC_BREATHING = ITEMS.registerModule(MekanismModules.ELECTROLYTIC_BREATHING_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_INHALATION_PURIFICATION = ITEMS.registerModule(MekanismModules.INHALATION_PURIFICATION_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_VISION_ENHANCEMENT = ITEMS.registerModule(MekanismModules.VISION_ENHANCEMENT_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_SOLAR_RECHARGING = ITEMS.registerModule(MekanismModules.SOLAR_RECHARGING_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_NUTRITIONAL_INJECTION = ITEMS.registerModule(MekanismModules.NUTRITIONAL_INJECTION_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_DOSIMETER = ITEMS.registerModule(MekanismModules.DOSIMETER_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_GEIGER = ITEMS.registerModule(MekanismModules.GEIGER_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_JETPACK = ITEMS.registerModule(MekanismModules.JETPACK_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_CHARGE_DISTRIBUTION = ITEMS.registerModule(MekanismModules.CHARGE_DISTRIBUTION_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_GRAVITATIONAL_MODULATING = ITEMS.registerModule(MekanismModules.GRAVITATIONAL_MODULATING_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_ELYTRA = ITEMS.registerModule(MekanismModules.ELYTRA_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_LOCOMOTIVE_BOOSTING = ITEMS.registerModule(MekanismModules.LOCOMOTIVE_BOOSTING_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_HYDRAULIC_PROPULSION = ITEMS.registerModule(MekanismModules.HYDRAULIC_PROPULSION_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_MAGNETIC_ATTRACTION = ITEMS.registerModule(MekanismModules.MAGNETIC_ATTRACTION_UNIT);
+//    public static final ItemRegistryObject<ItemModule> MODULE_FROST_WALKER = ITEMS.registerModule(MekanismModules.FROST_WALKER_UNIT);
 
 //    public static final ItemRegistryObject<ItemUpgrade> SPEED_UPGRADE = registerUpgrade(Upgrade.SPEED);
 //    public static final ItemRegistryObject<ItemUpgrade> ENERGY_UPGRADE = registerUpgrade(Upgrade.ENERGY);
@@ -109,69 +109,69 @@ public class MekanismItems {
 //    public static final ItemRegistryObject<ItemTierInstaller> ELITE_TIER_INSTALLER = registerInstaller(BaseTier.ADVANCED, BaseTier.ELITE);
 //    public static final ItemRegistryObject<ItemTierInstaller> ULTIMATE_TIER_INSTALLER = registerInstaller(BaseTier.ELITE, BaseTier.ULTIMATE);
 //
-    public static final Item BASIC_CONTROL_CIRCUIT = registerCircuit(BaseTier.BASIC);
-    public static final Item ADVANCED_CONTROL_CIRCUIT = registerCircuit(BaseTier.ADVANCED);
-    public static final Item ELITE_CONTROL_CIRCUIT = registerCircuit(BaseTier.ELITE);
-    public static final Item ULTIMATE_CONTROL_CIRCUIT = registerCircuit(BaseTier.ULTIMATE);
+    public static final ItemRegistryObject<Item> BASIC_CONTROL_CIRCUIT = registerCircuit(BaseTier.BASIC);
+    public static final ItemRegistryObject<Item> ADVANCED_CONTROL_CIRCUIT = registerCircuit(BaseTier.ADVANCED);
+    public static final ItemRegistryObject<Item> ELITE_CONTROL_CIRCUIT = registerCircuit(BaseTier.ELITE);
+    public static final ItemRegistryObject<Item> ULTIMATE_CONTROL_CIRCUIT = registerCircuit(BaseTier.ULTIMATE);
 
     //Alloy names are alloy_type for purposes of tab complete
-    public static final ItemAlloy INFUSED_ALLOY = registerAlloy(AlloyTier.INFUSED, Rarity.UNCOMMON);
-    public static final ItemAlloy REINFORCED_ALLOY = registerAlloy(AlloyTier.REINFORCED, Rarity.RARE);
-    public static final ItemAlloy ATOMIC_ALLOY = registerAlloy(AlloyTier.ATOMIC, Rarity.EPIC);
+    public static final ItemRegistryObject<ItemAlloy> INFUSED_ALLOY = registerAlloy(AlloyTier.INFUSED, Rarity.UNCOMMON);
+    public static final ItemRegistryObject<ItemAlloy> REINFORCED_ALLOY = registerAlloy(AlloyTier.REINFORCED, Rarity.RARE);
+    public static final ItemRegistryObject<ItemAlloy> ATOMIC_ALLOY = registerAlloy(AlloyTier.ATOMIC, Rarity.EPIC);
 
-    public static final Item ENRICHED_CARBON = registerResource(ResourceType.ENRICHED, MiscResource.CARBON);
-    public static final Item ENRICHED_REDSTONE = registerResource(ResourceType.ENRICHED, MiscResource.REDSTONE);
-    public static final Item ENRICHED_DIAMOND = registerResource(ResourceType.ENRICHED, MiscResource.DIAMOND);
-    public static final Item ENRICHED_OBSIDIAN = registerResource(ResourceType.ENRICHED, MiscResource.REFINED_OBSIDIAN);
-    public static final Item ENRICHED_GOLD = registerResource(ResourceType.ENRICHED, PrimaryResource.GOLD);
-    public static final Item ENRICHED_TIN = registerResource(ResourceType.ENRICHED, PrimaryResource.TIN);
+    public static final ItemRegistryObject<Item> ENRICHED_CARBON = registerResource(ResourceType.ENRICHED, MiscResource.CARBON);
+    public static final ItemRegistryObject<Item> ENRICHED_REDSTONE = registerResource(ResourceType.ENRICHED, MiscResource.REDSTONE);
+    public static final ItemRegistryObject<Item> ENRICHED_DIAMOND = registerResource(ResourceType.ENRICHED, MiscResource.DIAMOND);
+    public static final ItemRegistryObject<Item> ENRICHED_OBSIDIAN = registerResource(ResourceType.ENRICHED, MiscResource.REFINED_OBSIDIAN);
+    public static final ItemRegistryObject<Item> ENRICHED_GOLD = registerResource(ResourceType.ENRICHED, PrimaryResource.GOLD);
+    public static final ItemRegistryObject<Item> ENRICHED_TIN = registerResource(ResourceType.ENRICHED, PrimaryResource.TIN);
 
-    public static final Item HDPE_PELLET = ITEMS.register("hdpe_pellet", Rarity.UNCOMMON);
-    public static final Item HDPE_ROD = ITEMS.register("hdpe_rod", Rarity.UNCOMMON);
-    public static final Item HDPE_SHEET = ITEMS.register("hdpe_sheet", Rarity.UNCOMMON);
-    public static final Item HDPE_STICK = ITEMS.register("hdpe_stick", Rarity.UNCOMMON);
+    public static final ItemRegistryObject<Item> HDPE_PELLET = ITEMS.register("hdpe_pellet", Rarity.UNCOMMON);
+    public static final ItemRegistryObject<Item> HDPE_ROD = ITEMS.register("hdpe_rod", Rarity.UNCOMMON);
+    public static final ItemRegistryObject<Item> HDPE_SHEET = ITEMS.register("hdpe_sheet", Rarity.UNCOMMON);
+    public static final ItemRegistryObject<Item> HDPE_STICK = ITEMS.register("hdpe_stick", Rarity.UNCOMMON);
 
-    public static final Item ELECTROLYTIC_CORE = ITEMS.register("electrolytic_core", Rarity.UNCOMMON);
-    public static final Item TELEPORTATION_CORE = ITEMS.register("teleportation_core", Rarity.RARE);
-    public static final Item ANTIMATTER_PELLET = ITEMS.register("pellet_antimatter", EnumColor.PURPLE);
-    public static final Item PLUTONIUM_PELLET = ITEMS.register("pellet_plutonium", EnumColor.GRAY);
-    public static final Item POLONIUM_PELLET = ITEMS.register("pellet_polonium", EnumColor.INDIGO);
-    public static final Item REPROCESSED_FISSILE_FRAGMENT = ITEMS.register("reprocessed_fissile_fragment", Rarity.RARE);
+    public static final ItemRegistryObject<Item> ELECTROLYTIC_CORE = ITEMS.register("electrolytic_core", Rarity.UNCOMMON);
+    public static final ItemRegistryObject<Item> TELEPORTATION_CORE = ITEMS.register("teleportation_core", Rarity.RARE);
+    public static final ItemRegistryObject<Item> ANTIMATTER_PELLET = ITEMS.register("pellet_antimatter", EnumColor.PURPLE);
+    public static final ItemRegistryObject<Item> PLUTONIUM_PELLET = ITEMS.register("pellet_plutonium", EnumColor.GRAY);
+    public static final ItemRegistryObject<Item> POLONIUM_PELLET = ITEMS.register("pellet_polonium", EnumColor.INDIGO);
+    public static final ItemRegistryObject<Item> REPROCESSED_FISSILE_FRAGMENT = ITEMS.register("reprocessed_fissile_fragment", Rarity.RARE);
 
-    public static final Item ENRICHED_IRON = ITEMS.register("enriched_iron");
-    public static final Item SAWDUST = ITEMS.register("sawdust");
-    public static final Item SALT = ITEMS.register("salt");
-    public static final Item SUBSTRATE = ITEMS.register("substrate");
-    public static final Item BIO_FUEL = ITEMS.register("bio_fuel");
-    public static final Item DYE_BASE = ITEMS.register("dye_base");
-    public static final Item FLUORITE_GEM = ITEMS.register("fluorite_gem");
-    public static final Item YELLOW_CAKE_URANIUM = ITEMS.register("yellow_cake_uranium", Rarity.UNCOMMON);
-    public static final Item DIRTY_NETHERITE_SCRAP = ITEMS.registerUnburnable("dirty_netherite_scrap");
+    public static final ItemRegistryObject<Item> ENRICHED_IRON = ITEMS.register("enriched_iron");
+    public static final ItemRegistryObject<Item> SAWDUST = ITEMS.register("sawdust");
+    public static final ItemRegistryObject<Item> SALT = ITEMS.register("salt");
+    public static final ItemRegistryObject<Item> SUBSTRATE = ITEMS.register("substrate");
+    public static final ItemRegistryObject<Item> BIO_FUEL = ITEMS.register("bio_fuel");
+    public static final ItemRegistryObject<Item> DYE_BASE = ITEMS.register("dye_base");
+    public static final ItemRegistryObject<Item> FLUORITE_GEM = ITEMS.register("fluorite_gem");
+    public static final ItemRegistryObject<Item> YELLOW_CAKE_URANIUM = ITEMS.register("yellow_cake_uranium", Rarity.UNCOMMON);
+    public static final ItemRegistryObject<Item> DIRTY_NETHERITE_SCRAP = ITEMS.registerUnburnable("dirty_netherite_scrap");
 
-    public static final Item BRONZE_DUST = registerResource(ResourceType.DUST, MiscResource.BRONZE);
-    public static final Item LAPIS_LAZULI_DUST = registerResource(ResourceType.DUST, MiscResource.LAPIS_LAZULI);
-    public static final Item COAL_DUST = registerResource(ResourceType.DUST, MiscResource.COAL);
-    public static final Item CHARCOAL_DUST = registerResource(ResourceType.DUST, MiscResource.CHARCOAL);
-    public static final Item QUARTZ_DUST = registerResource(ResourceType.DUST, MiscResource.QUARTZ);
-    public static final Item EMERALD_DUST = registerResource(ResourceType.DUST, MiscResource.EMERALD);
-    public static final Item DIAMOND_DUST = registerResource(ResourceType.DUST, MiscResource.DIAMOND);
-    public static final Item NETHERITE_DUST = registerResource(ResourceType.DUST, MiscResource.NETHERITE);
-    public static final Item STEEL_DUST = registerResource(ResourceType.DUST, MiscResource.STEEL);
-    public static final Item SULFUR_DUST = registerResource(ResourceType.DUST, MiscResource.SULFUR);
-    public static final Item LITHIUM_DUST = registerResource(ResourceType.DUST, MiscResource.LITHIUM);
-    public static final Item REFINED_OBSIDIAN_DUST = registerResource(ResourceType.DUST, MiscResource.REFINED_OBSIDIAN);
-    public static final Item OBSIDIAN_DUST = registerResource(ResourceType.DUST, MiscResource.OBSIDIAN);
-    public static final Item FLUORITE_DUST = registerResource(ResourceType.DUST, MiscResource.FLUORITE);
+    public static final ItemRegistryObject<Item> BRONZE_DUST = registerResource(ResourceType.DUST, MiscResource.BRONZE);
+    public static final ItemRegistryObject<Item> LAPIS_LAZULI_DUST = registerResource(ResourceType.DUST, MiscResource.LAPIS_LAZULI);
+    public static final ItemRegistryObject<Item> COAL_DUST = registerResource(ResourceType.DUST, MiscResource.COAL);
+    public static final ItemRegistryObject<Item> CHARCOAL_DUST = registerResource(ResourceType.DUST, MiscResource.CHARCOAL);
+    public static final ItemRegistryObject<Item> QUARTZ_DUST = registerResource(ResourceType.DUST, MiscResource.QUARTZ);
+    public static final ItemRegistryObject<Item> EMERALD_DUST = registerResource(ResourceType.DUST, MiscResource.EMERALD);
+    public static final ItemRegistryObject<Item> DIAMOND_DUST = registerResource(ResourceType.DUST, MiscResource.DIAMOND);
+    public static final ItemRegistryObject<Item> NETHERITE_DUST = registerResource(ResourceType.DUST, MiscResource.NETHERITE);
+    public static final ItemRegistryObject<Item> STEEL_DUST = registerResource(ResourceType.DUST, MiscResource.STEEL);
+    public static final ItemRegistryObject<Item> SULFUR_DUST = registerResource(ResourceType.DUST, MiscResource.SULFUR);
+    public static final ItemRegistryObject<Item> LITHIUM_DUST = registerResource(ResourceType.DUST, MiscResource.LITHIUM);
+    public static final ItemRegistryObject<Item> REFINED_OBSIDIAN_DUST = registerResource(ResourceType.DUST, MiscResource.REFINED_OBSIDIAN);
+    public static final ItemRegistryObject<Item> OBSIDIAN_DUST = registerResource(ResourceType.DUST, MiscResource.OBSIDIAN);
+    public static final ItemRegistryObject<Item> FLUORITE_DUST = registerResource(ResourceType.DUST, MiscResource.FLUORITE);
 
-    public static final Item BRONZE_INGOT = registerResource(ResourceType.INGOT, MiscResource.BRONZE);
-    public static final Item REFINED_OBSIDIAN_INGOT = registerUnburnableResource(ResourceType.INGOT, MiscResource.REFINED_OBSIDIAN);
-    public static final Item REFINED_GLOWSTONE_INGOT = ITEMS.register(ResourceType.INGOT.getRegistryPrefix() + "_" + MiscResource.REFINED_GLOWSTONE.getRegistrySuffix(), ItemRefinedGlowstoneIngot::new);
-    public static final Item STEEL_INGOT = registerResource(ResourceType.INGOT, MiscResource.STEEL);
+    public static final ItemRegistryObject<Item> BRONZE_INGOT = registerResource(ResourceType.INGOT, MiscResource.BRONZE);
+    public static final ItemRegistryObject<Item> REFINED_OBSIDIAN_INGOT = registerUnburnableResource(ResourceType.INGOT, MiscResource.REFINED_OBSIDIAN);
+    public static final ItemRegistryObject<Item> REFINED_GLOWSTONE_INGOT = ITEMS.register(ResourceType.INGOT.getRegistryPrefix() + "_" + MiscResource.REFINED_GLOWSTONE.getRegistrySuffix(), ItemRefinedGlowstoneIngot::new);
+    public static final ItemRegistryObject<Item> STEEL_INGOT = registerResource(ResourceType.INGOT, MiscResource.STEEL);
 
-    public static final Item REFINED_OBSIDIAN_NUGGET = registerUnburnableResource(ResourceType.NUGGET, MiscResource.REFINED_OBSIDIAN);
-    public static final Item BRONZE_NUGGET = registerResource(ResourceType.NUGGET, MiscResource.BRONZE);
-    public static final Item REFINED_GLOWSTONE_NUGGET = registerResource(ResourceType.NUGGET, MiscResource.REFINED_GLOWSTONE);
-    public static final Item STEEL_NUGGET = registerResource(ResourceType.NUGGET, MiscResource.STEEL);
+    public static final ItemRegistryObject<Item> REFINED_OBSIDIAN_NUGGET = registerUnburnableResource(ResourceType.NUGGET, MiscResource.REFINED_OBSIDIAN);
+    public static final ItemRegistryObject<Item> BRONZE_NUGGET = registerResource(ResourceType.NUGGET, MiscResource.BRONZE);
+    public static final ItemRegistryObject<Item> REFINED_GLOWSTONE_NUGGET = registerResource(ResourceType.NUGGET, MiscResource.REFINED_GLOWSTONE);
+    public static final ItemRegistryObject<Item> STEEL_NUGGET = registerResource(ResourceType.NUGGET, MiscResource.STEEL);
 
     public static void init() {
 
@@ -187,33 +187,33 @@ public class MekanismItems {
         }
     }
 
-    private static Item registerResource(ResourceType type, IResource resource) {
+    private static ItemRegistryObject<Item> registerResource(ResourceType type, IResource resource) {
         return ITEMS.register(type.getRegistryPrefix() + "_" + resource.getRegistrySuffix());
     }
 
-    private static Item registerUnburnableResource(ResourceType type, IResource resource) {
+    private static ItemRegistryObject<Item> registerUnburnableResource(ResourceType type, IResource resource) {
         return ITEMS.registerUnburnable(type.getRegistryPrefix() + "_" + resource.getRegistrySuffix());
     }
 
-    private static Item registerCircuit(BaseTier tier) {
+    private static ItemRegistryObject<Item> registerCircuit(BaseTier tier) {
         //Ensure the name is lower case as with concatenating with values from enums it may not be
         return ITEMS.register(tier.getLowerName() + "_control_circuit", tier.getTextColor());
     }
 
-//    private static ItemTierInstaller registerInstaller(@Nullable BaseTier fromTier, @NotNull BaseTier toTier) {
+//    private static ItemRegistryObject<ItemTierInstaller> registerInstaller(@Nullable BaseTier fromTier, @NotNull BaseTier toTier) {
 //        //Ensure the name is lower case as with concatenating with values from enums it may not be
 //        return ITEMS.register(toTier.getLowerName() + "_tier_installer", properties -> new ItemTierInstaller(fromTier, toTier, properties));
 //    }
 
-    private static ItemAlloy registerAlloy(AlloyTier tier, Rarity rarity) {
+    private static ItemRegistryObject<ItemAlloy> registerAlloy(AlloyTier tier, Rarity rarity) {
         return ITEMS.register("alloy_" + tier.getName(), properties -> new ItemAlloy(tier, properties.rarity(rarity)));
     }
 
-//    private static ItemUpgrade registerUpgrade(Upgrade type) {
+//    private static ItemRegistryObject<ItemUpgrade> registerUpgrade(Upgrade type) {
 //        return ITEMS.register("upgrade_" + type.getRawName(), properties -> new ItemUpgrade(type, properties));
 //    }
 //
-//    private static ItemQIODrive registerQIODrive(QIODriveTier tier) {
+//    private static ItemRegistryObject<ItemQIODrive> registerQIODrive(QIODriveTier tier) {
 //        return ITEMS.register("qio_drive_" + tier.name().toLowerCase(Locale.ROOT), properties -> new ItemQIODrive(tier, properties));
 //    }
 }

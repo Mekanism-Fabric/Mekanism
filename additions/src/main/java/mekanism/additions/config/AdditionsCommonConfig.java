@@ -1,6 +1,7 @@
 package mekanism.additions.config;
 
 import mekanism.additions.registries.AdditionsEntityTypes;
+import mekanism.api.providers.IEntityTypeProvider;
 import mekanism.config.BaseMekanismConfig;
 import mekanism.config.IMekanismConfig;
 import mekanism.config.value.CachedBooleanValue;
@@ -25,11 +26,11 @@ public class AdditionsCommonConfig extends BaseMekanismConfig {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
         builder.comment("Mekanism Additions Common Config. This config is not sync'd between server and client.").push("additions-common");
         builder.comment("Config options regarding spawning of entities.").push("spawning");
-        babyCreeper = new SpawnConfig(this, builder, "baby creepers", AdditionsEntityTypes.BABY_CREEPER, EntityType.CREEPER);
-        babyEnderman = new SpawnConfig(this, builder, "baby endermen", AdditionsEntityTypes.BABY_ENDERMAN, EntityType.ENDERMAN);
-        babySkeleton = new SpawnConfig(this, builder, "baby skeletons", AdditionsEntityTypes.BABY_SKELETON, EntityType.SKELETON);
-        babyStray = new SpawnConfig(this, builder, "baby strays", AdditionsEntityTypes.BABY_STRAY, EntityType.STRAY);
-        babyWitherSkeleton = new SpawnConfig(this, builder, "baby wither skeletons", AdditionsEntityTypes.BABY_WITHER_SKELETON, EntityType.WITHER_SKELETON);
+        babyCreeper = new SpawnConfig(this, builder, "baby creepers", AdditionsEntityTypes.BABY_CREEPER, () -> EntityType.CREEPER);
+        babyEnderman = new SpawnConfig(this, builder, "baby endermen", AdditionsEntityTypes.BABY_ENDERMAN, () -> EntityType.ENDERMAN);
+        babySkeleton = new SpawnConfig(this, builder, "baby skeletons", AdditionsEntityTypes.BABY_SKELETON, () -> EntityType.SKELETON);
+        babyStray = new SpawnConfig(this, builder, "baby strays", AdditionsEntityTypes.BABY_STRAY, () -> EntityType.STRAY);
+        babyWitherSkeleton = new SpawnConfig(this, builder, "baby wither skeletons", AdditionsEntityTypes.BABY_WITHER_SKELETON, () -> EntityType.WITHER_SKELETON);
         builder.pop(2);
         configSpec = builder.build();
     }
@@ -59,11 +60,11 @@ public class AdditionsCommonConfig extends BaseMekanismConfig {
         public final CachedDoubleValue maxSpawnCostPercentage;
         public final CachedResourceLocationListValue biomeBlackList;
         public final CachedResourceLocationListValue structureBlackList;
-        public final EntityType entityTypeProvider;
-        public final EntityType parentTypeProvider;
+        public final IEntityTypeProvider entityTypeProvider;
+        public final IEntityTypeProvider parentTypeProvider;
 
-        private SpawnConfig(IMekanismConfig config, ForgeConfigSpec.Builder builder, String name, EntityType entityTypeProvider,
-                            EntityType parentTypeProvider) {
+        private SpawnConfig(IMekanismConfig config, ForgeConfigSpec.Builder builder, String name, IEntityTypeProvider entityTypeProvider,
+                            IEntityTypeProvider parentTypeProvider) {
             this.entityTypeProvider = entityTypeProvider;
             this.parentTypeProvider = parentTypeProvider;
             builder.comment("Config options regarding " + name + ".").push(name.replace(" ", "-"));
