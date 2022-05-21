@@ -2,13 +2,13 @@ package mekanism.registration.impl;
 
 import mekanism.api.providers.IItemProvider;
 import mekanism.registration.WrappedRegistryObject;
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemRegistryObject<ITEM extends Item> extends WrappedRegistryObject<ITEM> implements IItemProvider {
 
-    public ItemRegistryObject(Identifier identifier, ITEM registryObject) {
+    public ItemRegistryObject(ResourceLocation identifier, ITEM registryObject) {
         super(identifier, registryObject);
     }
 

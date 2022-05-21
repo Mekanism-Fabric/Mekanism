@@ -4,8 +4,7 @@ import mekanism.additions.MekanismAdditions;
 import mekanism.api.text.EnumColor;
 import mekanism.registration.impl.ItemDeferredRegister;
 import mekanism.registration.impl.ItemRegistryObject;
-import mekanism.util.EnumUtils;
-import net.minecraft.item.SpawnEggItem;
+import net.minecraft.world.item.SpawnEggItem;
 
 import java.util.EnumMap;
 

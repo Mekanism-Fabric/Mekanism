@@ -5,13 +5,13 @@ import mekanism.api.providers.IItemProvider;
 import mekanism.api.text.EnumColor;
 import mekanism.api.text.TextComponentUtil;
 import mekanism.registration.WrappedDeferredRegister;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.text.Text;
-import net.minecraft.util.Rarity;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.SpawnEggItem;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -27,8 +27,8 @@ public class ItemDeferredRegister extends WrappedDeferredRegister<Item> {
         super(modid, Registry.ITEM);
     }
 
-    public static Item.Settings getMekBaseProperties() {
-        return new Item.Settings().group(Mekanism.tabMekanism);
+    public static Item.Properties getMekBaseProperties() {
+        return new Item.Properties().tab(Mekanism.tabMekanism);
     }
 
     public ItemRegistryObject<Item> register(String name) {
@@ -47,7 +47,7 @@ public class ItemDeferredRegister extends WrappedDeferredRegister<Item> {
         return register(name, properties -> new Item(properties) {
             @NotNull
             @Override
-            public Text getName(@NotNull ItemStack stack) {
+            public Component getName(@NotNull ItemStack stack) {
                 return TextComponentUtil.build(color, super.getName(stack));
             }
         });
@@ -59,12 +59,12 @@ public class ItemDeferredRegister extends WrappedDeferredRegister<Item> {
 //                () -> ModuleHelper.INSTANCE.createModuleItem(moduleDataSupplier, getMekBaseProperties()));
 //    }
 
-    public <ITEM extends Item> ItemRegistryObject<ITEM> register(String name, Function<Item.Settings, ITEM> sup) {
+    public <ITEM extends Item> ItemRegistryObject<ITEM> register(String name, Function<Item.Properties, ITEM> sup) {
         return register(name, () -> sup.apply(getMekBaseProperties()));
     }
 
-    public <ITEM extends Item> ItemRegistryObject<ITEM> registerUnburnable(String name, Function<Item.Settings, ITEM> sup) {
-        return register(name, () -> sup.apply(getMekBaseProperties().fireproof()));
+    public <ITEM extends Item> ItemRegistryObject<ITEM> registerUnburnable(String name, Function<Item.Properties, ITEM> sup) {
+        return register(name, () -> sup.apply(getMekBaseProperties().fireResistant()));
     }
 
     public <ITEM extends Item> ItemRegistryObject<ITEM> register(String name, Supplier<? extends ITEM> sup) {
@@ -73,8 +73,8 @@ public class ItemDeferredRegister extends WrappedDeferredRegister<Item> {
         return registeredItem;
     }
 
-    public <ENTITY extends MobEntity> ItemRegistryObject<SpawnEggItem> registerSpawnEgg(EntityTypeRegistryObject<ENTITY> entityTypeProvider,
-                                                                                        int primaryColor, int secondaryColor) {
+    public <ENTITY extends Mob> ItemRegistryObject<SpawnEggItem> registerSpawnEgg(EntityTypeRegistryObject<ENTITY> entityTypeProvider,
+                                                                                  int primaryColor, int secondaryColor) {
         return register(entityTypeProvider.getInternalRegistryName() + "_spawn_egg", props -> new SpawnEggItem(entityTypeProvider.getEntityType(), primaryColor,
                 secondaryColor, props));
     }

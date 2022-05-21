@@ -1,8 +1,8 @@
 package mekanism.registration;
 
-import net.minecraft.data.client.model.BlockStateVariantMap;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.data.models.blockstates.PropertyDispatch;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -22,7 +22,7 @@ public class DoubleDeferredRegister<PRIMARY, SECONDARY> {
         return objectWrapper.apply(primaryRegister.register(name, primarySupplier), secondaryRegister.register(name, secondarySupplier));
     }
 
-    public <P extends PRIMARY, S extends SECONDARY, W extends DoubleWrappedRegistryObject<P, S>> W register(String name, Supplier<? extends P> primarySupplier, Function<P, S> secondarySupplier, BlockStateVariantMap.TriFunction<Identifier, P, S, W> objectWrapper) {
+    public <P extends PRIMARY, S extends SECONDARY, W extends DoubleWrappedRegistryObject<P, S>> W register(String name, Supplier<? extends P> primarySupplier, Function<P, S> secondarySupplier, PropertyDispatch.TriFunction<ResourceLocation, P, S, W> objectWrapper) {
         P primaryObject = primaryRegister.register(name, primarySupplier);
         return objectWrapper.apply(primaryRegister.id(name), primaryObject, secondaryRegister.register(name, () -> secondarySupplier.apply(primaryObject)));
     }

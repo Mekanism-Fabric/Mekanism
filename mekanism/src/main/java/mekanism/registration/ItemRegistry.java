@@ -3,7 +3,6 @@ package mekanism.registration;
 import mekanism.Mekanism;
 import mekanism.api.text.EnumColor;
 import mekanism.api.text.TextComponentUtil;
-import mekanism.item.ItemModule;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;

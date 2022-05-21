@@ -1,8 +1,8 @@
 package mekanism.registration;
 
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Supplier;
 
@@ -25,7 +25,7 @@ public class DeferredRegister<T> {
     }
 
     private DeferredRegister(Class<T> base, String modid) {
-        this(FabricRegistryBuilder.createSimple(base, new Identifier(modid, base.getName())).buildAndRegister(), base, modid);
+        this(FabricRegistryBuilder.createSimple(base, new ResourceLocation(modid, base.getName())).buildAndRegister(), base, modid);
     }
 
     private DeferredRegister(Registry<T> reg, Class<T> superType, String modid) {
@@ -34,15 +34,15 @@ public class DeferredRegister<T> {
         this.type = reg;
     }
 
-    public Identifier id(String path) {
-        return new Identifier(modid, path);
+    public ResourceLocation id(String path) {
+        return new ResourceLocation(modid, path);
     }
 
     public <I extends T> I register(final String name, final Supplier<? extends I> sup) {
         return register(id(name), sup);
     }
 
-    public <I extends T> I register(final Identifier identifier, final Supplier<? extends I> sup) {
+    public <I extends T> I register(final ResourceLocation identifier, final Supplier<? extends I> sup) {
         return Registry.register(type, identifier, sup.get());
     }
 }

@@ -1,7 +1,7 @@
 package mekanism.registration;
 
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
@@ -18,15 +18,15 @@ public class WrappedDeferredRegister<T> {
         internal = DeferredRegister.create(base, modid);
     }
 
-    protected <I extends T, W extends WrappedRegistryObject<I>> W register(String name, Supplier<? extends I> sup, BiFunction<Identifier, I, W> objectWrapper) {
+    protected <I extends T, W extends WrappedRegistryObject<I>> W register(String name, Supplier<? extends I> sup, BiFunction<ResourceLocation, I, W> objectWrapper) {
         return register(id(name), sup, objectWrapper);
     }
 
-    protected <I extends T, W extends WrappedRegistryObject<I>> W register(Identifier identifier, Supplier<? extends I> sup, BiFunction<Identifier, I, W> objectWrapper) {
+    protected <I extends T, W extends WrappedRegistryObject<I>> W register(ResourceLocation identifier, Supplier<? extends I> sup, BiFunction<ResourceLocation, I, W> objectWrapper) {
         return objectWrapper.apply(identifier, internal.register(identifier, sup));
     }
 
-    public Identifier id(String path) {
+    public ResourceLocation id(String path) {
         return internal.id(path);
     }
 }
