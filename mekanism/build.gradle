@@ -8,3 +8,7 @@ dependencies {
 moduleDependencies(project, [
     'mekanism-api'
 ])
+
+loom {
+    accessWidenerPath = file("src/main/resources/mekanism.accesswidener")
+}

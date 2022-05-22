@@ -25,9 +25,10 @@
   },
 
   "mixins": [
-    "mekanism.mixins.json"
+    "mekanism.mixins.json",
+    "mekanism.accessors.json"
   ],
-
+  "accessWidener":"mekanism.accesswidener",
   "depends": {
     "fabricloader": ">=0.12.12",
     "fabric": "*",

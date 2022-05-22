@@ -1,10 +1,7 @@
 package mekanism;
 
 import mekanism.config.MekanismConfig;
-import mekanism.registries.MekanismHeightProviderTypes;
-import mekanism.registries.MekanismIntProviderTypes;
-import mekanism.registries.MekanismItems;
-import mekanism.registries.MekanismPlacementModifiers;
+import mekanism.registries.*;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.Level;
@@ -21,7 +18,7 @@ public class Mekanism implements ModInitializer {
     public void onInitialize() {
         MekanismConfig.registerConfigs();
         MekanismItems.init();
-//        MekanismBlocks
+        MekanismBlocks.init();
 //        MekanismFluids
 //        MekanismContainerTypes
 //        MekanismEntityTypes

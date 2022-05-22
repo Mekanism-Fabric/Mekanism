@@ -6,6 +6,7 @@ public class MekanismConfig {
     }
 
 //    public static final ClientConfig client = new ClientConfig();
+    public static final CommonConfig common = new CommonConfig();
     public static final GeneralConfig general = new GeneralConfig();
 //    public static final GearConfig gear = new GearConfig();
     public static final StorageConfig storage = new StorageConfig();
@@ -15,6 +16,7 @@ public class MekanismConfig {
 
     public static void registerConfigs() {
 //        MekanismConfigHelper.registerConfig(client.getConfigType(), client.getConfigSpec());
+        MekanismConfigHelper.registerConfig(common.getConfigType(), common.getConfigSpec(), common.getFileName());
         MekanismConfigHelper.registerConfig(general.getConfigType(), general.getConfigSpec(), general.getFileName());
 //        MekanismConfigHelper.registerConfig(gear.getConfigType(), gear.getConfigSpec());
         MekanismConfigHelper.registerConfig(storage.getConfigType(), storage.getConfigSpec(), storage.getFileName());

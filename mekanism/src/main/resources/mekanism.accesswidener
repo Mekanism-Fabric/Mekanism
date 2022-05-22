@@ -1,0 +1,4 @@
+accessWidener v2 named
+
+#Access lightEmission field
+accessible field net/minecraft/world/level/block/state/BlockBehaviour$Properties lightEmission Ljava/util/function/ToIntFunction;
