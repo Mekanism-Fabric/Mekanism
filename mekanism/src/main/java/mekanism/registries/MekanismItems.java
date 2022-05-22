@@ -174,7 +174,6 @@ public class MekanismItems {
     public static final ItemRegistryObject<Item> STEEL_NUGGET = registerResource(ResourceType.NUGGET, MiscResource.STEEL);
 
     public static void init() {
-
     }
 
     static {

@@ -5,11 +5,13 @@ import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.function.Supplier;
+
 /**
  * @param <TYPE> The type this {@link CachedResolvableConfigValue} resolves to
  * @param <REAL> The real type that the {@link ConfigValue} holds
  */
-public abstract class CachedResolvableConfigValue<TYPE, REAL> extends CachedValue<REAL> {
+public abstract class CachedResolvableConfigValue<TYPE, REAL> extends CachedValue<REAL> implements Supplier<TYPE> {
 
     @Nullable
     private TYPE cachedValue;
@@ -23,6 +25,7 @@ public abstract class CachedResolvableConfigValue<TYPE, REAL> extends CachedValu
     protected abstract REAL encode(TYPE value);
 
     @NotNull
+    @Override
     public TYPE get() {
         if (cachedValue == null) {
             //If we don't have a cached value, resolve it from the actual ConfigValue

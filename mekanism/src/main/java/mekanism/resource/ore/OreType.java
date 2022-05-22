@@ -1,74 +1,70 @@
 package mekanism.resource.ore;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import mekanism.resource.IResource;
 import mekanism.resource.MiscResource;
 import mekanism.resource.PrimaryResource;
+import mekanism.world.height.HeightShape;
+import net.minecraft.util.StringRepresentable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.stream.Collectors;
-import net.minecraft.util.StringRepresentable;
-
 public enum OreType implements StringRepresentable {
-    COPPER(PrimaryResource.COPPER, 16, 8, 0, 0, 60),
-    TIN(PrimaryResource.TIN, 14, 8, 0, 0, 60),
-    OSMIUM(PrimaryResource.OSMIUM, 12, 8, 0, 0, 60),
-    URANIUM(PrimaryResource.URANIUM, 8, 8, 0, 0, 60),
-    FLUORITE(MiscResource.FLUORITE, 6, 12, 0, 0, 32, 1, 4),
-    LEAD(PrimaryResource.LEAD, 8, 8, 0, 0, 48);
+    TIN(PrimaryResource.TIN,
+          new BaseOreConfig("small", 14, 0, 4, HeightShape.TRAPEZOID, OreAnchor.absolute(-20), OreAnchor.absolute(94)),
+          new BaseOreConfig("large", 12, 0, 9, HeightShape.TRAPEZOID, OreAnchor.absolute(-32), OreAnchor.absolute(72))
+    ),
+    OSMIUM(PrimaryResource.OSMIUM,
+          new BaseOreConfig("upper", 65, 0, 7, HeightShape.TRAPEZOID, OreAnchor.absolute(72), OreAnchor.belowTop(-24), 8),
+          new BaseOreConfig("middle", 6, 0, 9, HeightShape.TRAPEZOID, OreAnchor.absolute(-32), OreAnchor.absolute(56)),
+          new BaseOreConfig("small", 8, 0, 4, HeightShape.UNIFORM, OreAnchor.aboveBottom(0), OreAnchor.absolute(64))
+    ),
+    URANIUM(PrimaryResource.URANIUM,
+          new BaseOreConfig("small", 4, 0, 4, HeightShape.TRAPEZOID, OreAnchor.aboveBottom(0), OreAnchor.absolute(8)),
+          new BaseOreConfig("buried", 7, 0.75F, 9, HeightShape.TRAPEZOID, OreAnchor.aboveBottom(-24), OreAnchor.aboveBottom(56), 16)
+    ),
+    FLUORITE(MiscResource.FLUORITE, 1, 4,
+          new BaseOreConfig("normal", 5, 0, 5, HeightShape.UNIFORM, OreAnchor.aboveBottom(0), OreAnchor.absolute(23)),
+          new BaseOreConfig("buried", 3, 1, 13, HeightShape.TRAPEZOID, OreAnchor.aboveBottom(0), OreAnchor.absolute(4))
+    ),
+    LEAD(PrimaryResource.LEAD,
+          new BaseOreConfig("normal", 8, 0.25F, 9, HeightShape.TRAPEZOID, OreAnchor.aboveBottom(-24), OreAnchor.absolute(64))
+    );
 
     public static Codec<OreType> CODEC = StringRepresentable.fromEnum(OreType::values, OreType::byName);
     private static final Map<String, OreType> NAME_LOOKUP = Arrays.stream(values()).collect(Collectors.toMap(OreType::getSerializedName, oreType -> oreType));
 
+    private final List<BaseOreConfig> baseConfigs;
     private final IResource resource;
-    private final int perChunk;
-    private final int maxVeinSize;
-    private final int bottomOffset;
-    private final int topOffset;
-    private final int maxHeight;
     private final int minExp;
     private final int maxExp;
 
-    OreType(IResource resource, int perChunk, int maxVeinSize, int bottomOffset, int topOffset, int maxHeight) {
-        this(resource, perChunk, maxVeinSize, bottomOffset, topOffset, maxHeight, 0, 0);
+    OreType(IResource resource, BaseOreConfig... configs) {
+        this(resource, 0, configs);
     }
 
-    OreType(IResource resource, int perChunk, int maxVeinSize, int bottomOffset, int topOffset, int maxHeight, int minExp, int maxExp) {
+    OreType(IResource resource, int exp, BaseOreConfig... configs) {
+        this(resource, exp, exp, configs);
+    }
+
+    OreType(IResource resource, int minExp, int maxExp, BaseOreConfig... configs) {
         this.resource = resource;
-        this.perChunk = perChunk;
-        this.maxVeinSize = maxVeinSize;
-        this.bottomOffset = bottomOffset;
-        this.topOffset = topOffset;
-        this.maxHeight = maxHeight;
         this.minExp = minExp;
         this.maxExp = maxExp;
+        this.baseConfigs = List.of(configs);
     }
 
     public IResource getResource() {
         return resource;
     }
 
-    public int getPerChunk() {
-        return perChunk;
-    }
-
-    public int getMaxVeinSize() {
-        return maxVeinSize;
-    }
-
-    public int getBottomOffset() {
-        return bottomOffset;
-    }
-
-    public int getTopOffset() {
-        return topOffset;
-    }
-
-    public int getMaxHeight() {
-        return maxHeight;
+    public List<BaseOreConfig> getBaseConfigs() {
+        return baseConfigs;
     }
 
     public int getMinExp() {
@@ -97,5 +93,23 @@ public enum OreType implements StringRepresentable {
     @Nullable
     private static OreType byName(String name) {
         return NAME_LOOKUP.get(name);
+    }
+
+    public record OreVeinType(OreType type, int index) {
+
+        public static final Codec<OreVeinType> CODEC = RecordCodecBuilder.create(builder -> builder.group(
+              OreType.CODEC.fieldOf("type").forGetter(config -> config.type),
+              Codec.INT.fieldOf("index").forGetter(config -> config.index)
+        ).apply(builder, OreVeinType::new));
+
+        public OreVeinType {
+            if (index < 0 || index >= type.getBaseConfigs().size()) {
+                throw new IndexOutOfBoundsException("Vein Type index out of range: " + index);
+            }
+        }
+
+        public String name() {
+            return "ore_" + type.getResource().getRegistrySuffix() + "_" + type.getBaseConfigs().get(index).name();
+        }
     }
 }

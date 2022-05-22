@@ -1,7 +1,9 @@
 package mekanism.registration;
 
 import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.heightproviders.HeightProviderType;
 
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
@@ -16,6 +18,10 @@ public class WrappedDeferredRegister<T> {
 
     protected WrappedDeferredRegister(String modid, Class<T> base) {
         internal = DeferredRegister.create(base, modid);
+    }
+
+    public WrappedDeferredRegister(String modid, ResourceKey<Registry<T>> key) {
+        internal = DeferredRegister.create(key, modid);
     }
 
     protected <I extends T, W extends WrappedRegistryObject<I>> W register(String name, Supplier<? extends I> sup, BiFunction<ResourceLocation, I, W> objectWrapper) {
