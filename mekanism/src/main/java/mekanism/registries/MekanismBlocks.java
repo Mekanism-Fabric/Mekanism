@@ -2,6 +2,7 @@ package mekanism.registries;
 
 import mekanism.Mekanism;
 import mekanism.api.tier.ITier;
+import mekanism.block.BlockOre;
 import mekanism.block.basic.BlockResource;
 import mekanism.block.interfaces.IHasDescription;
 import mekanism.item.block.ItemBlockResource;
@@ -11,10 +12,15 @@ import mekanism.registration.impl.BlockRegistryObject;
 import mekanism.resource.BlockResourceInfo;
 import mekanism.resource.IResource;
 import mekanism.resource.PrimaryResource;
+import mekanism.resource.ore.OreBlockType;
+import mekanism.resource.ore.OreType;
 import mekanism.util.EnumUtils;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MaterialColor;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -29,7 +35,7 @@ public class MekanismBlocks {
     public static final BlockDeferredRegister BLOCKS = new BlockDeferredRegister(Mekanism.MODID);
 
     public static final Map<IResource, BlockRegistryObject<?, ?>> PROCESSED_RESOURCE_BLOCKS = new LinkedHashMap<>();
-//    public static final Map<OreType, OreBlockType> ORES = new LinkedHashMap<>();
+    public static final Map<OreType, OreBlockType> ORES = new LinkedHashMap<>();
 
 //    private static final Table<FactoryTier, FactoryType, BlockRegistryObject<BlockFactory<?>, ItemBlockFactory>> FACTORIES = HashBasedTable.create();
 
@@ -51,17 +57,17 @@ public class MekanismBlocks {
             }
         }
         // ores
-//        for (OreType ore : EnumUtils.ORE_TYPES) {
-//            ORES.put(ore, registerOre(ore));
-//        }
+        for (OreType ore : EnumUtils.ORE_TYPES) {
+            ORES.put(ore, registerOre(ore));
+        }
     }
 
-//    public static final BlockRegistryObject<BlockResource, ItemBlockResource> BRONZE_BLOCK = registerResourceBlock(BlockResourceInfo.BRONZE);
-//    public static final BlockRegistryObject<BlockResource, ItemBlockResource> REFINED_OBSIDIAN_BLOCK = registerResourceBlock(BlockResourceInfo.REFINED_OBSIDIAN);
-//    public static final BlockRegistryObject<BlockResource, ItemBlockResource> CHARCOAL_BLOCK = registerResourceBlock(BlockResourceInfo.CHARCOAL);
-//    public static final BlockRegistryObject<BlockResource, ItemBlockResource> REFINED_GLOWSTONE_BLOCK = registerResourceBlock(BlockResourceInfo.REFINED_GLOWSTONE);
-//    public static final BlockRegistryObject<BlockResource, ItemBlockResource> STEEL_BLOCK = registerResourceBlock(BlockResourceInfo.STEEL);
-//    public static final BlockRegistryObject<BlockResource, ItemBlockResource> FLUORITE_BLOCK = registerResourceBlock(BlockResourceInfo.FLUORITE);
+    public static final BlockRegistryObject<BlockResource, ItemBlockResource> BRONZE_BLOCK = registerResourceBlock(BlockResourceInfo.BRONZE);
+    public static final BlockRegistryObject<BlockResource, ItemBlockResource> REFINED_OBSIDIAN_BLOCK = registerResourceBlock(BlockResourceInfo.REFINED_OBSIDIAN);
+    public static final BlockRegistryObject<BlockResource, ItemBlockResource> CHARCOAL_BLOCK = registerResourceBlock(BlockResourceInfo.CHARCOAL);
+    public static final BlockRegistryObject<BlockResource, ItemBlockResource> REFINED_GLOWSTONE_BLOCK = registerResourceBlock(BlockResourceInfo.REFINED_GLOWSTONE);
+    public static final BlockRegistryObject<BlockResource, ItemBlockResource> STEEL_BLOCK = registerResourceBlock(BlockResourceInfo.STEEL);
+    public static final BlockRegistryObject<BlockResource, ItemBlockResource> FLUORITE_BLOCK = registerResourceBlock(BlockResourceInfo.FLUORITE);
 
 //    public static final BlockRegistryObject<BlockBin, ItemBlockBin> BASIC_BIN = registerBin(MekanismBlockTypes.BASIC_BIN);
 //    public static final BlockRegistryObject<BlockBin, ItemBlockBin> ADVANCED_BIN = registerBin(MekanismBlockTypes.ADVANCED_BIN);
@@ -271,14 +277,14 @@ public class MekanismBlocks {
         return BLOCKS.register(tier.getBaseTier().getLowerName() + suffix, blockSupplier, itemCreator);
     }
 
-//    private static OreBlockType registerOre(OreType ore) {
-//        String name = ore.getResource().getRegistrySuffix() + "_ore";
-//        BlockRegistryObject<BlockOre, ItemBlockTooltip<BlockOre>> stoneOre = registerBlock(name, () -> new BlockOre(ore));
-//        BlockRegistryObject<BlockOre, ItemBlockTooltip<BlockOre>> deepslateOre = BLOCKS.registerDefaultProperties("deepslate_" + name,
-//              () -> new BlockOre(ore, Properties.copy(stoneOre.getBlock()).color(MaterialColor.DEEPSLATE)
-//                    .strength(4.5F, 3).sound(SoundType.DEEPSLATE)), ItemBlockTooltip::new);
-//        return new OreBlockType(stoneOre, deepslateOre);
-//    }
+    private static OreBlockType registerOre(OreType ore) {
+        String name = ore.getResource().getRegistrySuffix() + "_ore";
+        BlockRegistryObject<BlockOre, ItemBlockTooltip<BlockOre>> stoneOre = registerBlock(name, () -> new BlockOre(ore));
+        BlockRegistryObject<BlockOre, ItemBlockTooltip<BlockOre>> deepslateOre = BLOCKS.registerDefaultProperties("deepslate_" + name,
+              () -> new BlockOre(ore, BlockBehaviour.Properties.copy(stoneOre.getBlock()).color(MaterialColor.DEEPSLATE)
+                    .strength(4.5F, 3).sound(SoundType.DEEPSLATE)), ItemBlockTooltip::new);
+        return new OreBlockType(stoneOre, deepslateOre);
+    }
 
     private static <BLOCK extends Block & IHasDescription> BlockRegistryObject<BLOCK, ItemBlockTooltip<BLOCK>> registerBlock(String name,
                                                                                                                              Supplier<? extends BLOCK> blockSupplier) {

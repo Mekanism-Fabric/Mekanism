@@ -1,10 +1,10 @@
 package mekanism.api.energy;
 
 import mekanism.api.Action;
+import mekanism.api.AutomationType;
 import mekanism.api.IContentsListener;
 import mekanism.api.NBTConstants;
 import mekanism.api.annotations.INBTSerializable;
-import mekanism.api.inventory.AutomationType;
 import mekanism.api.math.FloatingLong;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.nbt.CompoundTag;

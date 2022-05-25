@@ -2,8 +2,9 @@ package mekanism.util;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.github.fabricators_of_create.porting_lib.transfer.item.ItemHandlerHelper;
 import mekanism.api.inventory.IInventorySlot;
-import mekanism.api.utilport.ItemHandlerHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;

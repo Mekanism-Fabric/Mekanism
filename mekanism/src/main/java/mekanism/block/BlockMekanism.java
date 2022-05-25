@@ -1,13 +1,11 @@
 package mekanism.block;
 
 import mekanism.block.attribute.Attribute;
-import mekanism.block.attribute.AttributeHasBounding;
 import mekanism.block.attribute.AttributeStateFacing;
 import mekanism.block.attribute.Attributes.AttributeComparator;
 import mekanism.block.interfaces.IHasTileEntity;
 import mekanism.block.states.BlockStateHelper;
 import mekanism.tile.base.TileEntityMekanism;
-import mekanism.tile.base.TileEntityUpdateable;
 import mekanism.tile.interfaces.IComparatorSupport;
 import mekanism.util.WorldUtils;
 import net.minecraft.core.BlockPos;

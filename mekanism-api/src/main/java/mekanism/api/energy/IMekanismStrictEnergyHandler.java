@@ -2,8 +2,8 @@ package mekanism.api.energy;
 
 import java.util.List;
 import mekanism.api.Action;
+import mekanism.api.AutomationType;
 import mekanism.api.IContentsListener;
-import mekanism.api.inventory.AutomationType;
 import mekanism.api.math.FloatingLong;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Direction;

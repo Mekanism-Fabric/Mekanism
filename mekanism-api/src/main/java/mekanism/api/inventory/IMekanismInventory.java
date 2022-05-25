@@ -2,12 +2,15 @@ package mekanism.api.inventory;
 
 import java.util.List;
 import mekanism.api.Action;
+import mekanism.api.AutomationType;
 import mekanism.api.IContentsListener;
+import mekanism.api.annotations.ParametersAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
+@ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public interface IMekanismInventory extends ISidedItemHandler, IContentsListener {
 

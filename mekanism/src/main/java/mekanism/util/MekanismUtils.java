@@ -17,6 +17,7 @@ import mekanism.api.text.EnumColor;
 import mekanism.config.MekanismConfig;
 import mekanism.util.UnitDisplayUtils.EnergyUnit;
 import mekanism.util.UnitDisplayUtils.TemperatureUnit;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.Tag;
@@ -31,6 +32,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.ClipContext;
@@ -95,10 +97,10 @@ public final class MekanismUtils {
      *
      * @implNote While the default implementation of getCreatorModId falls back to the registry name, it is possible someone is overriding this and not falling back.
      */
-//    @NotNull
-//    public static String getModId(@NotNull ItemStack stack) {
-//        Item item = stack.getItem();
-//        String modid = item.getCreatorModId(stack);
+    @NotNull
+    public static String getModId(@NotNull ItemStack stack) {
+        Item item = stack.getItem();
+        String modid = item.getDescriptionId();
 //        if (modid == null) {
 //            ResourceLocation registryName = item.getRegistryName();
 //            if (registryName == null) {
@@ -107,8 +109,8 @@ public final class MekanismUtils {
 //            }
 //            return registryName.getNamespace();
 //        }
-//        return modid;
-//    }
+        return modid;
+    }
 
     public static ItemStack getItemInHand(LivingEntity entity, HumanoidArm side) {
         if (entity instanceof Player player) {

@@ -1,14 +1,7 @@
 package mekanism.tile.base;
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
-import mekanism.Mekanism;
-import mekanism.api.*;
-import mekanism.api.energy.IEnergyContainer;
-import mekanism.api.energy.IMekanismStrictEnergyHandler;
-import mekanism.api.heat.IHeatCapacitor;
-import mekanism.api.heat.IHeatHandler;
-import mekanism.api.inventory.IInventorySlot;
-import mekanism.api.inventory.IMekanismInventory;
+import mekanism.api.IContentsListener;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.providers.IBlockProvider;
 import mekanism.block.attribute.Attribute;
@@ -16,48 +9,29 @@ import mekanism.block.attribute.AttributeStateActive;
 import mekanism.block.attribute.AttributeStateFacing;
 import mekanism.block.attribute.AttributeUpgradeSupport;
 import mekanism.block.attribute.Attributes.AttributeComparator;
-import mekanism.block.attribute.Attributes.AttributeComputerIntegration;
 import mekanism.block.attribute.Attributes.AttributeRedstone;
 import mekanism.block.attribute.Attributes.AttributeSecurity;
 import mekanism.block.interfaces.IHasTileEntity;
-import mekanism.capabilities.Capabilities;
 import mekanism.config.MekanismConfig;
-import mekanism.tile.interfaces.IComparatorSupport;
 import mekanism.tile.interfaces.IRedstoneControl;
-import mekanism.tile.interfaces.ISustainedData;
-import mekanism.tile.interfaces.ISustainedInventory;
-import mekanism.upgrade.IUpgradeData;
-import mekanism.util.EnumUtils;
-import mekanism.util.MekanismUtils;
-import mekanism.util.NBTUtils;
-import mekanism.util.WorldUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.Nameable;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
-import java.util.function.Function;
+import java.util.Set;
 import java.util.function.IntSupplier;
 
 //TODO: We need to move the "supports" methods into the source interfaces so that we make sure they get checked before being used
-public abstract class TileEntityMekanism extends CapabilityTileEntity implements /*IFrequencyHandler, ITileDirectional,*/ IConfigCardAccess, /*ITileActive, ITileSound,
-      ITileRedstone, ISecurityTile,*/ IMekanismInventory, ISustainedInventory, /*ITileUpgradable, ITierUpgradable,*/ IComparatorSupport, /*ITrackableContainer,
-      IMekanismFluidHandler,*/ IMekanismStrictEnergyHandler, /*ITileHeatHandler, IGasTile, IInfusionTile, IPigmentTile, ISlurryTile, IComputerTile, ITileRadioactive,*/
-      Nameable {
+public abstract class TileEntityMekanism extends CapabilityTileEntity /*implements IFrequencyHandler, ITileDirectional, IConfigCardAccess,
+        ITileActive, ITileSound, ITileRedstone, ISecurityTile, IMekanismInventory, ISustainedInventory, ITileUpgradable, ITierUpgradable,
+        IComparatorSupport, ITrackableContainer, IMekanismFluidHandler, IMekanismStrictEnergyHandler, ITileHeatHandler,
+        IGasTile, IInfusionTile, IPigmentTile, ISlurryTile, IComputerTile, ITileRadioactive, Nameable*/ {
 
     /**
      * The players currently using this block.
@@ -256,10 +230,10 @@ public abstract class TileEntityMekanism extends CapabilityTileEntity implements
 //        return supportsUpgrades;
 //    }
 
-    @Override
-    public final boolean supportsComparator() {
-        return supportsComparator;
-    }
+//    @Override
+//    public final boolean supportsComparator() {
+//        return supportsComparator;
+//    }
 
 //    @Override
 //    public final boolean canBeUpgraded() {
@@ -280,7 +254,6 @@ public abstract class TileEntityMekanism extends CapabilityTileEntity implements
 //    public final boolean hasSound() {
 //        return hasSound;
 //    }
-
     public final boolean hasGui() {
         return hasGui;
     }
@@ -368,11 +341,11 @@ public abstract class TileEntityMekanism extends CapabilityTileEntity implements
 //        return TextComponentUtil.build(getBlockType());
 //    }
 
-    @Nullable
-    @Override
-    public Component getCustomName() {
-        return isNameable() ? customName : null;
-    }
+//    @Nullable
+//    @Override
+//    public Component getCustomName() {
+//        return isNameable() ? customName : null;
+//    }
 
     public void setCustomName(@Nullable Component name) {
         if (isNameable()) {
@@ -389,13 +362,13 @@ public abstract class TileEntityMekanism extends CapabilityTileEntity implements
         return nameable;
     }
 
-    @Override
-    public void markDirtyComparator() {
-        //Only mark our comparators as needing update if we support comparators
-        if (supportsComparator()) {
-            updateComparators = true;
-        }
-    }
+//    @Override
+//    public void markDirtyComparator() {
+//        //Only mark our comparators as needing update if we support comparators
+//        if (supportsComparator()) {
+//            updateComparators = true;
+//        }
+//    }
 
     protected void notifyComparatorChange() {
         level.updateNeighbourForOutputSignal(worldPosition, getBlockType());
@@ -818,16 +791,16 @@ public abstract class TileEntityMekanism extends CapabilityTileEntity implements
     //End methods ITileRedstone
 
     //Methods for implementing IComparatorSupport
-    @Override
-    public int getRedstoneLevel() {
-        if (supportsComparator()) {
-            if (hasInventory()) {
-                return MekanismUtils.redstoneLevelFromContents(getInventorySlots(null));
-            }
-            //TODO: Do we want some other defaults as well?
-        }
-        return 0;
-    }
+//    @Override
+//    public int getRedstoneLevel() {
+//        if (supportsComparator()) {
+//            if (hasInventory()) {
+//                return MekanismUtils.redstoneLevelFromContents(getInventorySlots(null));
+//            }
+//            //TODO: Do we want some other defaults as well?
+//        }
+//        return 0;
+//    }
 
 //    /**
 //     * @param type Type or {@code null} for items.
@@ -901,29 +874,29 @@ public abstract class TileEntityMekanism extends CapabilityTileEntity implements
 //        return itemHandlerManager.getContainers(side);
 //    }
 
-    @Override
-    public void onContentsChanged() {
-        setChanged();
-    }
+//    @Override
+//    public void onContentsChanged() {
+//        setChanged();
+//    }
+//
+//    @Override
+//    public void setInventory(ListTag nbtTags, Object... data) {
+//        if (nbtTags != null && !nbtTags.isEmpty() && persistInventory()) {
+//            DataHandlerUtils.readContainers(getInventorySlots(null), nbtTags);
+//        }
+//    }
 
-    @Override
-    public void setInventory(ListTag nbtTags, Object... data) {
-        if (nbtTags != null && !nbtTags.isEmpty() && persistInventory()) {
-            DataHandlerUtils.readContainers(getInventorySlots(null), nbtTags);
-        }
-    }
-
-    @Override
-    public ListTag getInventory(Object... data) {
-        return persistInventory() ? DataHandlerUtils.writeContainers(getInventorySlots(null)) : new ListTag();
-    }
+//    @Override
+//    public ListTag getInventory(Object... data) {
+//        return persistInventory() ? DataHandlerUtils.writeContainers(getInventorySlots(null)) : new ListTag();
+//    }
 
     /**
      * Should the inventory be persisted in this tile save
      */
-    public boolean persistInventory() {
-        return hasInventory();
-    }
+//    public boolean persistInventory() {
+//        return hasInventory();
+//    }
     //End methods ITileContainer
 
     //Methods for implementing IGasTile
@@ -1018,7 +991,6 @@ public abstract class TileEntityMekanism extends CapabilityTileEntity implements
 //        }
 //        return remainder;
 //    }
-
     public FloatingLong getInputRate() {
         return lastEnergyReceived;
     }
@@ -1060,10 +1032,10 @@ public abstract class TileEntityMekanism extends CapabilityTileEntity implements
     //End methods for IInWorldHeatHandler
 
     //Methods for implementing IConfigCardAccess
-    @Override
-    public String getConfigCardName() {
-        return getBlockType().getDescriptionId();
-    }
+//    @Override
+//    public String getConfigCardName() {
+//        return getBlockType().getDescriptionId();
+//    }
 
 //    @Override
 //    public CompoundTag getConfigurationData(Player player) {
@@ -1079,10 +1051,10 @@ public abstract class TileEntityMekanism extends CapabilityTileEntity implements
 //        getFrequencyComponent().readConfiguredFrequencies(player, data);
 //    }
 
-    @Override
-    public BlockEntityType<?> getConfigurationDataType() {
-        return getType();
-    }
+//    @Override
+//    public BlockEntityType<?> getConfigurationDataType() {
+//        return getType();
+//    }
 
 //    @Override
 //    public void configurationDataSet() {
@@ -1237,14 +1209,14 @@ public abstract class TileEntityMekanism extends CapabilityTileEntity implements
 //        return getTotalEnergy(IEnergyContainer::getNeeded);
 //    }
 
-    private FloatingLong getTotalEnergy(Function<IEnergyContainer, FloatingLong> getter) {
-        FloatingLong total = FloatingLong.ZERO;
-        List<IEnergyContainer> energyContainers = getEnergyContainers(null);
-        for (IEnergyContainer energyContainer : energyContainers) {
-            total = total.plusEqual(getter.apply(energyContainer));
-        }
-        return total;
-    }
+//    private FloatingLong getTotalEnergy(Function<IEnergyContainer, FloatingLong> getter) {
+//        FloatingLong total = FloatingLong.ZERO;
+//        List<IEnergyContainer> energyContainers = getEnergyContainers(null);
+//        for (IEnergyContainer energyContainer : energyContainers) {
+//            total = total.plusEqual(getter.apply(energyContainer));
+//        }
+//        return total;
+//    }
 
 //    @ComputerMethod(nameOverride = "getEnergyFilledPercentage", restriction = MethodRestriction.ENERGY)
 //    private double getTotalEnergyFilledPercentage() {

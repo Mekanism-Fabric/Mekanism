@@ -2,7 +2,7 @@ package mekanism.lib.inventory;
 
 import java.util.UUID;
 
-import mekanism.api.utilport.ItemHandlerHelper;
+import io.github.fabricators_of_create.porting_lib.transfer.item.ItemHandlerHelper;
 import mekanism.util.StackUtils;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
