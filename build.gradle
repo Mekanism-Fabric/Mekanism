@@ -150,15 +150,6 @@ allprojects {
 	}
 
 	afterEvaluate {
-		remapJar {
-			input = file("${project.buildDir}/libs/$archivesBaseName-$archiveVersion-dev.jar")
-			archiveFileName = "${archivesBaseName}-${archiveVersion}.jar"
-		}
-
-		artifacts {
-			dev file: file("${project.buildDir}/libs/$archivesBaseName-$version-dev.jar"), type: "jar", builtBy: jar
-		}
-
 		processResources {
 			inputs.property "version", project.version
 
