@@ -3,8 +3,12 @@ package mekanism.registries;
 import mekanism.Mekanism;
 import mekanism.api.tier.ITier;
 import mekanism.block.BlockOre;
+import mekanism.block.attribute.AttributeTier;
+import mekanism.block.basic.BlockBin;
 import mekanism.block.basic.BlockResource;
 import mekanism.block.interfaces.IHasDescription;
+import mekanism.content.blocktype.BlockTypeTile;
+import mekanism.item.block.ItemBlockBin;
 import mekanism.item.block.ItemBlockResource;
 import mekanism.item.block.ItemBlockTooltip;
 import mekanism.registration.impl.BlockDeferredRegister;
@@ -14,6 +18,7 @@ import mekanism.resource.IResource;
 import mekanism.resource.PrimaryResource;
 import mekanism.resource.ore.OreBlockType;
 import mekanism.resource.ore.OreType;
+import mekanism.tile.TileEntityBin;
 import mekanism.util.EnumUtils;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Rarity;
@@ -69,11 +74,11 @@ public class MekanismBlocks {
     public static final BlockRegistryObject<BlockResource, ItemBlockResource> STEEL_BLOCK = registerResourceBlock(BlockResourceInfo.STEEL);
     public static final BlockRegistryObject<BlockResource, ItemBlockResource> FLUORITE_BLOCK = registerResourceBlock(BlockResourceInfo.FLUORITE);
 
-//    public static final BlockRegistryObject<BlockBin, ItemBlockBin> BASIC_BIN = registerBin(MekanismBlockTypes.BASIC_BIN);
-//    public static final BlockRegistryObject<BlockBin, ItemBlockBin> ADVANCED_BIN = registerBin(MekanismBlockTypes.ADVANCED_BIN);
-//    public static final BlockRegistryObject<BlockBin, ItemBlockBin> ELITE_BIN = registerBin(MekanismBlockTypes.ELITE_BIN);
-//    public static final BlockRegistryObject<BlockBin, ItemBlockBin> ULTIMATE_BIN = registerBin(MekanismBlockTypes.ULTIMATE_BIN);
-//    public static final BlockRegistryObject<BlockBin, ItemBlockBin> CREATIVE_BIN = registerBin(MekanismBlockTypes.CREATIVE_BIN);
+    public static final BlockRegistryObject<BlockBin, ItemBlockBin> BASIC_BIN = registerBin(MekanismBlockTypes.BASIC_BIN);
+    public static final BlockRegistryObject<BlockBin, ItemBlockBin> ADVANCED_BIN = registerBin(MekanismBlockTypes.ADVANCED_BIN);
+    public static final BlockRegistryObject<BlockBin, ItemBlockBin> ELITE_BIN = registerBin(MekanismBlockTypes.ELITE_BIN);
+    public static final BlockRegistryObject<BlockBin, ItemBlockBin> ULTIMATE_BIN = registerBin(MekanismBlockTypes.ULTIMATE_BIN);
+    public static final BlockRegistryObject<BlockBin, ItemBlockBin> CREATIVE_BIN = registerBin(MekanismBlockTypes.CREATIVE_BIN);
 
 //    public static final BlockRegistryObject<BlockBase<BlockType>, ItemBlockTooltip<BlockBase<BlockType>>> TELEPORTER_FRAME = registerBlock("teleporter_frame", () -> new BlockBase<>(MekanismBlockTypes.TELEPORTER_FRAME, properties -> properties.strength(5, 6)));
 //    public static final BlockRegistryObject<BlockBase<BlockType>, ItemBlockTooltip<BlockBase<BlockType>>> STEEL_CASING = registerBlock("steel_casing", () -> new BlockBase<>(MekanismBlockTypes.STEEL_CASING, properties -> properties.strength(3.5F, 9)));
@@ -223,9 +228,9 @@ public class MekanismBlocks {
         });
     }
 
-//    private static BlockRegistryObject<BlockBin, ItemBlockBin> registerBin(BlockTypeTile<TileEntityBin> type) {
-//        return registerTieredBlock(type.get(AttributeTier.class).tier(), "_bin", () -> new BlockBin(type), ItemBlockBin::new);
-//    }
+    private static BlockRegistryObject<BlockBin, ItemBlockBin> registerBin(BlockTypeTile<TileEntityBin> type) {
+        return registerTieredBlock(type.get(AttributeTier.class).tier(), "_bin", () -> new BlockBin(type), ItemBlockBin::new);
+    }
 //
 //    private static BlockRegistryObject<BlockTile<TileEntityInductionCell, BlockTypeTile<TileEntityInductionCell>>, ItemBlockInductionCell> registerInductionCell(BlockTypeTile<TileEntityInductionCell> type) {
 //        return registerTieredBlock(type.get(AttributeTier.class).tier(), "_induction_cell", () -> new BlockTile<>(type), ItemBlockInductionCell::new);

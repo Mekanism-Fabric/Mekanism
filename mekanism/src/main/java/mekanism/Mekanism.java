@@ -22,8 +22,8 @@ public class Mekanism implements ModInitializer {
 //        MekanismFluids
 //        MekanismContainerTypes
 //        MekanismEntityTypes
-//        MekanismTileEntityTypes
-//        MekanismSounds
+        MekanismTileEntityTypes.init();
+        MekanismSounds.init();
 //        MekanismParticleTypes
         MekanismHeightProviderTypes.init();
         MekanismIntProviderTypes.init();

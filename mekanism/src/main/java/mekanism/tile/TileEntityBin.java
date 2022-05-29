@@ -1,16 +1,12 @@
 package mekanism.tile;
 
-import mekanism.api.IConfigurable;
-import mekanism.api.NBTConstants;
 import mekanism.api.providers.IBlockProvider;
 import mekanism.block.attribute.Attribute;
 import mekanism.inventory.slot.BinInventorySlot;
 import mekanism.tier.BinTier;
 import mekanism.tile.base.TileEntityMekanism;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
 
 public class TileEntityBin extends TileEntityMekanism /*implements IConfigurable*/ {
 
@@ -121,13 +117,13 @@ public class TileEntityBin extends TileEntityMekanism /*implements IConfigurable
 //        }
 //    }
 
-    @NotNull
-    @Override
-    public CompoundTag getReducedUpdateTag() {
-        CompoundTag updateTag = super.getReducedUpdateTag();
-        updateTag.put(NBTConstants.ITEM, binSlot.serializeNBT());
-        return updateTag;
-    }
+//    @NotNull
+//    @Override
+//    public CompoundTag getReducedUpdateTag() {
+//        CompoundTag updateTag = super.getReducedUpdateTag();
+//        updateTag.put(NBTConstants.ITEM, binSlot.serializeNBT());
+//        return updateTag;
+//    }
 
 //    @Override
 //    public void handleUpdateTag(@NotNull CompoundTag tag) {
