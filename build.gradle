@@ -21,7 +21,7 @@ version = Globals.baseVersion
 logger.lifecycle("Building Mekanism: " + version)
 
 static def moduleDependencies(project, List<String> depNames) {
-	def deps = depNames.iterator().collect { project.dependencies.project(path: ":$it", configuration: 'dev') }
+	def deps = depNames.iterator().collect { project.dependencies.project(path: ":$it", configuration: 'devElements') }
 	project.dependencies {
 		deps.each {
 			api it
@@ -64,6 +64,7 @@ allprojects {
 
 	sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
 	group = Globals.maven_group
+	configurations { devElements { extendsFrom implementation, namedElements } }
 
 	sourceSets {
 		testmod {
@@ -123,6 +124,11 @@ allprojects {
 		modImplementation "curse.maven:ForgeConfigAPIPort-547434:3600918"
 
 		modImplementation(include("io.github.fabricators_of_create:Porting-Lib:1.1.0-beta+1.18.2-dev.ffa2ca8"))
+
+		subprojects.each {
+			implementation project(path: ":${it.name}", configuration: "devElements")
+			include project("${it.name}:")
+		}
 	}
 
 	configurations { dev }
@@ -168,15 +174,19 @@ allprojects {
 		preserveFileTimestamps = false
 		reproducibleFileOrder = true
 	}
-}
 
-dependencies {
-	afterEvaluate {
-		subprojects.each {
-			api project(path: ":${it.name}", configuration: "dev")
-			include project("${it.name}:")
-
-			testmodImplementation project("${it.name}:").sourceSets.testmod.output
-		}
+	java {
+		withSourcesJar()
 	}
 }
+
+//dependencies {
+//	afterEvaluate {
+//		subprojects.each {
+//			implementation project(path: ":${it.name}", configuration: "devElements")
+//			include project("${it.name}:")
+//
+//			testmodImplementation project("${it.name}:").sourceSets.testmod.output
+//		}
+//	}
+//}
