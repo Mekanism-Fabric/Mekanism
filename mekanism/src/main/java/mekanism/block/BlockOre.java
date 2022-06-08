@@ -1,19 +1,21 @@
 package mekanism.block;
 
-import mekanism.api.text.ILangEntry;
 import mekanism.Mekanism;
+import mekanism.api.text.ILangEntry;
 import mekanism.block.interfaces.IHasDescription;
 import mekanism.block.states.BlockStateHelper;
 import mekanism.resource.ore.OreType;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Random;
 
 public class BlockOre extends Block implements IHasDescription {
 
@@ -42,11 +44,11 @@ public class BlockOre extends Block implements IHasDescription {
         return this::getDescriptionTranslationKey;
     }
 
-//    @Override
-//    public int getExpDrop(BlockState state, LevelReader reader, BlockPos pos, int fortune, int silkTouch) {
-//        if (ore.getMaxExp() > 0 && silkTouch == 0) {
-//            return Mth.nextInt(RANDOM, ore.getMinExp(), ore.getMaxExp());
-//        }
-//        return super.getExpDrop(state, reader, pos, fortune, silkTouch);
-//    }
+    @Override
+    protected void popExperience(ServerLevel level, BlockPos pos, int amount) {
+        if (ore.getMaxExp() > 0 /*&& silkTouch == 0*/) {
+            int reward = Mth.nextInt(new Random(), ore.getMinExp(), ore.getMaxExp());
+            ExperienceOrb.award(level, Vec3.atCenterOf(pos), reward);
+        }
+    }
 }

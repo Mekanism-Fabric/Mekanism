@@ -1,6 +1,7 @@
 package mekanism.tile.base;
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import mekanism.Mekanism;
 import mekanism.api.IContentsListener;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.providers.IBlockProvider;
@@ -14,6 +15,7 @@ import mekanism.block.attribute.Attributes.AttributeSecurity;
 import mekanism.block.interfaces.IHasTileEntity;
 import mekanism.config.MekanismConfig;
 import mekanism.tile.interfaces.IRedstoneControl;
+import mekanism.tile.interfaces.ITileDirectional;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -22,13 +24,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;
 import java.util.function.IntSupplier;
 
 //TODO: We need to move the "supports" methods into the source interfaces so that we make sure they get checked before being used
-public abstract class TileEntityMekanism extends CapabilityTileEntity /*implements IFrequencyHandler, ITileDirectional, IConfigCardAccess,
+public abstract class TileEntityMekanism extends CapabilityTileEntity implements /*IFrequencyHandler, */ ITileDirectional /* IConfigCardAccess,
         ITileActive, ITileSound, ITileRedstone, ISecurityTile, IMekanismInventory, ISustainedInventory, ITileUpgradable, ITierUpgradable,
         IComparatorSupport, ITrackableContainer, IMekanismFluidHandler, IMekanismStrictEnergyHandler, ITileHeatHandler,
         IGasTile, IInfusionTile, IPigmentTile, ISlurryTile, IComputerTile, ITileRadioactive, Nameable*/ {
@@ -240,10 +243,10 @@ public abstract class TileEntityMekanism extends CapabilityTileEntity /*implemen
 //        return canBeUpgraded;
 //    }
 
-//    @Override
-//    public final boolean isDirectional() {
-//        return isDirectional;
-//    }
+    @Override
+    public final boolean isDirectional() {
+        return isDirectional;
+    }
 //
 //    @Override
 //    public final boolean supportsRedstone() {
@@ -720,40 +723,40 @@ public abstract class TileEntityMekanism extends CapabilityTileEntity /*implemen
 //    //End methods IUpgradeableTile
 //
 //    //Methods for implementing ITileDirectional
-//    @NotNull
-//    @Override
+    @NotNull
+    @Override
 //    @ComputerMethod(restriction = MethodRestriction.DIRECTIONAL)
-//    public final Direction getDirection() {
-//        if (isDirectional()) {
-//            if (cachedDirection != null) {
-//                return cachedDirection;
-//            }
-//            BlockState state = getBlockState();
-//            cachedDirection = Attribute.getFacing(state);
-//            if (cachedDirection != null) {
-//                return cachedDirection;
-//            } else if (!getType().isValid(state)) {
-//                //This is probably always true if we couldn't get the direction it is facing
-//                // but double check just in case before logging
-//                Mekanism.logger.warn("Error invalid block for tile {} at {} in {}. Unable to get direction, falling back to north, "
-//                                     + "things will probably not work correctly. This is almost certainly due to another mod incorrectly "
-//                                     + "trying to move this tile and not properly updating the position.", getType().getRegistryName(), worldPosition, level);
-//            }
-//        }
-//        //TODO: Remove, give it some better default, or allow it to be null
-//        return Direction.NORTH;
-//    }
-//
-//    @Override
-//    public void setFacing(@NotNull Direction direction) {
-//        if (isDirectional() && direction != cachedDirection && level != null) {
-//            cachedDirection = direction;
-//            BlockState state = Attribute.setFacing(getBlockState(), direction);
-//            if (state != null) {
-//                level.setBlockAndUpdate(worldPosition, state);
-//            }
-//        }
-//    }
+    public final Direction getDirection() {
+        if (isDirectional()) {
+            if (cachedDirection != null) {
+                return cachedDirection;
+            }
+            BlockState state = getBlockState();
+            cachedDirection = Attribute.getFacing(state);
+            if (cachedDirection != null) {
+                return cachedDirection;
+            } else if (!getType().isValid(state)) {
+                //This is probably always true if we couldn't get the direction it is facing
+                // but double check just in case before logging
+                Mekanism.logger.warn("Error invalid block for tile {} at {} in {}. Unable to get direction, falling back to north, "
+                                     + "things will probably not work correctly. This is almost certainly due to another mod incorrectly "
+                                     + "trying to move this tile and not properly updating the position.", getType().toString(), worldPosition, level);
+            }
+        }
+        //TODO: Remove, give it some better default, or allow it to be null
+        return Direction.NORTH;
+    }
+
+    @Override
+    public void setFacing(@NotNull Direction direction) {
+        if (isDirectional() && direction != cachedDirection && level != null) {
+            cachedDirection = direction;
+            BlockState state = Attribute.setFacing(getBlockState(), direction);
+            if (state != null) {
+                level.setBlockAndUpdate(worldPosition, state);
+            }
+        }
+    }
 //    //End methods ITileDirectional
 //
 //    //Methods for implementing ITileRedstone

@@ -1,8 +1,8 @@
 package mekanism.api.heat;
 
+import io.github.fabricators_of_create.porting_lib.util.INBTSerializable;
 import mekanism.api.IContentsListener;
 import mekanism.api.NBTConstants;
-import mekanism.api.annotations.INBTSerializable;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.nbt.CompoundTag;
 

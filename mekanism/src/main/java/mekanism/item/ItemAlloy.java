@@ -4,14 +4,12 @@ import mekanism.api.IAlloyInteraction;
 import mekanism.api.tier.AlloyTier;
 import mekanism.capabilities.Capabilities;
 import mekanism.config.MekanismConfig;
-import mekanism.util.WorldUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemAlloy extends Item {
@@ -30,7 +28,6 @@ public class ItemAlloy extends Item {
         if (player != null && MekanismConfig.general.transmitterAlloyUpgrade.get()) {
             Level world = context.getLevel();
             BlockPos pos = context.getClickedPos();
-            BlockEntity tile = WorldUtils.getTileEntity(world, pos);
             IAlloyInteraction capability = Capabilities.ALLOY_INTERACTION_CAPABILITY.find(world, pos, context.getClickedFace());
             if (capability != null) {
                 if (!world.isClientSide) {

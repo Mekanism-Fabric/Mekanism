@@ -1,6 +1,6 @@
 package mekanism.api;
 
-import mekanism.api.annotations.INBTSerializable;
+import io.github.fabricators_of_create.porting_lib.util.INBTSerializable;
 import mekanism.api.annotations.ParametersAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.nbt.CompoundTag;

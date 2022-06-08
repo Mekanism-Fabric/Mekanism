@@ -1,5 +1,6 @@
 package mekanism.util;
 
+import mekanism.api.RelativeSide;
 import mekanism.api.text.EnumColor;
 import mekanism.resource.ore.OreType;
 import mekanism.resource.PrimaryResource;
@@ -42,7 +43,7 @@ public class EnumUtils {
     /**
      * Cached value of {@link RelativeSide#values()}. DO NOT MODIFY THIS LIST.
      */
-    //public static final RelativeSide[] SIDES = RelativeSide.values();
+    public static final RelativeSide[] SIDES = RelativeSide.values();
 
     /**
      * Cached value of {@link MeasurementUnit#values()}. DO NOT MODIFY THIS LIST.

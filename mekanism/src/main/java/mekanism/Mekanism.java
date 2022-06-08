@@ -1,5 +1,6 @@
 package mekanism;
 
+import mekanism.capabilities.Capabilities;
 import mekanism.config.MekanismConfig;
 import mekanism.registries.*;
 import net.fabricmc.api.ModInitializer;
@@ -39,7 +40,7 @@ public class Mekanism implements ModInitializer {
 //        MekanismSlurries
 //        MekanismRobitSkins
 //        MekanismModules
-
+        Capabilities.init();
         log(Level.INFO, "Base Loaded");
     }
 

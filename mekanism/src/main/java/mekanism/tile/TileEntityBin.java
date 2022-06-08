@@ -1,14 +1,24 @@
 package mekanism.tile;
 
+import mekanism.api.IConfigurable;
 import mekanism.api.providers.IBlockProvider;
 import mekanism.block.attribute.Attribute;
+import mekanism.capabilities.Capabilities;
 import mekanism.inventory.slot.BinInventorySlot;
+import mekanism.registries.MekanismTileEntityTypes;
 import mekanism.tier.BinTier;
 import mekanism.tile.base.TileEntityMekanism;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class TileEntityBin extends TileEntityMekanism /*implements IConfigurable*/ {
+public class TileEntityBin extends TileEntityMekanism implements IConfigurable {
 
     public int addTicks = 0;
     public int removeTicks = 0;
@@ -16,12 +26,11 @@ public class TileEntityBin extends TileEntityMekanism /*implements IConfigurable
 
     private BinTier tier;
 
-//    @WrappingComputerMethod(wrapper = ComputerIInventorySlotWrapper.class, methodNames = "getStored")
+    //    @WrappingComputerMethod(wrapper = ComputerIInventorySlotWrapper.class, methodNames = "getStored")
     private BinInventorySlot binSlot;
 
     public TileEntityBin(IBlockProvider blockProvider, BlockPos pos, BlockState state) {
         super(blockProvider, pos, state);
-//        addCapabilityResolver(BasicCapabilityResolver.constant(Capabilities.CONFIGURABLE_CAPABILITY, this));
     }
 
     @Override
@@ -78,20 +87,20 @@ public class TileEntityBin extends TileEntityMekanism /*implements IConfigurable
 //        }
 //    }
 
-//    @Override
-//    public InteractionResult onSneakRightClick(Player player) {
+    @Override
+    public InteractionResult onSneakRightClick(Player player, Direction side) {
 //        setActive(!getActive());
-//        Level world = getLevel();
-//        if (world != null) {
-//            world.playSound(null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(), SoundEvents.UI_BUTTON_CLICK, SoundSource.BLOCKS, 0.3F, 1);
-//        }
-//        return InteractionResult.SUCCESS;
-//    }
-//
-//    @Override
-//    public InteractionResult onRightClick(Player player) {
-//        return InteractionResult.PASS;
-//    }
+        Level world = getLevel();
+        if (world != null) {
+            world.playSound(null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(), SoundEvents.UI_BUTTON_CLICK, SoundSource.BLOCKS, 0.3F, 1);
+        }
+        return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public InteractionResult onRightClick(Player player, Direction side) {
+        return InteractionResult.PASS;
+    }
 //
 //    @Override
 //    public void parseUpgradeData(@NotNull IUpgradeData upgradeData) {

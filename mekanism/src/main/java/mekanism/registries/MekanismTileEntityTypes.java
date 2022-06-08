@@ -1,6 +1,7 @@
 package mekanism.registries;
 
 import mekanism.Mekanism;
+import mekanism.capabilities.Capabilities;
 import mekanism.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.tile.TileEntityBin;
@@ -180,5 +181,10 @@ public class MekanismTileEntityTypes {
 //    }
 
     public static void init() {
+        Capabilities.CONFIGURABLE_CAPABILITY.registerSelf(BASIC_BIN.get());
+        Capabilities.CONFIGURABLE_CAPABILITY.registerSelf(ADVANCED_BIN.get());
+        Capabilities.CONFIGURABLE_CAPABILITY.registerSelf(ELITE_BIN.get());
+        Capabilities.CONFIGURABLE_CAPABILITY.registerSelf(ULTIMATE_BIN.get());
+        Capabilities.CONFIGURABLE_CAPABILITY.registerSelf(CREATIVE_BIN.get());
     }
 }
