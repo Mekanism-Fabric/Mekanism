@@ -158,7 +158,7 @@ public class UnitDisplayUtils {
                 return joules;
             }
         },
-        FORGE_ENERGY(MekanismLang.ENERGY_FORGE, MekanismLang.ENERGY_FORGE, MekanismLang.ENERGY_FORGE_SHORT, "fe", () -> !MekanismConfig.general.blacklistForge.get()) {
+        TR_ENERGY(MekanismLang.ENERGY_FORGE, MekanismLang.ENERGY_FORGE, MekanismLang.ENERGY_FORGE_SHORT, "FE", () -> !MekanismConfig.general.blacklistForge.get()) {
             @Override
             protected EnergyConversionRate getConversionRate() {
                 return MekanismConfig.general.FORGE_CONVERSION_RATE;

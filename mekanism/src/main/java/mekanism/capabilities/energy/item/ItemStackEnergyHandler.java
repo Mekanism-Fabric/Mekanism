@@ -7,7 +7,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import mekanism.api.NBTConstants;
 import mekanism.api.energy.IEnergyContainer;
 import mekanism.api.energy.IMekanismStrictEnergyHandler;
-import mekanism.capabilities.ItemCapabilityWrapper;
+import mekanism.capabilities.CapabilityCacheItem;
+import mekanism.capabilities.ItemCapabilityWrapper.ItemCapability;
+import mekanism.capabilities.resolver.EnergyCapabilityResolverItem;
 import mekanism.util.ItemDataUtils;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Direction;
@@ -17,7 +19,7 @@ import net.minecraft.core.Direction;
  */
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public abstract class ItemStackEnergyHandler extends ItemCapabilityWrapper.ItemCapability implements IMekanismStrictEnergyHandler {
+public abstract class ItemStackEnergyHandler extends ItemCapability implements IMekanismStrictEnergyHandler {
 
     protected List<IEnergyContainer> energyContainers;
 
@@ -46,4 +48,8 @@ public abstract class ItemStackEnergyHandler extends ItemCapabilityWrapper.ItemC
         ItemDataUtils.writeContainers(getStack(), NBTConstants.ENERGY_CONTAINERS, getEnergyContainers(null));
     }
 
+    @Override
+    protected void addCapabilityResolvers(CapabilityCacheItem capabilityCache) {
+        capabilityCache.addCapabilityResolver(new EnergyCapabilityResolverItem(this));
+    }
 }

@@ -1,26 +1,26 @@
 package mekanism.item;
 
+import java.util.List;
+import java.util.function.Predicate;
+import javax.annotation.Nonnull;
 import mekanism.api.AutomationType;
 import mekanism.api.annotations.NonNull;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.math.FloatingLongSupplier;
+import mekanism.capabilities.ItemCapabilityWrapper.ItemCapability;
 import mekanism.capabilities.energy.BasicEnergyContainer;
+import mekanism.capabilities.energy.item.RateLimitEnergyHandler;
 import mekanism.config.MekanismConfig;
 import mekanism.util.StorageUtils;
 import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import team.reborn.energy.api.base.SimpleBatteryItem;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.function.Predicate;
-
-public class ItemEnergized extends Item implements SimpleBatteryItem {
+public class ItemEnergized extends CapabilityItem {
 
     private final FloatingLongSupplier chargeRateSupplier;
     private final FloatingLongSupplier maxEnergySupplier;
@@ -68,36 +68,29 @@ public class ItemEnergized extends Item implements SimpleBatteryItem {
         }
     }
 
-    protected FloatingLong getMaxEnergy(ItemStack stack) {
+    public FloatingLong getMaxEnergy(ItemStack stack) {
         return maxEnergySupplier.get();
     }
 
-    protected FloatingLong getChargeRate(ItemStack stack) {
+    public FloatingLong getChargeRate(ItemStack stack) {
         return chargeRateSupplier.get();
     }
 
-    @Override
-    public long getEnergyCapacity() {
-        return maxEnergySupplier.get().getValue();
+    public Predicate<AutomationType> canExtract(ItemStack stack) {
+        return canExtract;
+    }
+
+    public Predicate<AutomationType> canInsert(ItemStack stack) {
+        return canInsert;
     }
 
     @Override
-    public long getEnergyMaxInput() {
-        return chargeRateSupplier.get().getValue();
+    protected void gatherCapabilities(List<ItemCapability> capabilities, ItemStack stack, CompoundTag nbt) {
+        super.gatherCapabilities(capabilities, stack, nbt);
+        //Note: We interact with this capability using "manual" as the automation type, to ensure we can properly bypass the energy limit for extracting
+        // Internal is used by the "null" side, which is what will get used for most items
+        capabilities.add(RateLimitEnergyHandler.create(() -> getChargeRate(stack), () -> getMaxEnergy(stack), canExtract, canInsert));
     }
-
-    @Override
-    public long getEnergyMaxOutput() {
-        return chargeRateSupplier.get().getValue();
-    }
-
-//    @Override
-//    protected void gatherCapabilities(List<ItemCapability> capabilities, ItemStack stack, CompoundTag nbt) {
-//        super.gatherCapabilities(capabilities, stack, nbt);
-//        //Note: We interact with this capability using "manual" as the automation type, to ensure we can properly bypass the energy limit for extracting
-//        // Internal is used by the "null" side, which is what will get used for most items
-//        capabilities.add(RateLimitEnergyHandler.create(() -> getChargeRate(stack), () -> getMaxEnergy(stack), canExtract, canInsert));
-//    }
 
 //    @Override
 //    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {

@@ -181,10 +181,10 @@ public class MekanismTileEntityTypes {
 //    }
 
     public static void init() {
-        Capabilities.CONFIGURABLE_CAPABILITY.registerSelf(BASIC_BIN.get());
-        Capabilities.CONFIGURABLE_CAPABILITY.registerSelf(ADVANCED_BIN.get());
-        Capabilities.CONFIGURABLE_CAPABILITY.registerSelf(ELITE_BIN.get());
-        Capabilities.CONFIGURABLE_CAPABILITY.registerSelf(ULTIMATE_BIN.get());
-        Capabilities.CONFIGURABLE_CAPABILITY.registerSelf(CREATIVE_BIN.get());
+        Capabilities.CONFIGURABLE_CAPABILITY_SIDED.registerSelf(BASIC_BIN.get());
+        Capabilities.CONFIGURABLE_CAPABILITY_SIDED.registerSelf(ADVANCED_BIN.get());
+        Capabilities.CONFIGURABLE_CAPABILITY_SIDED.registerSelf(ELITE_BIN.get());
+        Capabilities.CONFIGURABLE_CAPABILITY_SIDED.registerSelf(ULTIMATE_BIN.get());
+        Capabilities.CONFIGURABLE_CAPABILITY_SIDED.registerSelf(CREATIVE_BIN.get());
     }
 }

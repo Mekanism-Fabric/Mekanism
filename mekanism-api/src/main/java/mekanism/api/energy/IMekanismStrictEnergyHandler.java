@@ -54,6 +54,9 @@ public interface IMekanismStrictEnergyHandler extends ISidedStrictEnergyHandler,
 
     @Override
     default int getEnergyContainerCount(@Nullable Direction side) {
+        if (side == null) {
+            return 0;
+        }
         return getEnergyContainers(side).size();
     }
 

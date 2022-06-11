@@ -8,13 +8,13 @@ plugins {
 class Globals {
 	static def baseVersion = "1.0.0"
 	static def mcVersion = "1.18.2"
-	static def loaderVersion = "0.14.6"
+	static def loaderVersion = "0.14.7"
 	static def maven_group = "mekanism"
-	static def fabricVersion = "0.51.1+1.18.2"
+	static def fabricVersion = "0.55.1+1.18.2"
 	static def modMenuVersion = "3.2.2"
 	static def wthitVersion = "4.10.3"
 	static def techRebornEnergyVersion = "2.1.0"
-	static def reiVersion = "8.1.457"
+	static def reiVersion = "8.2.473"
 }
 
 version = Globals.baseVersion
@@ -103,8 +103,8 @@ allprojects {
 		modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${Globals.wthitVersion}"
 		modRuntimeOnly "mcp.mobius.waila:wthit:fabric-${Globals.wthitVersion}"
 
-		modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${Globals.reiVersion}"
-		modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${Globals.reiVersion}"
+//		modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${Globals.reiVersion}"
+//		modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${Globals.reiVersion}"
 
 		implementation 'com.electronwill.night-config:toml:3.6.4'
 		implementation 'com.electronwill.night-config:core:3.6.4'
@@ -118,6 +118,8 @@ allprojects {
 		modImplementation "curse.maven:ForgeConfigAPIPort-547434:3600918"
 
 		modImplementation(include("io.github.fabricators_of_create:Porting-Lib:1.1.0-beta+1.18.2-dev.ffa2ca8"))
+
+		modImplementation("dev.architectury:architectury-fabric:4.4.70")
 
 		subprojects.each {
 			implementation project(path: ":${it.name}", configuration: "devElements")

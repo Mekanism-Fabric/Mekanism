@@ -1,8 +1,10 @@
 package mekanism.item;
 
 import mekanism.MekanismLang;
-import mekanism.api.*;
-import mekanism.api.annotations.FieldsAreNonnullByDefault;
+import mekanism.api.Action;
+import mekanism.api.AutomationType;
+import mekanism.api.IConfigurable;
+import mekanism.api.NBTConstants;
 import mekanism.api.energy.IEnergyContainer;
 import mekanism.api.inventory.IInventorySlot;
 import mekanism.api.inventory.IMekanismInventory;
@@ -21,8 +23,6 @@ import mekanism.item.interfaces.IRadialModeItem;
 import mekanism.item.interfaces.IRadialSelectorEnum;
 import mekanism.lib.transmitter.TransmissionType;
 import mekanism.tile.base.TileEntityMekanism;
-import mekanism.tile.component.config.ConfigInfo;
-import mekanism.tile.component.config.DataType;
 import mekanism.util.ItemDataUtils;
 import mekanism.util.MekanismUtils;
 import mekanism.util.MekanismUtils.ResourceType;
@@ -42,7 +42,6 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
@@ -51,7 +50,6 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class ItemConfigurator extends ItemEnergized implements IRadialModeItem<ItemConfigurator.ConfiguratorMode>, IItemHUDProvider {
 
@@ -117,7 +115,7 @@ public class ItemConfigurator extends ItemEnergized implements IRadialModeItem<I
 //                if (!MekanismAPI.getSecurityUtils().canAccessOrDisplayError(player, tile)) {
 //                    return InteractionResult.FAIL;
 //                }
-                IConfigurable capability = Capabilities.CONFIGURABLE_CAPABILITY.find(world, pos, side);
+                IConfigurable capability = Capabilities.CONFIGURABLE_CAPABILITY_SIDED.find(world, pos, side);
                 if (capability != null) {
                     IConfigurable config = capability;
                     if (player.isShiftKeyDown()) {

@@ -28,7 +28,7 @@ public class ItemAlloy extends Item {
         if (player != null && MekanismConfig.general.transmitterAlloyUpgrade.get()) {
             Level world = context.getLevel();
             BlockPos pos = context.getClickedPos();
-            IAlloyInteraction capability = Capabilities.ALLOY_INTERACTION_CAPABILITY.find(world, pos, context.getClickedFace());
+            IAlloyInteraction capability = Capabilities.ALLOY_INTERACTION_CAPABILITY_SIDED.find(world, pos, context.getClickedFace());
             if (capability != null) {
                 if (!world.isClientSide) {
                     capability.onAlloyInteraction(player, context.getItemInHand(), tier);

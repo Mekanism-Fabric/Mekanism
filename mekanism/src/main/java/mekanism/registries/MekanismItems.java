@@ -6,6 +6,8 @@ import mekanism.Mekanism;
 import mekanism.api.text.EnumColor;
 import mekanism.api.tier.AlloyTier;
 import mekanism.api.tier.BaseTier;
+import mekanism.capabilities.Capabilities;
+import mekanism.capabilities.energy.item.RateLimitEnergyHandler;
 import mekanism.item.ItemAlloy;
 import mekanism.item.ItemConfigurator;
 import mekanism.item.ItemRefinedGlowstoneIngot;
@@ -215,5 +217,8 @@ public class MekanismItems {
 //    }
 
     public static void init() {
+        Capabilities.STRICT_ENERGY_CAPABILITY.registerForItems((stack, ctx) ->
+                RateLimitEnergyHandler.create(() -> CONFIGURATOR.get().getChargeRate(stack), () -> CONFIGURATOR.get().getMaxEnergy(stack),
+                        CONFIGURATOR.get().canExtract(stack), CONFIGURATOR.get().canInsert(stack)), CONFIGURATOR.get());
     }
 }
